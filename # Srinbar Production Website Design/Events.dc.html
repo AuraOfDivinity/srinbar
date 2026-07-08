@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F7F3E8; }
+  </style>
+</helmet>
+<div style="background: var(--surface-page); min-height: 100vh;">
+  <dc-import name="SiteNav" active="Events" style="position: sticky; top: 0; z-index: 50;" hint-size="100%,72px"></dc-import>
+
+  <section aria-label="Events header" data-screen-label="Events — Header" style="padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 32px) 0;">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Events</p>
+      <h1 style="font: var(--type-h1); font-size: clamp(34px, 4.5vw, 48px); color: var(--text-body); margin-bottom: var(--space-4);">Workshops, field days &amp; assemblies</h1>
+      <p style="font: var(--type-body-lg); color: var(--text-muted); max-width: 620px; text-wrap: pretty;">Most events are free for members and open to the public. Registration closes one week before each date — seats at hands-on workshops are limited.</p>
+    </div>
+  </section>
+
+  <section aria-label="Upcoming events" data-screen-label="Events — Upcoming" style="padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 32px) 0;">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <h2 style="font: var(--type-h2); font-size: clamp(26px, 3vw, 36px); color: var(--text-body); margin-bottom: var(--space-5);">Upcoming</h2>
+      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <dc-import name="EventCard" month="SEP" day="14" title="Bamboo Nursery &amp; Planting Workshop" location="Kegalle District" time="9:00 AM – 3:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" month="OCT" day="02" title="Annual Members' Assembly" location="Kandy" time="10:00 AM – 1:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" month="OCT" day="21" title="Riverbank Restoration Field Day" location="Kalu Ganga Basin" time="8:00 AM – 12:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" month="NOV" day="09" title="Entrepreneurship Clinic: Pricing &amp; Markets" location="Colombo" time="2:00 PM – 5:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" month="DEC" day="05" title="Craft Cooperative Showcase" location="Kandy" time="All day" hint-size="100%,120px"></dc-import>
+      </div>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-top: var(--space-4); text-wrap: pretty;">Registration is handled through the membership office — the register button will take you to the contact form. Mention the event name in your message.</p>
+    </div>
+  </section>
+
+  <section aria-label="Past events" data-screen-label="Events — Past" style="padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px);">
+    <div style="max-width: 860px; margin: 0 auto;">
+      <h2 style="font: var(--type-h2); font-size: clamp(26px, 3vw, 36px); color: var(--text-body); margin-bottom: var(--space-2);">Past events</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Write-ups and photos from past events appear on the blog.</p>
+      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <dc-import name="EventCard" past="{{ true }}" month="JUN" day="21" title="Bamboo Charcoal Production Demonstration" location="Matale" time="9:00 AM – 1:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" past="{{ true }}" month="MAY" day="17" title="Community Riverbank Planting Day" location="Ratnapura" time="8:00 AM – 12:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" past="{{ true }}" month="MAR" day="08" title="Rattan Weaving Skills Workshop" location="Kegalle District" time="10:00 AM – 4:00 PM" hint-size="100%,120px"></dc-import>
+        <dc-import name="EventCard" past="{{ true }}" month="JAN" day="25" title="Bamboo Policy Roundtable with INBAR" location="Colombo" time="2:00 PM – 5:00 PM" hint-size="100%,120px"></dc-import>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

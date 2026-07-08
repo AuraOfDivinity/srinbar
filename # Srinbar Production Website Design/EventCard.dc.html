@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+</helmet>
+<div style="display: flex; gap: var(--space-5); align-items: center; flex-wrap: wrap; padding: var(--space-5); background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); font-family: var(--font-sans-body); opacity: {{ cardOpacity }};">
+  <div aria-hidden="true" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--radius-md); background: {{ badgeBg }}; color: {{ badgeColor }}; border: 1px solid {{ badgeBorder }}; flex-shrink: 0;">
+    <span style="font-family: var(--font-sans-body); font-size: 11px; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: {{ badgeMonthColor }};">{{ month }}</span>
+    <span style="font-family: var(--font-serif-display); font-size: 26px; line-height: 1;">{{ day }}</span>
+  </div>
+  <div style="flex: 1; min-width: 200px;">
+    <h3 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body); margin-bottom: var(--space-1);">{{ title }}</h3>
+    <p style="font: var(--type-caption); color: var(--text-muted);">{{ meta }}</p>
+  </div>
+  <sc-if value="{{ upcoming }}" hint-placeholder-val="{{ true }}">
+    <a href="{{ registerHref }}" style="display: inline-flex; align-items: center; justify-content: center; padding: 11px 22px; min-height: 44px; background: var(--action-accent); color: var(--forest-green-dark); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); text-decoration: none; border-radius: var(--radius-pill); outline: none; transition: background 0.2s ease;" style-hover="background: var(--action-accent-hover);" style-focus="box-shadow: var(--focus-ring);">Register</a>
+  </sc-if>
+  <sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+    <span style="display: inline-flex; align-items: center; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: transparent; color: var(--text-muted); border: 1px solid var(--border-hairline);">Past</span>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 760, &quot;height&quot;: 130}, &quot;month&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;SEP&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Date&quot;}, &quot;day&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;14&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Date&quot;}, &quot;title&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Bamboo Nursery &amp; Planting Workshop&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;location&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Kegalle District&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;time&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;9:00 AM – 3:00 PM&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;past&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;State&quot;}, &quot;registerHref&quot;: {&quot;editor&quot;: null, &quot;default&quot;: &quot;Contact.dc.html#membership&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const past = !!p.past;
+    const location = p.location ?? "Kegalle District";
+    const time = p.time ?? "9:00 AM – 3:00 PM";
+    return {
+      month: p.month ?? "SEP",
+      day: p.day ?? "14",
+      title: p.title ?? "Bamboo Nursery & Planting Workshop",
+      meta: time ? location + " · " + time : location,
+      upcoming: !past,
+      isPast: past,
+      registerHref: p.registerHref ?? "Contact.dc.html#membership",
+      cardOpacity: past ? 0.75 : 1,
+      badgeBg: past ? "transparent" : "var(--surface-brand)",
+      badgeColor: past ? "var(--text-muted)" : "var(--text-on-brand)",
+      badgeBorder: past ? "var(--border-hairline)" : "transparent",
+      badgeMonthColor: past ? "var(--text-muted)" : "var(--text-accent)",
+    };
+  }
+}
+</script>
+</body>
+</html>

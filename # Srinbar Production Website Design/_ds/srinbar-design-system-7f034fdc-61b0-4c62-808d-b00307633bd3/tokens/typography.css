@@ -1,0 +1,44 @@
+/* SRINBAR — Type tokens
+   Pairing 1: Fraunces (display/headings) + Inter (body/UI) */
+
+:root {
+  --font-serif-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-sans-body: "Inter", -apple-system, "Segoe UI", sans-serif;
+
+  /* Type scale (px) */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 22px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+  --text-3xl: 48px;
+  --text-4xl: 64px;
+
+  /* Line heights */
+  --leading-heading: 1.15;
+  --leading-body: 1.6;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Letter spacing */
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.04em;
+  --tracking-widest: 0.12em;
+
+  /* Semantic roles */
+  --type-hero: var(--weight-medium) var(--text-4xl)/var(--leading-heading) var(--font-serif-display);
+  --type-h1: var(--weight-medium) var(--text-3xl)/var(--leading-heading) var(--font-serif-display);
+  --type-h2: var(--weight-medium) var(--text-2xl)/var(--leading-heading) var(--font-serif-display);
+  --type-h3: var(--weight-regular) var(--text-xl)/var(--leading-heading) var(--font-serif-display);
+  --type-eyebrow: var(--weight-semibold) var(--text-sm)/1.2 var(--font-sans-body);
+  --type-body-lg: var(--weight-regular) var(--text-md)/var(--leading-body) var(--font-sans-body);
+  --type-body: var(--weight-regular) var(--text-base)/var(--leading-body) var(--font-sans-body);
+  --type-caption: var(--weight-regular) var(--text-sm)/1.5 var(--font-sans-body);
+  --type-button: var(--weight-semibold) var(--text-base)/1 var(--font-sans-body);
+}

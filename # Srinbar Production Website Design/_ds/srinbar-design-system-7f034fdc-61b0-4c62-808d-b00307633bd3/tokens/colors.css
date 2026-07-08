@@ -1,0 +1,56 @@
+/* SRINBAR — Color tokens
+   Palette: Option A "Bamboo Grove"
+   Base values first, semantic aliases below. */
+
+:root {
+  /* Base — brand */
+  --forest-green: #1E3D2F;
+  --forest-green-dark: #14291F;
+  --bamboo-green: #6E9B5E;
+  --bamboo-green-light: #9BC08C;
+  --rattan-gold: #C99A3C;
+  --rattan-gold-light: #E0BE72;
+
+  /* Base — neutrals */
+  --cane-cream: #F7F3E8;
+  --warm-white: #FFFDF7;
+  --charcoal-ink: #22261F;
+  --sage-grey: #6F7A6B;
+  --hairline-green: #CBD8C6;
+
+  /* Base — semantic */
+  --success: #3E8E5A;
+  --warning: #D9932C;
+  --error: #B4442C;
+  --info: #3C6E8F;
+
+  /* Semantic aliases — surfaces */
+  --surface-page: var(--cane-cream);
+  --surface-card: var(--warm-white);
+  --surface-brand: var(--forest-green);
+  --surface-brand-dark: var(--forest-green-dark);
+  --surface-overlay: rgba(30, 61, 47, 0.55);
+
+  /* Semantic aliases — text */
+  --text-body: var(--charcoal-ink);
+  --text-muted: var(--sage-grey);
+  --text-on-brand: var(--warm-white);
+  --text-on-brand-muted: #C7D6C4;
+  --text-link: var(--forest-green);
+  --text-accent: var(--rattan-gold);
+
+  /* Semantic aliases — borders */
+  --border-hairline: var(--hairline-green);
+  --border-strong: var(--forest-green);
+
+  /* Semantic aliases — interactive */
+  --action-primary: var(--forest-green);
+  --action-primary-hover: var(--forest-green-dark);
+  --action-secondary: transparent;
+  --action-secondary-border: var(--forest-green);
+  --action-accent: var(--rattan-gold);
+  --action-accent-hover: #B3872F;
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(110, 155, 94, 0.45);
+}

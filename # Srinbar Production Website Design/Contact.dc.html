@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F7F3E8; }
+    input[type="radio"] { accent-color: #1E3D2F; width: 18px; height: 18px; margin: 0; }
+  </style>
+</helmet>
+<div style="background: var(--surface-page); min-height: 100vh;">
+  <dc-import name="SiteNav" active="Contact" style="position: sticky; top: 0; z-index: 50;" hint-size="100%,72px"></dc-import>
+
+  <section aria-label="Contact header" data-screen-label="Contact — Header" style="padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 32px) 0;">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Contact &amp; Membership</p>
+      <h1 style="font: var(--type-h1); font-size: clamp(34px, 4.5vw, 48px); color: var(--text-body); margin-bottom: var(--space-4);">Join the network</h1>
+      <p style="font: var(--type-body-lg); color: var(--text-muted); max-width: 620px; text-wrap: pretty;">Whether you grow, craft, or trade bamboo and rattan — or simply have a question — this is the place to reach us. Membership applications are reviewed monthly.</p>
+    </div>
+  </section>
+
+  <section id="membership" aria-label="Membership application" data-screen-label="Contact — Form" style="padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(32px, 5vw, 80px); align-items: start;">
+
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: clamp(24px, 3.5vw, 48px);">
+        <h2 style="font: var(--type-h2); font-size: clamp(24px, 2.5vw, 28px); color: var(--text-body); margin-bottom: var(--space-2);">Membership application</h2>
+        <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5); text-wrap: pretty;">All fields except phone are required. We reply to every application, usually within two weeks.</p>
+
+        <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitForm }}" style="display: flex; flex-direction: column; gap: var(--space-4);">
+            <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body);">Full name
+              <input type="text" name="name" required="required" autocomplete="name" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);" />
+            </label>
+            <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body);">Email
+              <input type="email" name="email" required="required" autocomplete="email" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);" />
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-4);">
+              <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body);">Phone (optional)
+                <input type="tel" name="phone" autocomplete="tel" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);" />
+              </label>
+              <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body);">District
+                <select name="district" required="required" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; appearance: auto; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);">
+                  <option value="">Select district</option>
+                  <option value="Kandy">Kandy</option>
+                  <option value="Kegalle">Kegalle</option>
+                  <option value="Ratnapura">Ratnapura</option>
+                  <option value="Matale">Matale</option>
+                  <option value="Colombo">Colombo</option>
+                  <option value="Other">Other</option>
+                </select>
+              </label>
+            </div>
+            <fieldset style="border: 1px solid var(--border-hairline); border-radius: var(--radius-md); padding: var(--space-4); margin: 0;">
+              <legend style="font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body); padding: 0 var(--space-2);">I am joining as a</legend>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-5);">
+                <label style="display: flex; align-items: center; gap: var(--space-2); font: var(--type-body); color: var(--text-body); font-family: var(--font-sans-body); cursor: pointer; min-height: 44px;">
+                  <input type="radio" name="memberType" value="Grower" required="required" />Grower</label>
+                <label style="display: flex; align-items: center; gap: var(--space-2); font: var(--type-body); color: var(--text-body); font-family: var(--font-sans-body); cursor: pointer; min-height: 44px;">
+                  <input type="radio" name="memberType" value="Artisan" />Artisan</label>
+                <label style="display: flex; align-items: center; gap: var(--space-2); font: var(--type-body); color: var(--text-body); font-family: var(--font-sans-body); cursor: pointer; min-height: 44px;">
+                  <input type="radio" name="memberType" value="Trader" />Trader</label>
+                <label style="display: flex; align-items: center; gap: var(--space-2); font: var(--type-body); color: var(--text-body); font-family: var(--font-sans-body); cursor: pointer; min-height: 44px;">
+                  <input type="radio" name="memberType" value="Researcher" />Researcher</label>
+              </div>
+            </fieldset>
+            <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body); font-family: var(--font-sans-body);">Message
+              <textarea name="message" rows="5" required="required" placeholder="Tell us what you grow, make, or trade — or what you'd like to learn." style="padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; resize: vertical; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);"></textarea>
+            </label>
+            <div>
+              <button type="submit" style="display: inline-flex; align-items: center; justify-content: center; padding: 13px 28px; min-height: 48px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); cursor: pointer; outline: none; transition: background 0.2s ease;" style-hover="background: var(--action-primary-hover);" style-focus="box-shadow: var(--focus-ring);">Submit Application</button>
+            </div>
+          </form>
+        </sc-if>
+
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--surface-page); border: 1px solid var(--border-hairline); border-radius: var(--radius-md);">
+            <h3 style="font: var(--type-h3); font-size: var(--text-xl); color: var(--forest-green);">Application received</h3>
+            <p style="font: var(--type-body); color: var(--text-muted); text-wrap: pretty;">Thank you. The membership office reviews applications monthly — you will hear from us by email, usually within two weeks.</p>
+            <button type="button" onClick="{{ resetForm }}" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 9px 20px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); border-radius: var(--radius-pill); cursor: pointer; outline: none; transition: background 0.2s ease;" style-hover="background: rgba(30, 61, 47, 0.06);" style-focus="box-shadow: var(--focus-ring);">Submit another application</button>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: var(--space-6);">
+        <div>
+          <h2 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body); margin-bottom: var(--space-3);">Visit or write</h2>
+          <p style="font: var(--type-body); color: var(--text-muted);">National Institute of Fundamental Studies<br />Hantana Road, Kandy, Sri Lanka</p>
+          <p style="font: var(--type-body); color: var(--text-muted); margin-top: var(--space-3);">
+            <a href="mailto:info@srinbar.org" style="color: var(--text-link); text-decoration: none; outline: none; border-radius: var(--radius-sm); transition: color 0.2s ease;" style-hover="color: var(--bamboo-green);" style-focus="box-shadow: var(--focus-ring);">info@srinbar.org</a><br />+94 81 2 232 002
+          </p>
+          <p style="font: var(--type-caption); color: var(--text-muted); margin-top: var(--space-3);">Office hours: Monday–Friday, 8:30 AM – 4:30 PM.</p>
+        </div>
+
+        <div role="img" aria-label="Map placeholder — National Institute of Fundamental Studies, Hantana Road, Kandy" style="height: 260px; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); background: var(--surface-card); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); text-align: center; padding: var(--space-5);">
+          <span style="font-family: var(--font-serif-display); font-size: var(--text-lg); color: var(--sage-grey);">Map</span>
+          <span style="font: var(--type-caption); color: var(--text-muted); max-width: 280px;">Embed placeholder — NIFS, Hantana Road, Kandy (7.2716° N, 80.6034° E)</span>
+        </div>
+
+        <div id="newsletter" style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <h2 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body); margin-bottom: var(--space-1);">Stay Rooted</h2>
+          <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-4);">Field updates, events, and entrepreneurship stories — twice a month.</p>
+          <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ subscribe }}" style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+              <label for="contact-newsletter-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</label>
+              <input id="contact-newsletter-email" type="email" required="required" placeholder="you@email.com" style="flex: 1; min-width: 180px; padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;" style-focus="border-color: var(--bamboo-green); box-shadow: var(--focus-ring);" />
+              <button type="submit" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); border: none; border-radius: var(--radius-pill); cursor: pointer; outline: none; transition: background 0.2s ease;" style-hover="background: var(--action-primary-hover);" style-focus="box-shadow: var(--focus-ring);">Subscribe</button>
+            </form>
+          </sc-if>
+          <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+            <p role="status" style="font: var(--type-body); color: var(--success);">Thank you — you're on the list. See you in your inbox.</p>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { submitted: false, subscribed: false };
+  renderVals() {
+    return {
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      subscribed: this.state.subscribed,
+      notSubscribed: !this.state.subscribed,
+      submitForm: (e) => {
+        e.preventDefault();
+        this.setState({ submitted: true });
+      },
+      resetForm: () => this.setState({ submitted: false }),
+      subscribe: (e) => {
+        e.preventDefault();
+        this.setState({ subscribed: true });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

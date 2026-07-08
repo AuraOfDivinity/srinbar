@@ -1,0 +1,111 @@
+import { Link } from "next-view-transitions";
+import type { SiteSettings } from "@/sanity/types";
+
+export default function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
+  const columns = settings?.footerColumns ?? [];
+  return (
+    <footer
+      style={{
+        background: "var(--surface-brand-dark)",
+        color: "var(--text-on-brand)",
+        fontFamily: "var(--font-sans-body)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "var(--container-max)",
+          margin: "0 auto",
+          padding: "var(--space-8) clamp(20px, 4vw, 32px) var(--space-6)",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "var(--space-6)",
+          }}
+        >
+          <div style={{ gridColumn: "span 1" }}>
+            <div
+              style={{
+                fontFamily: "var(--font-serif-display)",
+                fontSize: 28,
+                fontWeight: 500,
+                marginBottom: "var(--space-3)",
+              }}
+            >
+              SRINBAR
+            </div>
+            <p
+              style={{
+                font: "var(--type-body)",
+                color: "var(--text-on-brand-muted)",
+                maxWidth: 320,
+              }}
+            >
+              {settings?.footerBlurb}
+            </p>
+          </div>
+          {columns.map(({ heading, links }) => (
+            <nav
+              key={heading}
+              aria-label={heading}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "var(--space-2)",
+              }}
+            >
+              <div
+                style={{
+                  font: "var(--type-eyebrow)",
+                  textTransform: "uppercase",
+                  letterSpacing: "var(--tracking-widest)",
+                  fontSize: "var(--text-xs)",
+                  color: "var(--text-accent)",
+                  marginBottom: "var(--space-2)",
+                }}
+              >
+                {heading}
+              </div>
+              {(links ?? []).map(({ label, href }) => (
+                <Link key={label} href={href} className="footer-link">
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          ))}
+        </div>
+        <div
+          style={{
+            marginTop: "var(--space-8)",
+            paddingTop: "var(--space-5)",
+            borderTop: "1px solid rgba(255, 253, 247, 0.15)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "var(--space-3)",
+          }}
+        >
+          <span
+            style={{
+              fontSize: "var(--text-xs)",
+              color: "var(--text-on-brand-muted)",
+            }}
+          >
+            {settings?.copyright}
+          </span>
+          <span
+            style={{
+              fontSize: "var(--text-xs)",
+              color: "var(--text-on-brand-muted)",
+            }}
+          >
+            {settings?.footerTagline}
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,46 @@
+import {
+  siteImage,
+  cta,
+  stat,
+  linkItem,
+  footerColumn,
+  programme,
+  postBody,
+} from "./objects";
+import {
+  siteSettings,
+  homePage,
+  aboutPage,
+  blogPage,
+  eventsPage,
+  contactPage,
+  category,
+  author,
+  teamMember,
+  post,
+  event,
+} from "./documents";
+
+export const schemaTypes = [
+  // objects
+  siteImage,
+  cta,
+  stat,
+  linkItem,
+  footerColumn,
+  programme,
+  postBody,
+  // singletons
+  siteSettings,
+  homePage,
+  aboutPage,
+  blogPage,
+  eventsPage,
+  contactPage,
+  // collections
+  category,
+  author,
+  teamMember,
+  post,
+  event,
+];

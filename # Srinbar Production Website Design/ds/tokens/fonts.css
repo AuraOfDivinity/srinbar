@@ -1,0 +1,7 @@
+/* SRINBAR — Webfonts
+   Fraunces + Inter are sourced live from Google Fonts (both are open-source
+   families distributed there — no local binaries were provided in the brief).
+   This is a CSS @import of Google's stylesheet, which itself contains the
+   @font-face rules that resolve the woff2 files. */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&display=swap');

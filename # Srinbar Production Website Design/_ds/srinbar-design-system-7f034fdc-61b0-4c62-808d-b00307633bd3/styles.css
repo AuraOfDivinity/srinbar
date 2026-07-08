@@ -1,0 +1,21 @@
+/* SRINBAR Design System — global stylesheet entry point.
+   List of imports only; every token/font file it reaches ships to consumers. */
+
+@import url('tokens/fonts.css');
+@import url('tokens/colors.css');
+@import url('tokens/typography.css');
+@import url('tokens/spacing.css');
+@import url('tokens/radii.css');
+
+/* Minimal reset consumers can rely on */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-body);
+  font: var(--type-body);
+}
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-serif-display); }
+p { margin: 0; }
+a { color: var(--text-link); }
+img { max-width: 100%; display: block; }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F7F3E8; }
+  </style>
+</helmet>
+<div style="background: var(--surface-page); min-height: 100vh;">
+  <dc-import name="SiteNav" active="Blog" style="position: sticky; top: 0; z-index: 50;" hint-size="100%,72px"></dc-import>
+
+  <article data-screen-label="Article">
+    <header style="padding: clamp(48px, 6vw, 80px) clamp(20px, 4vw, 32px) 0;">
+      <div style="max-width: 760px; margin: 0 auto;">
+        <a href="Blog.dc.html" style="font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); color: var(--text-link); text-decoration: none; outline: none; border-radius: var(--radius-sm); padding: 4px 6px; margin-left: -6px; transition: color 0.2s ease;" style-hover="color: var(--bamboo-green);" style-focus="box-shadow: var(--focus-ring);">← All posts</a>
+        <div style="margin: var(--space-5) 0 var(--space-4);">
+          <span style="display: inline-flex; align-items: center; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: transparent; color: var(--text-body); border: 1px solid var(--border-hairline);">Land Restoration</span>
+        </div>
+        <h1 style="font: var(--type-h1); font-size: clamp(32px, 4.5vw, 48px); color: var(--text-body); margin-bottom: var(--space-4); text-wrap: balance;">How Bamboo Roots Are Stabilising Sri Lanka's Riverbanks</h1>
+        <p style="font: var(--type-caption); color: var(--text-muted); font-family: var(--font-sans-body);">By <span style="color: var(--text-body); font-weight: var(--weight-semibold);">Dr. A. Perera</span> · 12 June 2026 · 6 min read</p>
+      </div>
+    </header>
+
+    <div style="padding: clamp(32px, 4vw, 48px) clamp(20px, 4vw, 32px) 0;">
+      <figure style="max-width: 980px; margin: 0 auto;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Ella_Valley%2C_Sri_Lanka%2C_Cloud_forest_in_fog.jpg" alt="Cloud forest in warm morning fog above Ella Valley, Sri Lanka" style="width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: var(--radius-md);" />
+        <figcaption style="font: var(--type-caption); color: var(--text-muted); margin-top: var(--space-3); font-family: var(--font-sans-body);">Morning fog over the Kalu Ganga basin, where the network's first riverbank plantings went in five years ago. Photo: Wikimedia Commons (placeholder).</figcaption>
+      </figure>
+    </div>
+
+    <div style="padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 32px) 0;">
+      <div style="max-width: 68ch; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-5);">
+        <p style="font: var(--type-body-lg); color: var(--text-body); text-wrap: pretty;">Every monsoon, the Kalu Ganga takes a little more of its banks with it. Paddy bunds slump, footpaths disappear, and in the worst years whole home gardens slide into the river. Since 2021, SRINBAR's riverbank programme has been testing a quieter defence: bamboo.</p>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">Unlike hard revetments of stone or concrete, a bamboo hedge does not resist the river so much as hold the soil together against it. A single mature clump of <em>Bambusa vulgaris</em> anchors a root-and-rhizome mat several metres across, laced through the top half-metre of soil — exactly the layer that monsoon flow strips first.</p>
+
+        <h2 style="font: var(--type-h2); font-size: clamp(26px, 3vw, 36px); color: var(--text-body); margin-top: var(--space-4);">Fourteen kilometres of riverbank</h2>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">The programme began with a two-kilometre trial reach near Ratnapura, planted by village societies with nursery stock raised in SRINBAR workshops. Today the network maintains roughly fourteen kilometres of planted bank across the Kalu Ganga and its tributaries, using three species matched to bank height and soil: <em>Bambusa vulgaris</em> on low, frequently flooded benches; <em>Dendrocalamus giganteus</em> where banks rise steeply; and rattan interplanted in the shaded gaps between clumps.</p>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">Each planting is surveyed twice a year — once before and once after the south-west monsoon. Field teams measure bank retreat against fixed pegs, photograph the toe of the bank, and record culm counts per clump.</p>
+
+        <blockquote style="border-left: 3px solid var(--rattan-gold); padding: var(--space-2) 0 var(--space-2) var(--space-5); margin: var(--space-3) 0;">
+          <p style="font-family: var(--font-serif-display); font-size: clamp(20px, 2.2vw, 26px); line-height: 1.4; color: var(--forest-green); text-wrap: pretty;">On the trial reach, measured bank retreat fell from just over a metre a year to under fifteen centimetres — after only two growing seasons.</p>
+        </blockquote>
+
+        <h2 style="font: var(--type-h2); font-size: clamp(26px, 3vw, 36px); color: var(--text-body); margin-top: var(--space-4);">What the pegs are telling us</h2>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">The early numbers are cautious but encouraging. Across the monitored reaches, average bank retreat has fallen by more than three-quarters where clumps have closed canopy. Sediment is beginning to accrete on the inside of two planted bends — new land, in effect, where the river used to take it away.</p>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">Just as important, the plantings are paying their keep. Village societies harvest mature culms on a three-year rotation for weaving stock and charcoal, which is what keeps the hedges maintained without a project budget behind them. Restoration that earns is restoration that lasts.</p>
+
+        <figure style="margin: var(--space-3) 0;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Labugama_-_Kalatuwawa_Forest_Reserve%2C_Sri_Lanka.jpg" alt="Dense riverbank vegetation in warm daylight at Labugama–Kalatuwawa Forest Reserve" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius-md);" />
+          <figcaption style="font: var(--type-caption); color: var(--text-muted); margin-top: var(--space-3); font-family: var(--font-sans-body);">A closed bamboo canopy on a planted reach. Clumps are harvested on rotation, never clear-felled. Photo: Wikimedia Commons (placeholder).</figcaption>
+        </figure>
+
+        <h2 style="font: var(--type-h2); font-size: clamp(26px, 3vw, 36px); color: var(--text-body); margin-top: var(--space-4);">Where the programme goes next</h2>
+        <p style="font: var(--type-body); color: var(--text-body); text-wrap: pretty;">The next phase extends the survey network to the Kelani basin and adds two more village societies as planting partners. If you farm or live along an eroding bank and want a planting assessed, our field coordinators run site visits every quarter — the fastest way to reach them is through the membership form.</p>
+      </div>
+    </div>
+
+    <div style="padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 32px) 0;">
+      <div style="max-width: 68ch; margin: 0 auto;">
+        <div aria-label="Tags" style="display: flex; flex-wrap: wrap; gap: var(--space-2); padding-bottom: var(--space-6); border-bottom: 1px solid var(--border-hairline);">
+          <a href="Blog.dc.html" style="display: inline-flex; align-items: center; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; color: var(--text-body); border: 1px solid var(--border-hairline); text-decoration: none; outline: none; transition: border-color 0.2s ease;" style-hover="border-color: var(--forest-green);" style-focus="box-shadow: var(--focus-ring);">Riverbanks</a>
+          <a href="Blog.dc.html" style="display: inline-flex; align-items: center; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; color: var(--text-body); border: 1px solid var(--border-hairline); text-decoration: none; outline: none; transition: border-color 0.2s ease;" style-hover="border-color: var(--forest-green);" style-focus="box-shadow: var(--focus-ring);">Erosion Control</a>
+          <a href="Blog.dc.html" style="display: inline-flex; align-items: center; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; color: var(--text-body); border: 1px solid var(--border-hairline); text-decoration: none; outline: none; transition: border-color 0.2s ease;" style-hover="border-color: var(--forest-green);" style-focus="box-shadow: var(--focus-ring);">Kalu Ganga</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-6) 0;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Bamboo_and_plum_tree.jpg" alt="Portrait placeholder for Dr. A. Perera" style="width: 64px; height: 64px; border-radius: var(--radius-pill); object-fit: cover; flex-shrink: 0;" />
+          <div>
+            <p style="font: var(--type-h3); font-size: var(--text-md); font-family: var(--font-serif-display); color: var(--text-body);">Dr. A. Perera</p>
+            <p style="font: var(--type-caption); color: var(--text-muted); font-family: var(--font-sans-body); text-wrap: pretty;">Founding scientist of SRINBAR and plant ecologist at the National Institute of Fundamental Studies, Kandy. Leads the riverbank monitoring programme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section aria-label="Related posts" data-screen-label="Article — Related" style="padding: clamp(40px, 5vw, 64px) clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px);">
+      <div style="max-width: var(--container-max); margin: 0 auto;">
+        <h2 style="font: var(--type-h2); font-size: clamp(28px, 3vw, 36px); color: var(--text-body); margin-bottom: var(--space-6);">Related reading</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: var(--space-6);">
+          <dc-import name="BlogCard" image-url="https://upload.wikimedia.org/wikipedia/commons/a/ab/Bodinagala_Forest_Reserve%2C_Sri_Lanka.jpg" image-alt="Sunlit forest canopy at Bodinagala Forest Reserve" category="Land Restoration" title="Degraded Soil, Two Years Later" excerpt="A before-and-after look at a restoration site in Kegalle District." date="20 February 2026" hint-size="100%,460px"></dc-import>
+          <dc-import name="BlogCard" image-url="https://upload.wikimedia.org/wikipedia/commons/b/b7/Bamboo_forest_arashiyama.jpg" image-alt="Tall bamboo culms rising toward soft daylight in a dense grove" category="Research" title="Why Bamboo Deserves Plantation-Crop Status" excerpt="Notes from SRINBAR's latest submission to national land-use policy makers." date="28 April 2026" hint-size="100%,460px"></dc-import>
+          <dc-import name="BlogCard" image-url="https://upload.wikimedia.org/wikipedia/commons/2/2e/Labugama_-_Kalatuwawa_Forest_Reserve%2C_Sri_Lanka.jpg" image-alt="Riverbank vegetation at Labugama–Kalatuwawa Forest Reserve" category="Training" title="Inside Our Nursery &amp; Planting Workshops" excerpt="What growers learn in their first season, from soil preparation to culm spacing." date="15 March 2026" hint-size="100%,460px"></dc-import>
+        </div>
+      </div>
+    </section>
+  </article>
+
+  <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>

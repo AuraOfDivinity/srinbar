@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+  <style>
+    body { margin: 0; background: #F7F3E8; }
+  </style>
+</helmet>
+<div style="background: var(--surface-page); min-height: 100vh; font-family: var(--font-sans-body); padding-bottom: var(--space-9);">
+
+  <header data-screen-label="Components — Header" style="background: var(--surface-brand-dark); color: var(--text-on-brand); padding: var(--space-8) clamp(20px, 4vw, 32px);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">SRINBAR Design System</p>
+      <h1 style="font: var(--type-h1); font-size: clamp(34px, 4.5vw, 48px); margin-bottom: var(--space-3);">Components sheet</h1>
+      <p style="font: var(--type-body); color: var(--text-on-brand-muted); max-width: 620px; text-wrap: pretty;">Every interactive primitive used across the six pages, with default, hover, focus, disabled, and empty states. Hover and focus columns are rendered statically for reference — live components carry the same styles.</p>
+    </div>
+  </header>
+
+  <main style="max-width: var(--container-max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); display: flex; flex-direction: column; gap: clamp(48px, 6vw, 80px);">
+
+    <section aria-label="Buttons" data-screen-label="Components — Buttons" style="padding-top: clamp(48px, 6vw, 64px);">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Buttons</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Pill-shaped, semibold Inter. Hover darkens or tints — no scale or movement. Focus shows the shared 3px bamboo-green ring.</p>
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6); overflow-x: auto; display: grid; grid-template-columns: 110px repeat(4, minmax(180px, 1fr)); gap: var(--space-5); align-items: center;">
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted);"></span>
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted);">Default</span>
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted);">Hover</span>
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted);">Focus</span>
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted);">Disabled</span>
+
+        <span style="font: var(--type-caption); color: var(--text-body); font-weight: var(--weight-semibold);">Primary</span>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); cursor: pointer;">Become a Member</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-primary-hover); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); cursor: pointer;">Become a Member</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); cursor: pointer; box-shadow: var(--focus-ring);">Become a Member</button>
+        <button type="button" disabled="disabled" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); opacity: 0.5; cursor: default;">Become a Member</button>
+
+        <span style="font: var(--type-caption); color: var(--text-body); font-weight: var(--weight-semibold);">Secondary</span>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Our Programmes</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: rgba(30, 61, 47, 0.06); color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Our Programmes</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer; box-shadow: var(--focus-ring);">Our Programmes</button>
+        <button type="button" disabled="disabled" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); opacity: 0.5; cursor: default;">Our Programmes</button>
+
+        <span style="font: var(--type-caption); color: var(--text-body); font-weight: var(--weight-semibold);">Accent</span>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-accent); color: var(--forest-green-dark); border: none; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Register</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-accent-hover); color: var(--forest-green-dark); border: none; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Register</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-accent); color: var(--forest-green-dark); border: none; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer; box-shadow: var(--focus-ring);">Register</button>
+        <button type="button" disabled="disabled" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: var(--action-accent); color: var(--forest-green-dark); border: none; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); opacity: 0.5; cursor: default;">Register</button>
+      </div>
+      <div style="margin-top: var(--space-4); background: var(--surface-brand); border-radius: var(--radius-lg); padding: var(--space-6); overflow-x: auto; display: grid; grid-template-columns: 110px repeat(4, minmax(180px, 1fr)); gap: var(--space-5); align-items: center;">
+        <span style="font: var(--type-caption); color: var(--text-on-brand); font-weight: var(--weight-semibold);">Ghost <span style="font-weight: 400; color: var(--text-on-brand-muted);">(on photo)</span></span>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--text-on-brand); border: 1px solid rgba(255, 253, 247, 0.4); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Our Programmes</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: rgba(255, 253, 247, 0.12); color: var(--text-on-brand); border: 1px solid rgba(255, 253, 247, 0.4); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer;">Our Programmes</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--text-on-brand); border: 1px solid rgba(255, 253, 247, 0.4); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); cursor: pointer; box-shadow: var(--focus-ring);">Our Programmes</button>
+        <button type="button" disabled="disabled" style="display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 13px 28px; background: transparent; color: var(--text-on-brand); border: 1px solid rgba(255, 253, 247, 0.4); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border-radius: var(--radius-pill); opacity: 0.5; cursor: default;">Our Programmes</button>
+      </div>
+      <div style="margin-top: var(--space-4); background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6); display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap;">
+        <span style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted); width: 110px;">Sizes</span>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; padding: 9px 20px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); border: none; border-radius: var(--radius-pill); cursor: pointer;">Small</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; padding: 13px 28px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); border: none; border-radius: var(--radius-pill); cursor: pointer;">Medium</button>
+        <button type="button" style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 34px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-md); border: none; border-radius: var(--radius-pill); cursor: pointer;">Large</button>
+      </div>
+    </section>
+
+    <section aria-label="Badges" data-screen-label="Components — Badges">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Badges &amp; date badge</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Gold is reserved for featured/event emphasis. Outline is the default category tag. The date badge mutes when an event has passed.</p>
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6); display: flex; align-items: center; gap: var(--space-6); flex-wrap: wrap;">
+        <span style="display: inline-flex; align-items: center; font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: var(--rattan-gold); color: var(--forest-green-dark);">Featured</span>
+        <span style="display: inline-flex; align-items: center; font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: var(--surface-brand); color: var(--text-on-brand);">Members Only</span>
+        <span style="display: inline-flex; align-items: center; font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: transparent; color: var(--text-body); border: 1px solid var(--border-hairline);">Land Restoration</span>
+        <span style="display: inline-flex; align-items: center; font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: transparent; color: var(--text-muted); border: 1px solid var(--border-hairline);">Past</span>
+        <span style="width: 1px; align-self: stretch; background: var(--border-hairline);"></span>
+        <span aria-label="Date badge, upcoming" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--radius-md); background: var(--surface-brand); color: var(--text-on-brand);">
+          <span style="font-size: 11px; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--text-accent);">SEP</span>
+          <span style="font-family: var(--font-serif-display); font-size: 26px; line-height: 1;">14</span>
+        </span>
+        <span aria-label="Date badge, past" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--radius-md); background: transparent; border: 1px solid var(--border-hairline); color: var(--text-muted);">
+          <span style="font-size: 11px; font-weight: var(--weight-semibold); letter-spacing: var(--tracking-widest); text-transform: uppercase;">JUN</span>
+          <span style="font-family: var(--font-serif-display); font-size: 26px; line-height: 1;">21</span>
+        </span>
+      </div>
+    </section>
+
+    <section aria-label="Cards" data-screen-label="Components — Cards">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Cards</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">CMS-driven repeatables. Blog card: image, category, title, excerpt, date. Event card: date badge, title, venue · time, register CTA — the past variant drops the CTA and mutes.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); align-items: start;">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <p style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted); margin-bottom: var(--space-4);">Blog card</p>
+          <dc-import name="BlogCard" hint-size="100%,460px"></dc-import>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+          <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+            <p style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted); margin-bottom: var(--space-4);">Event card — upcoming</p>
+            <dc-import name="EventCard" hint-size="100%,120px"></dc-import>
+          </div>
+          <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+            <p style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted); margin-bottom: var(--space-4);">Event card — past</p>
+            <dc-import name="EventCard" past="{{ true }}" month="JUN" day="21" title="Bamboo Charcoal Production Demonstration" location="Matale" time="9:00 AM – 1:00 PM" hint-size="100%,120px"></dc-import>
+          </div>
+          <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+            <p style="font: var(--type-eyebrow); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: var(--tracking-wide); color: var(--text-muted); margin-bottom: var(--space-4);">Empty state</p>
+            <div role="status" style="border: 1px solid var(--border-hairline); border-radius: var(--radius-md); padding: var(--space-6); display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-2);">
+              <h3 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body);">No posts in this category yet</h3>
+              <p style="font: var(--type-caption); color: var(--text-muted); max-width: 320px; text-wrap: pretty;">New field notes are published every month. Check back soon.</p>
+              <button type="button" style="margin-top: var(--space-2); display: inline-flex; align-items: center; justify-content: center; padding: 9px 20px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); border-radius: var(--radius-pill); cursor: pointer;">View all posts</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Form controls" data-screen-label="Components — Forms">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Form controls</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Pill inputs on cream, hairline borders. Focus tints the border bamboo-green and adds the ring. Error uses the semantic red with a plain-language message.</p>
+      <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); align-items: start;">
+        <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body);">Default
+          <input type="text" placeholder="you@email.com" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body);">Focus
+          <input type="text" value="a.perera@nifs" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--bamboo-green); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; box-shadow: var(--focus-ring);" />
+        </label>
+        <div style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body);">
+          <label for="cs-error-input">Error</label>
+          <input id="cs-error-input" type="email" value="a.perera@" aria-invalid="true" aria-describedby="cs-error-msg" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--error); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none;" />
+          <span id="cs-error-msg" style="font: var(--type-caption); font-weight: var(--weight-regular); color: var(--error);">Enter a complete email address.</span>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-muted);">Disabled
+          <input type="text" disabled="disabled" placeholder="Not editable" style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--cane-cream); font: var(--type-body); color: var(--text-muted); outline: none; opacity: 0.6;" />
+        </label>
+        <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body);">Select
+          <select style="padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none;">
+            <option>Kegalle</option>
+            <option>Kandy</option>
+            <option>Ratnapura</option>
+          </select>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: var(--space-2); font: var(--type-caption); font-weight: var(--weight-semibold); color: var(--text-body);">Textarea
+          <textarea rows="3" placeholder="Tell us what you grow, make, or trade." style="padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none; resize: vertical;"></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section aria-label="Navigation" data-screen-label="Components — Navigation">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Navigation</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Solid on cream with a hairline; transparent over hero photos, turning solid on scroll. Active link carries the permanent gold underline. Below 768px it collapses to a typographic Menu button — tap it in the mobile specimen.</p>
+      <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+        <div style="border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden;">
+          <dc-import name="SiteNav" active="Blog" hint-size="100%,72px"></dc-import>
+        </div>
+        <div style="border-radius: var(--radius-md); overflow: hidden; background: linear-gradient(180deg, rgba(20, 41, 31, 0.9) 0%, rgba(30, 61, 47, 0.8) 100%);">
+          <dc-import name="SiteNav" active="Home" overlay="{{ true }}" lock-overlay="{{ true }}" hint-size="100%,72px"></dc-import>
+        </div>
+        <div style="max-width: 390px; border: 1px solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden;">
+          <dc-import name="SiteNav" active="Home" force-mobile="{{ true }}" hint-size="390px,72px"></dc-import>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Newsletter module" data-screen-label="Components — Newsletter">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Newsletter — "Stay Rooted"</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Inline email capture with a success state replacing the form after submit.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <h3 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body); margin-bottom: var(--space-1); font-family: var(--font-serif-display);">Stay Rooted</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-4);">Field updates, events, and entrepreneurship stories — twice a month.</p>
+          <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+            <input type="email" placeholder="you@email.com" aria-label="Email address" style="flex: 1; min-width: 160px; padding: 12px 16px; border-radius: var(--radius-pill); border: 1px solid var(--border-hairline); background: var(--surface-page); font: var(--type-body); color: var(--text-body); outline: none;" />
+            <button type="button" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; background: var(--action-primary); color: var(--text-on-brand); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-sm); border: none; border-radius: var(--radius-pill); cursor: pointer;">Subscribe</button>
+          </div>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: var(--space-6);">
+          <h3 style="font: var(--type-h3); font-size: var(--text-lg); color: var(--text-body); margin-bottom: var(--space-1); font-family: var(--font-serif-display);">Stay Rooted</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-4);">Success state</p>
+          <p role="status" style="font: var(--type-body); color: var(--success);">Thank you — you're on the list. See you in your inbox.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Footer" data-screen-label="Components — Footer">
+      <h2 style="font: var(--type-h2); font-size: var(--text-xl); color: var(--text-body); margin-bottom: var(--space-2);">Footer</h2>
+      <p style="font: var(--type-caption); color: var(--text-muted); margin-bottom: var(--space-5);">Mega-footer on forest-green-dark: wordmark, three link columns, legal row. Columns stack on mobile.</p>
+      <div style="border-radius: var(--radius-md); overflow: hidden;">
+        <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+</body>
+</html>

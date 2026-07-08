@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+</helmet>
+<article style="display: flex; flex-direction: column; font-family: var(--font-sans-body);">
+  <a href="{{ href }}" tabindex="-1" aria-hidden="true" style="display: block; aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-4); background: var(--hairline-green); outline: none;">
+    <img src="{{ imageUrl }}" alt="{{ imageAlt }}" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: filter 0.2s ease;" style-hover="filter: brightness(0.92);" />
+  </a>
+  <span style="display: inline-flex; align-items: center; width: fit-content; font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; border-radius: var(--radius-pill); padding: 6px 14px; background: transparent; color: var(--text-body); border: 1px solid var(--border-hairline);">{{ category }}</span>
+  <h3 style="font: var(--type-h3); font-size: var(--text-lg); margin: var(--space-3) 0 var(--space-2);">
+    <a href="{{ href }}" style="color: var(--text-body); text-decoration: none; outline: none; border-radius: var(--radius-sm); transition: text-decoration-color 0.2s ease;" style-hover="text-decoration: underline; text-decoration-color: var(--rattan-gold); text-decoration-thickness: 2px; text-underline-offset: 5px;" style-focus="box-shadow: var(--focus-ring);">{{ title }}</a>
+  </h3>
+  <p style="font: var(--type-body); color: var(--text-muted); margin-bottom: var(--space-3);">{{ excerpt }}</p>
+  <span style="font: var(--type-caption); color: var(--text-muted);">{{ date }}</span>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 380, &quot;height&quot;: 460}, &quot;title&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;How Bamboo Roots Are Stabilising Sri Lanka's Riverbanks&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;category&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Land Restoration&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;excerpt&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;A look at the network's five-year riverbank planting programme and what early results show for erosion control.&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;date&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;12 June 2026&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Content&quot;}, &quot;imageUrl&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;https://upload.wikimedia.org/wikipedia/commons/9/98/Ella_Valley%2C_Sri_Lanka%2C_Cloud_forest_in_fog.jpg&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Image&quot;}, &quot;imageAlt&quot;: {&quot;editor&quot;: &quot;text&quot;, &quot;default&quot;: &quot;Cloud forest in warm morning fog, Ella Valley, Sri Lanka&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Image&quot;}, &quot;href&quot;: {&quot;editor&quot;: null, &quot;default&quot;: &quot;Article.dc.html&quot;, &quot;tsType&quot;: &quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    return {
+      imageUrl: p.imageUrl ?? "https://upload.wikimedia.org/wikipedia/commons/9/98/Ella_Valley%2C_Sri_Lanka%2C_Cloud_forest_in_fog.jpg",
+      imageAlt: p.imageAlt ?? "Cloud forest in warm morning fog, Ella Valley, Sri Lanka",
+      category: p.category ?? "Land Restoration",
+      title: p.title ?? "How Bamboo Roots Are Stabilising Sri Lanka's Riverbanks",
+      excerpt: p.excerpt ?? "A look at the network's five-year riverbank planting programme and what early results show for erosion control.",
+      date: p.date ?? "12 June 2026",
+      href: p.href ?? "Article.dc.html",
+    };
+  }
+}
+</script>
+</body>
+</html>

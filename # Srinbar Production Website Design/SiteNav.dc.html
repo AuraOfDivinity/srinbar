@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+</helmet>
+<header role="banner" style="background: {{ navBg }}; border-bottom: 1px solid {{ navBorder }}; color: {{ navColor }}; font-family: var(--font-sans-body); transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;">
+  <div style="max-width: var(--container-max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px); height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);">
+    <a href="Home.dc.html" aria-label="SRINBAR — home" style="font-family: var(--font-serif-display); font-size: 22px; font-weight: 500; letter-spacing: 0.02em; color: inherit; text-decoration: none; outline: none; border-radius: var(--radius-sm); padding: 2px 4px; margin-left: -4px;" style-focus="box-shadow: var(--focus-ring);">SRINBAR</a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Primary" style="display: flex; align-items: center; gap: 32px;">
+        <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+          <a href="{{ l.href }}" aria-current="{{ l.ariaCurrent }}" style="text-decoration: none; color: inherit; font-size: var(--text-sm); font-weight: {{ l.weight }}; border-bottom: 2px solid {{ l.underline }}; padding-bottom: 4px; outline: none; border-radius: 2px; transition: color 0.2s ease;" style-hover="color: {{ hoverColor }};" style-focus="box-shadow: var(--focus-ring);">{{ l.label }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="srinbar-mobile-menu" style="font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; background: transparent; color: inherit; border: 1px solid currentColor; border-radius: var(--radius-pill); padding: 10px 20px; min-height: 44px; cursor: pointer; outline: none; transition: background 0.2s ease;" style-hover="background: rgba(110, 155, 94, 0.12);" style-focus="box-shadow: var(--focus-ring);">{{ menuLabel }}</button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav id="srinbar-mobile-menu" aria-label="Primary" style="display: flex; flex-direction: column; background: var(--surface-page); border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline); padding: var(--space-2) clamp(20px, 4vw, 32px) var(--space-5); color: var(--text-body);">
+      <sc-for list="{{ links }}" as="l" hint-placeholder-count="5">
+        <a href="{{ l.href }}" aria-current="{{ l.ariaCurrent }}" style="display: flex; align-items: center; min-height: 52px; color: var(--text-body); text-decoration: none; font-size: var(--text-md); font-weight: {{ l.weight }}; border-bottom: 1px solid var(--hairline-green); outline: none;" style-hover="color: var(--bamboo-green);" style-focus="box-shadow: var(--focus-ring); border-radius: var(--radius-sm);">{{ l.label }}</a>
+      </sc-for>
+      <a href="Contact.dc.html#membership" style="margin-top: var(--space-5); display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 13px 28px; background: var(--action-accent); color: var(--forest-green-dark); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); text-decoration: none; border-radius: var(--radius-pill); outline: none; transition: background 0.2s ease;" style-hover="background: var(--action-accent-hover);" style-focus="box-shadow: var(--focus-ring);">Become a Member</a>
+    </nav>
+  </sc-if>
+</header>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 72}, &quot;active&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;Home&quot;, &quot;About Us&quot;, &quot;Blog&quot;, &quot;Events&quot;, &quot;Contact&quot;], &quot;default&quot;: &quot;Home&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;section&quot;: &quot;Navigation&quot;}, &quot;overlay&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Navigation&quot;}, &quot;forceMobile&quot;: {&quot;editor&quot;: null, &quot;default&quot;: null, &quot;tsType&quot;: &quot;boolean | null&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, isMobile: false, menuOpen: false };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 24;
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+    };
+    this._mq = window.matchMedia("(max-width: 767px)");
+    this._onMq = () => this.setState({ isMobile: this._mq.matches, menuOpen: false });
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    if (this._mq.addEventListener) this._mq.addEventListener("change", this._onMq);
+    this.setState({ scrolled: window.scrollY > 24, isMobile: this._mq.matches });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this._onScroll);
+    if (this._mq.removeEventListener) this._mq.removeEventListener("change", this._onMq);
+  }
+
+  renderVals() {
+    const p = this.props;
+    const isMobile = (p.forceMobile === undefined || p.forceMobile === null) ? this.state.isMobile : !!p.forceMobile;
+    const menuOpen = isMobile && this.state.menuOpen;
+    const overlay = !!p.overlay && (p.lockOverlay ? !menuOpen : (!this.state.scrolled && !menuOpen));
+    const active = p.active ?? "Home";
+    const pages = [
+      ["Home", "Home.dc.html"],
+      ["About Us", "About.dc.html"],
+      ["Blog", "Blog.dc.html"],
+      ["Events", "Events.dc.html"],
+      ["Contact", "Contact.dc.html"],
+    ];
+    const links = pages.map(([label, href]) => ({
+      label,
+      href,
+      weight: label === active ? 600 : 400,
+      underline: label === active ? "var(--rattan-gold)" : "transparent",
+      ariaCurrent: label === active ? "page" : null,
+    }));
+    return {
+      isDesktop: !isMobile,
+      isMobile,
+      menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      menuLabel: menuOpen ? "Close" : "Menu",
+      menuExpanded: menuOpen ? "true" : "false",
+      navBg: overlay ? "transparent" : "var(--surface-page)",
+      navBorder: overlay ? "transparent" : "var(--border-hairline)",
+      navColor: overlay ? "var(--text-on-brand)" : "var(--text-body)",
+      hoverColor: overlay ? "var(--rattan-gold-light)" : "var(--bamboo-green)",
+      links,
+    };
+  }
+}
+</script>
+</body>
+</html>

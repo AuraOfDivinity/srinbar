@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="ds/styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #F7F3E8; }
+  </style>
+</helmet>
+<div style="background: var(--surface-page); min-height: 100vh;">
+  <dc-import name="SiteNav" active="About Us" style="position: sticky; top: 0; z-index: 50;" hint-size="100%,72px"></dc-import>
+
+  <section aria-label="About SRINBAR" data-screen-label="About — Hero" style="position: relative; height: clamp(320px, 45vh, 420px); display: flex; align-items: flex-end; overflow: hidden;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Ella_Valley%2C_Sri_Lanka%2C_Cloud_forest_in_fog.jpg" alt="Cloud forest in warm morning fog above Ella Valley, Sri Lanka" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" />
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20, 41, 31, 0.25) 0%, rgba(20, 41, 31, 0.8) 100%);"></div>
+    <div style="position: relative; max-width: var(--container-max); margin: 0 auto; padding: 0 clamp(20px, 4vw, 32px) clamp(40px, 6vh, 64px); width: 100%;">
+      <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">About Us</p>
+      <h1 style="font: var(--type-h1); font-size: clamp(34px, 4.5vw, 48px); color: var(--text-on-brand); max-width: 700px; text-wrap: balance;">A network of scientists, growers, and artisans</h1>
+    </div>
+  </section>
+
+  <section aria-label="Our story" data-screen-label="About — Story" style="padding: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 32px);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(32px, 5vw, 64px);">
+      <div>
+        <h2 style="font: var(--type-h2); font-size: clamp(28px, 3vw, 36px); color: var(--text-body); margin-bottom: var(--space-4);">Our Story</h2>
+        <p style="font: var(--type-body-lg); color: var(--text-body); margin-bottom: var(--space-4); text-wrap: pretty;">SRINBAR — the Lanka Network for Bamboo and Rattan — was founded in 2005 by scientists at the National Institute of Fundamental Studies, Kandy, to answer a simple question: could bamboo restore Sri Lanka's degraded land while also building rural livelihoods?</p>
+        <p style="font: var(--type-body); color: var(--text-muted); margin-bottom: var(--space-4); text-wrap: pretty;">The first plantings went into eroding riverbanks and abandoned chena land in the Kegalle and Ratnapura districts. The bamboo held. Topsoil returned. And the culms it produced found buyers — weavers, furniture makers, charcoal producers.</p>
+        <p style="font: var(--type-body); color: var(--text-muted); text-wrap: pretty;">Two decades on, we are a network connecting researchers, riverbank-restoration teams, and bamboo &amp; rattan entrepreneurs across 18 districts — linked to the wider INBAR community.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+        <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); padding: var(--space-6);">
+          <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Mission</p>
+          <p style="font: var(--type-body-lg); font-family: var(--font-serif-display); color: var(--text-body); text-wrap: pretty;">To restore degraded land and stabilise riverbanks with bamboo, and to build fair, lasting livelihoods along the bamboo and rattan value chain.</p>
+        </div>
+        <div style="background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-md); padding: var(--space-6);">
+          <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Vision</p>
+          <p style="font: var(--type-body-lg); font-family: var(--font-serif-display); color: var(--text-body); text-wrap: pretty;">A Sri Lanka where bamboo is recognised as a plantation crop — and where every district that grows it also earns from it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Impact" data-screen-label="About — Impact stats" style="background: var(--surface-brand); padding: var(--space-8) clamp(20px, 4vw, 32px);">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6);">
+      <div style="border-left: 1px solid rgba(255, 253, 247, 0.25); padding-left: var(--space-5);">
+        <div style="font: var(--type-h1); font-size: clamp(36px, 3.5vw, 48px); color: var(--text-accent); margin-bottom: var(--space-2);">1,200+</div>
+        <div style="font: var(--type-caption); color: var(--text-on-brand-muted);">Hectares under bamboo restoration</div>
+      </div>
+      <div style="border-left: 1px solid rgba(255, 253, 247, 0.25); padding-left: var(--space-5);">
+        <div style="font: var(--type-h1); font-size: clamp(36px, 3.5vw, 48px); color: var(--text-accent); margin-bottom: var(--space-2);">45</div>
+        <div style="font: var(--type-caption); color: var(--text-on-brand-muted);">Rural entrepreneurs networked</div>
+      </div>
+      <div style="border-left: 1px solid rgba(255, 253, 247, 0.25); padding-left: var(--space-5);">
+        <div style="font: var(--type-h1); font-size: clamp(36px, 3.5vw, 48px); color: var(--text-accent); margin-bottom: var(--space-2);">18</div>
+        <div style="font: var(--type-caption); color: var(--text-on-brand-muted);">Districts with active programmes</div>
+      </div>
+      <div style="border-left: 1px solid rgba(255, 253, 247, 0.25); padding-left: var(--space-5);">
+        <div style="font: var(--type-h1); font-size: clamp(36px, 3.5vw, 48px); color: var(--text-accent); margin-bottom: var(--space-2);">2005</div>
+        <div style="font: var(--type-caption); color: var(--text-on-brand-muted);">Founded, Kandy</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" aria-label="Advisory committee" data-screen-label="About — Team" style="padding: clamp(64px, 8vw, 96px) clamp(20px, 4vw, 32px);">
+    <div style="max-width: var(--container-max); margin: 0 auto;">
+      <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Advisory Committee</p>
+      <h2 style="font: var(--type-h1); font-size: clamp(32px, 4vw, 48px); color: var(--text-body); margin-bottom: var(--space-4); max-width: 640px;">The people behind the network</h2>
+      <p style="font: var(--type-body); color: var(--text-muted); max-width: 620px; margin-bottom: clamp(32px, 4vw, 48px); text-wrap: pretty;">SRINBAR is guided by an advisory committee of scientists, field coordinators, and entrepreneurs — most of whom have been planting, studying, or weaving bamboo far longer than the network has existed.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6);">
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Bamboo_and_plum_tree.jpg" alt="Portrait placeholder — bamboo culms in warm natural light" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-3);" />
+          <h3 style="font: var(--type-h3); font-size: var(--text-md); color: var(--text-body);">Dr. A. Perera</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted);">Founding Scientist, NIFS Kandy</p>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Bamboo_forest_arashiyama.jpg" alt="Portrait placeholder — tall bamboo grove in soft daylight" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-3);" />
+          <h3 style="font: var(--type-h3); font-size: var(--text-md); color: var(--text-body);">N. Wickramasinghe</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted);">Programme Director</p>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Arashiyama_Bamboo_Forest_(11096493983).jpg" alt="Portrait placeholder — footpath through a bamboo forest" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-3);" />
+          <h3 style="font: var(--type-h3); font-size: var(--text-md); color: var(--text-body);">S. Fernando</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted);">Entrepreneurship Lead</p>
+        </div>
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Labugama_-_Kalatuwawa_Forest_Reserve%2C_Sri_Lanka.jpg" alt="Portrait placeholder — riverbank forest at Labugama–Kalatuwawa" style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-3);" />
+          <h3 style="font: var(--type-h3); font-size: var(--text-md); color: var(--text-body);">K. Jayasuriya</h3>
+          <p style="font: var(--type-caption); color: var(--text-muted);">Field Coordinator, Kegalle</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="inbar" aria-label="INBAR affiliation" data-screen-label="About — INBAR" style="padding: 0 clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px);">
+    <div style="max-width: var(--container-max); margin: 0 auto; background: var(--surface-card); border: 1px solid var(--border-hairline); border-radius: var(--radius-lg); padding: clamp(32px, 5vw, 64px); display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap;">
+      <div style="max-width: 640px;">
+        <p style="font: var(--type-eyebrow); color: var(--text-accent); text-transform: uppercase; letter-spacing: var(--tracking-widest); margin-bottom: var(--space-3);">Affiliation</p>
+        <h2 style="font: var(--type-h2); font-size: clamp(28px, 3vw, 36px); color: var(--text-body); margin-bottom: var(--space-3);">Part of the INBAR community</h2>
+        <p style="font: var(--type-body); color: var(--text-muted); text-wrap: pretty;">SRINBAR is connected to INBAR — the International Network for Bamboo and Rattan, an intergovernmental organisation of some 50 member states. The affiliation gives Sri Lankan growers and researchers access to regional trials, technical standards, and a market network far beyond the island.</p>
+      </div>
+      <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 13px 28px; background: transparent; color: var(--action-secondary-border); border: 1px solid var(--action-secondary-border); font-family: var(--font-sans-body); font-weight: var(--weight-semibold); font-size: var(--text-base); text-decoration: none; border-radius: var(--radius-pill); outline: none; transition: background 0.2s ease;" style-hover="background: rgba(30, 61, 47, 0.06);" style-focus="box-shadow: var(--focus-ring);">Work With Us</a>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,400px"></dc-import>
+</div>
+</x-dc>
+</body>
+</html>
