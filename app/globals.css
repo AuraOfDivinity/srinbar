@@ -493,6 +493,8 @@ a:hover > .img-dim { filter: brightness(0.92); }
 }
 .footer-link:hover { color: var(--text-on-brand); }
 .footer-link:focus-visible { box-shadow: var(--focus-ring); }
+.footer-social-link { display: inline-flex; align-items: center; gap: 10px; }
+.footer-social-link svg { display: block; width: 20px; height: 20px; flex: 0 0 20px; }
 .footer-location { display: inline-flex; align-items: center; gap: 6px; color: #fff; }
 .footer-location svg { display: block; width: 16px; height: 16px; }
 
@@ -934,6 +936,7 @@ html:active-view-transition {
 .research-heading { max-width: 760px; margin-bottom: 44px; }
 .research-heading .eyebrow { margin-bottom: 12px; }
 .research-heading h1 { font: var(--type-h1); font-size: clamp(34px, 4vw, 48px); color: var(--forest-green); text-wrap: balance; }
+.research-heading > p { margin-top: 16px; font: var(--type-body-lg); color: var(--text-muted); text-wrap: pretty; }
 .research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .research-card { display: flex; flex-direction: column; min-width: 0; padding: clamp(20px, 3vw, 32px); background: var(--surface-card); border: 1px solid var(--border-hairline); border-top: 3px solid var(--rattan-gold); border-radius: var(--radius-lg); }
 .research-card-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; margin-bottom: 20px; font: var(--type-eyebrow); color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; }

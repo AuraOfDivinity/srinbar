@@ -11,7 +11,6 @@ const NAV_LINKS: [string, string | null][] = [
   ["People", "/people"],
   ["Events", "/events"],
   ["Articles and Research", "/articles-and-research"],
-  ["Find Us", null],
 ];
 
 type SiteNavProps = {

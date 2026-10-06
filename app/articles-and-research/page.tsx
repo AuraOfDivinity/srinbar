@@ -27,6 +27,7 @@ export default async function ArticlesAndResearchPage() {
       <main className="research-shell">
         <header className="research-heading">
           <h1>Articles and Research</h1>
+          <p>A collection of independently published articles, research and conversations by, about and featuring SRINBAR members, exploring bamboo, rattan and related fields.</p>
         </header>
         {items?.length ? (
           <div className="research-grid">

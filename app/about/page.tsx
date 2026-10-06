@@ -40,7 +40,6 @@ export default async function AboutPageRoute() {
           )}
           <div className="about-hero-shade" aria-hidden="true" />
           <div className="about-hero-copy">
-            <p className="eyebrow">{about?.heroEyebrow}</p>
             <h1>{about?.heroHeading}</h1>
           </div>
         </header>

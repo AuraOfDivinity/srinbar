@@ -94,6 +94,49 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               ))}
             </nav>
           ))}
+          <nav
+            aria-label="Social media"
+            style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)" }}
+          >
+            <div
+              style={{
+                font: "var(--type-eyebrow)",
+                textTransform: "uppercase",
+                letterSpacing: "var(--tracking-widest)",
+                fontSize: "var(--text-xs)",
+                color: "var(--text-accent)",
+                marginBottom: "var(--space-2)",
+              }}
+            >
+              Follow Us
+            </div>
+            <a
+              href="https://www.instagram.com/srinbar?stkn=eGgweHhsMW14b3Br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link footer-social-link"
+              aria-label="Instagram (opens in a new tab)"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="17.5" cy="6.8" r="1.1" fill="currentColor" />
+              </svg>
+              Instagram
+            </a>
+            <a
+              href="https://web.facebook.com/SRINBAR.LK/?_rdc=1&_rdr#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link footer-social-link"
+              aria-label="Facebook (opens in a new tab)"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H7v3.2h2.8V21h3.7Z" />
+              </svg>
+              Facebook
+            </a>
+          </nav>
         </div>
         <div
           style={{

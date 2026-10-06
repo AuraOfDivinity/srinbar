@@ -7,7 +7,6 @@ import SiteFooter from "@/components/SiteFooter";
 import BlogCard from "@/components/BlogCard";
 import ProgrammeDescription from "@/components/ProgrammeDescription";
 import EventCard from "@/components/EventCard";
-import NewsletterForm from "@/components/NewsletterForm";
 import { client, urlFor, fetchOptions } from "@/sanity/client";
 import {
   HOME_PAGE_QUERY,
@@ -374,45 +373,6 @@ export default async function HomePage() {
               {fixHomepageCopy(home.membershipCta.label)}
             </Link>
           )}
-        </div>
-      </section>
-
-      <section
-        id="newsletter"
-        aria-label="Newsletter"
-        style={{
-          background: "var(--surface-card)",
-          borderTop: "1px solid var(--border-hairline)",
-          padding: "clamp(48px, 6vw, 64px) clamp(20px, 4vw, 32px)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "var(--container-max)",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: "var(--space-6)",
-            flexWrap: "wrap",
-          }}
-        >
-          <div style={{ maxWidth: 420 }}>
-            <h2
-              style={{
-                font: "var(--type-h3)",
-                fontSize: "var(--text-lg)",
-                color: "var(--text-body)",
-                marginBottom: "var(--space-1)",
-              }}
-            >
-              {settings?.newsletterHeading}
-            </h2>
-            <p style={{ font: "var(--type-caption)", color: "var(--text-muted)" }}>
-              {settings?.newsletterBody}
-            </p>
-          </div>
-          <NewsletterForm variant="home" inputId="home-newsletter-email" />
         </div>
       </section>
 
