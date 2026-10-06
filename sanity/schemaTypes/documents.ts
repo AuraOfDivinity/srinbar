@@ -26,7 +26,7 @@ export const siteSettings = defineType({
     defineField({ name: "footerBlurb", type: "text", rows: 2, group: "footer" }),
     defineField({ name: "footerColumns", type: "array", of: [{ type: "footerColumn" }], group: "footer" }),
     defineField({ name: "copyright", type: "string", group: "footer" }),
-    defineField({ name: "footerTagline", type: "string", group: "footer", description: "e.g. Kandy, Sri Lanka · Member of INBAR" }),
+    defineField({ name: "footerTagline", type: "string", group: "footer", description: "e.g. Kandy, Sri Lanka" }),
 
     defineField({ name: "newsletterHeading", type: "string", group: "shared" }),
     defineField({ name: "newsletterBody", type: "text", rows: 2, group: "shared" }),
@@ -74,7 +74,6 @@ export const aboutPage = defineType({
     { name: "hero", title: "Hero" },
     { name: "story", title: "Our story" },
     { name: "team", title: "Team section" },
-    { name: "inbar", title: "INBAR section" },
   ],
   fields: [
     defineField({ name: "heroEyebrow", type: "string", group: "hero" }),
@@ -88,10 +87,6 @@ export const aboutPage = defineType({
     defineField({ name: "teamHeading", type: "string", group: "team" }),
     defineField({ name: "teamIntro", type: "text", rows: 3, group: "team" }),
 
-    defineField({ name: "inbarEyebrow", type: "string", group: "inbar" }),
-    defineField({ name: "inbarHeading", type: "string", group: "inbar" }),
-    defineField({ name: "inbarBody", type: "text", rows: 4, group: "inbar" }),
-    defineField({ name: "inbarCta", type: "cta", group: "inbar" }),
   ],
   preview: { prepare: () => ({ title: "About Page" }) },
 });
@@ -134,6 +129,26 @@ export const contactPage = defineType({
     defineField({ name: "intro", type: "text", rows: 3 }),
     defineField({ name: "formHeading", type: "string" }),
     defineField({ name: "formNote", type: "text", rows: 2 }),
+    defineField({ name: "membershipInformation", type: "array", of: [{ type: "object", name: "membershipInformation", fields: [
+      defineField({ name: "language", type: "string", options: { list: ["en", "si", "ta"] } }),
+      defineField({ name: "title", type: "string" }),
+      defineField({ name: "body", type: "text", rows: 8 }),
+    ] }] }),
+    defineField({ name: "fees", type: "array", of: [{ type: "object", name: "membershipFee", fields: [
+      defineField({ name: "category", type: "string", options: { list: ["Individual", "Corporate", "SME", "International"] } }),
+      defineField({ name: "currency", type: "string", options: { list: ["LKR", "USD"] } }),
+      defineField({ name: "enrollment", type: "number", validation: (r) => r.min(0) }),
+      defineField({ name: "annual", type: "number", validation: (r) => r.min(0) }),
+    ] }] }),
+    defineField({ name: "paymentNote", type: "text", rows: 3 }),
+    defineField({ name: "bankAccountName", type: "string" }),
+    defineField({ name: "bankAccountNumber", type: "string" }),
+    defineField({ name: "bankName", type: "string" }),
+    defineField({ name: "bankBranch", type: "string" }),
+    defineField({ name: "membershipContactName", type: "string" }),
+    defineField({ name: "membershipContactRole", type: "string" }),
+    defineField({ name: "membershipContactPhone", type: "string" }),
+    defineField({ name: "membershipContactEmail", type: "string" }),
   ],
   preview: { prepare: () => ({ title: "Contact Page" }) },
 });
@@ -183,6 +198,7 @@ export const post = defineType({
   title: "Blog Post",
   type: "document",
   fields: [
+    defineField({ name: "archived", type: "boolean", initialValue: false, description: "Hide this entry from the website while preserving its content." }),
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     defineField({
       name: "slug",
@@ -218,6 +234,7 @@ export const event = defineType({
   title: "Event",
   type: "document",
   fields: [
+    defineField({ name: "archived", type: "boolean", initialValue: false, description: "Hide this entry from the website while preserving its content." }),
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     defineField({ name: "date", type: "date", validation: (r) => r.required() }),
     defineField({ name: "timeLabel", type: "string", description: 'e.g. "9:00 AM – 3:00 PM" or "All day"' }),

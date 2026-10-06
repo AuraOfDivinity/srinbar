@@ -57,10 +57,6 @@ export type AboutPage = {
   teamEyebrow?: string;
   teamHeading?: string;
   teamIntro?: string;
-  inbarEyebrow?: string;
-  inbarHeading?: string;
-  inbarBody?: string;
-  inbarCta?: Cta;
 };
 
 export type BlogPageDoc = {
@@ -79,7 +75,20 @@ export type EventsPageDoc = {
   pastEventsNote?: string;
 };
 
+export type MembershipFee = { category: string; currency: string; enrollment: number; annual: number };
+
 export type ContactPageDoc = {
+  membershipInformation?: { language: string; title: string; body: string }[];
+  fees?: MembershipFee[];
+  paymentNote?: string;
+  bankAccountName?: string;
+  bankAccountNumber?: string;
+  bankName?: string;
+  bankBranch?: string;
+  membershipContactName?: string;
+  membershipContactRole?: string;
+  membershipContactPhone?: string;
+  membershipContactEmail?: string;
   eyebrow?: string;
   heading?: string;
   intro?: string;

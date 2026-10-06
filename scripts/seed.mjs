@@ -199,7 +199,7 @@ function buildDocuments() {
     footerBlurb:
       "Lanka Network for Bamboo and Rattan — growing a greener, more resilient Sri Lanka since 2005.",
     copyright: "© 2026 SRINBAR — Lanka Network for Bamboo and Rattan",
-    footerTagline: "Kandy, Sri Lanka · Member of INBAR",
+    footerTagline: "Kandy, Sri Lanka",
     footerColumns: [
       {
         _type: "footerColumn",
@@ -208,7 +208,6 @@ function buildDocuments() {
         links: [
           { _type: "linkItem", _key: k(), label: "Our Story", href: "/about" },
           { _type: "linkItem", _key: k(), label: "Advisory Committee", href: "/about#team" },
-          { _type: "linkItem", _key: k(), label: "INBAR Affiliation", href: "/about#inbar" },
           { _type: "linkItem", _key: k(), label: "Contact", href: "/contact" },
         ],
       },
@@ -231,7 +230,6 @@ function buildDocuments() {
           { _type: "linkItem", _key: k(), label: "Membership", href: "/contact#membership" },
           { _type: "linkItem", _key: k(), label: "Events", href: "/events" },
           { _type: "linkItem", _key: k(), label: "Blog", href: "/blog" },
-          { _type: "linkItem", _key: k(), label: "Newsletter", href: "/contact#newsletter" },
         ],
       },
     ],
@@ -280,11 +278,7 @@ function buildDocuments() {
     teamEyebrow: "Our people",
     teamHeading: "Advisory Committee",
     teamIntro: "Meet the members of SRINBAR’s advisory committee.",
-    inbarEyebrow: "Affiliation",
-    inbarHeading: "Part of the INBAR community",
-    inbarBody:
-      "SRINBAR is connected to INBAR — the International Network for Bamboo and Rattan, an intergovernmental organisation of some 50 member states. The affiliation gives Sri Lankan growers and researchers access to regional trials, technical standards, and a market network far beyond the island.",
-    inbarCta: { _type: "cta", label: "Work With Us", href: "/contact" },
+
   };
 
   const blogPage = {
@@ -314,13 +308,7 @@ function buildDocuments() {
   const contactPage = {
     _id: "contactPage",
     _type: "contactPage",
-    eyebrow: "Contact & Membership",
-    heading: "Join the network",
-    intro:
-      "Whether you grow, craft, or trade bamboo and rattan — or simply have a question — this is the place to reach us. Membership applications are reviewed monthly.",
-    formHeading: "Membership application",
-    formNote:
-      "All fields except phone are required. We reply to every application, usually within two weeks.",
+    ...JSON.parse(readFileSync(new URL("../lib/contact-content.json", import.meta.url), "utf8")),
   };
 
   const teamMembers = JSON.parse(
@@ -443,15 +431,6 @@ function buildDocuments() {
       publishedAt: "2026-02-20",
       imageKey: "bodinagala",
     },
-    {
-      _id: "post-inbar-working-group",
-      title: "SRINBAR Joins Regional INBAR Working Group",
-      slug: "srinbar-joins-inbar-working-group",
-      category: "Partnerships",
-      excerpt: "What the partnership means for cross-border knowledge sharing.",
-      publishedAt: "2026-01-03",
-      imageKey: "bambooPlum",
-    },
   ].map((p) => ({
     _id: p._id,
     _type: "post",
@@ -482,7 +461,6 @@ function buildDocuments() {
     ["2026-06-21", "Bamboo Charcoal Production Demonstration", "Matale", "9:00 AM – 1:00 PM"],
     ["2026-05-17", "Community Riverbank Planting Day", "Ratnapura", "8:00 AM – 12:00 PM"],
     ["2026-03-08", "Rattan Weaving Skills Workshop", "Kegalle District", "10:00 AM – 4:00 PM"],
-    ["2026-01-25", "Bamboo Policy Roundtable with INBAR", "Colombo", "2:00 PM – 5:00 PM"],
   ].map(([date, title, location, timeLabel]) => ({
     _id: `event-${title.toLowerCase().replace(/[^a-z]+/g, "-").slice(0, 60)}`,
     _type: "event",

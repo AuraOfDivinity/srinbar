@@ -1,0 +1,73 @@
+{
+  "eyebrow": "Contact & Membership",
+  "heading": "Join the SRINBAR network",
+  "intro": "Apply for membership or renew your existing membership with the Sri Lanka Network for Bamboo and Rattan.",
+  "formHeading": "Membership application",
+  "formNote": "Fields marked * are required. Please have your payment slip ready before submitting.",
+  "membershipInformation": [
+    {
+      "_key": "english",
+      "language": "en",
+      "title": "About membership · English",
+      "body": "Primary mission — Grow and develop bamboo and rattan in Sri Lanka in recognition of its multiple economic and social attributes such as the utility in construction, handicrafts, food, furniture, domestic utensils and in the preservation and enhancement of the natural environment.\n\nMembership is open to organisations registered in Sri Lanka and individuals interested in the development of bamboo and rattan in Sri Lanka. After submission, new members will be registered upon approval by the executive council. Existing members are expected to submit the form to enter their details in the database and renew their membership.\n\nCurrent members are exempt from the enrollment fee and only need to pay the annual fee. New members must pay both the enrollment and annual fees.",
+      "_type": "membershipInformation"
+    },
+    {
+      "_key": "sinhala",
+      "language": "si",
+      "title": "සාමාජිකත්වය පිළිබඳ · සිංහල",
+      "body": "ශ්‍රී ලංකා උණ සහ වේවැල් ජාලය\n\nප්‍රාථමික මෙහෙවර - ඉදිකිරීම්, අත්කම්, ආහාර, ගෘහ භාණ්ඩ, ගෘහ උපකරණ සහ ස්වාභාවික පරිසරය සංරක්ෂණය හා වැඩිදියුණු කිරීම වැනි බහු ආර්ථික හා සමාජීය ගුණාංග හඳුනා ගනිමින් ශ්‍රී ලංකාවේ උණ සහ වේවැල් වගා කිරීම සහ සංවර්ධනය කිරීම.\n\nසාමාජිකත්වය - ශ්‍රී ලංකාවේ ලියාපදිංචි සංවිධාන සහ ශ්‍රී ලංකාවේ උණ සහ වේවැල් සංවර්ධනය සඳහා උනන්දුවක් දක්වන පුරවැසියන් සඳහා විවෘතයි. මෙම පෝරමය ඉදිරිපත් කිරීමෙන් පසු, විධායක සභාවේ අනුමැතිය මත නව සාමාජිකයින් ලියාපදිංචි කරනු ලැබේ. දැනටමත් සිටින සාමාජිකයින් ඔවුන්ගේ විස්තර දත්ත සමුදායට ඇතුළත් කිරීමට සහ සාමාජිකත්වය අලුත් කිරීමට පෝරමය ඉදිරිපත් කිරීමට අපේක්ෂා කෙරේ.\n\nඅමතර සටහන: සාමාජික ගෙවීම් සම්බන්ධයෙන්: වර්තමාන සාමාජිකයින් ලියාපදිංචි ගාස්තුවෙන් නිදහස් වන අතර ඔවුන්ට ගෙවිය යුත්තේ වාර්ෂික ගාස්තුව පමණි. නව සාමාජිකයින් ලියාපදිංචි ගාස්තුව සහ වාර්ෂික ගාස්තුව දෙකම ගෙවිය යුතුය.",
+      "_type": "membershipInformation"
+    },
+    {
+      "_key": "tamil",
+      "language": "ta",
+      "title": "உறுப்பினர் விவரங்கள் · தமிழ்",
+      "body": "இலங்கை மூங்கில் மற்றும் பிரம்பு வலையமைப்பு\n\nமுதன்மை நோக்கம் - கட்டுமானம், கைவினைப்பொருட்கள், உணவு, தளபாடங்கள், வீட்டுப் பாத்திரங்கள் மற்றும் இயற்கை சூழலைப் பாதுகாத்தல் மற்றும் மேம்படுத்தல் போன்ற பல பொருளாதார மற்றும் சமூக பண்புகளை அங்கீகரிக்கும் வகையில் இலங்கையில் மூங்கில் மற்றும் பிரம்புகளை வளர்த்து மேம்படுத்துதல்.\n\nஉறுப்பினர் - இலங்கையில் பதிவுசெய்யப்பட்ட நிறுவனங்கள் மற்றும் இலங்கையில் மூங்கில் மற்றும் பிரம்பு வளர்ப்பில் ஆர்வமுள்ள குடிமக்களுக்கு திறந்திருக்கும். இந்தப் படிவத்தைச் சமர்ப்பித்த பிறகு, புதிய உறுப்பினர்கள் நிர்வாகக் குழுவின் ஒப்புதலின் பேரில் பதிவு செய்யப்படுவார்கள். தற்போதுள்ள உறுப்பினர்கள் தங்கள் விவரங்களை தரவுத்தளத்தில் உள்ளிடவும் உறுப்பினர்களைப் புதுப்பிக்கவும் படிவத்தைச் சமர்ப்பிக்க வேண்டும்.\n\nகூடுதல் குறிப்பு: உறுப்பினர் கட்டணங்களைப் பற்றியது: தற்போதைய உறுப்பினர்கள் பதிவு கட்டணத்திலிருந்து விலக்கு பெறுகின்றனர்; அவர்கள் ஆண்டு கட்டணத்தை மட்டும் செலுத்த வேண்டும். புதிய உறுப்பினர்கள் பதிவு கட்டணமும் ஆண்டு கட்டணமும் இரண்டையும் செலுத்த வேண்டும்.",
+      "_type": "membershipInformation"
+    }
+  ],
+  "fees": [
+    {
+      "_key": "individual",
+      "category": "Individual",
+      "currency": "LKR",
+      "enrollment": 2000,
+      "annual": 1000,
+      "_type": "membershipFee"
+    },
+    {
+      "_key": "corporate",
+      "category": "Corporate",
+      "currency": "LKR",
+      "enrollment": 10000,
+      "annual": 5000,
+      "_type": "membershipFee"
+    },
+    {
+      "_key": "sme",
+      "category": "SME",
+      "currency": "LKR",
+      "enrollment": 3000,
+      "annual": 1500,
+      "_type": "membershipFee"
+    },
+    {
+      "_key": "international",
+      "category": "International",
+      "currency": "USD",
+      "enrollment": 100,
+      "annual": 50,
+      "_type": "membershipFee"
+    }
+  ],
+  "paymentNote": "Existing members pay the annual fee only. New members pay both the enrollment and annual fees. New membership is subject to executive council approval.",
+  "bankAccountName": "Lanka Network for Bamboo and Rattan",
+  "bankAccountNumber": "[00]3010316234",
+  "bankName": "Hatton National Bank",
+  "bankBranch": "Head Office",
+  "membershipContactName": "Janith Yasantha",
+  "membershipContactRole": "Assistant Secretary",
+  "membershipContactPhone": "076 328 7090",
+  "membershipContactEmail": "srinbar.events@gmail.com"
+}

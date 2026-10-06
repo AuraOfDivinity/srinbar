@@ -3,7 +3,19 @@ import { Link } from "next-view-transitions";
 import type { SiteSettings } from "@/sanity/types";
 
 export default function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
-  const columns = settings?.footerColumns ?? [];
+  // Reject the retired affiliation link even when cached CMS data contains it.
+  const columns = (settings?.footerColumns ?? []).map((column) => ({
+    ...column,
+    links: (column.links ?? []).filter(({ label, href }) => {
+      if (/\binbar\b/i.test(label)) return false;
+      try {
+        const url = new URL(href, "https://srinbar.invalid");
+        return url.hash.toLowerCase() !== "#inbar" && !(url.pathname === "/contact" && url.hash === "#newsletter");
+      } catch {
+        return true;
+      }
+    }),
+  }));
   return (
     <footer
       style={{

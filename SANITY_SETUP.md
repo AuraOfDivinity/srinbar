@@ -46,7 +46,7 @@ npm run dev
 |---|---|---|
 | `siteSettings` | singleton | Footer, contact info, newsletter copy, SEO defaults |
 | `homePage` | singleton | Hero, programmes, section headings, membership CTA |
-| `aboutPage` | singleton | About hero, story, team & INBAR sections |
+| `aboutPage` | singleton | About hero, story, team section |
 | `blogPage`, `eventsPage`, `contactPage` | singletons | Page headers & microcopy |
 | `post` | collection | Blog cards + full articles (`/blog/[slug]`, Portable Text body) |
 | `category` | collection | Blog filter pills |

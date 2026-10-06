@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Link } from "next-view-transitions";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import AdvisoryCard from "@/components/AdvisoryCard";
@@ -81,18 +80,7 @@ export default async function AboutPageRoute() {
           </div>
         </section>
 
-        <section id="inbar" className="about-affiliation" aria-labelledby="affiliation-heading">
-          <div>
-            <p className="eyebrow">{about?.inbarEyebrow}</p>
-            <h2 id="affiliation-heading">{about?.inbarHeading}</h2>
-            <p className="about-affiliation-copy">{about?.inbarBody}</p>
-          </div>
-          {about?.inbarCta && (
-            <Link href={about.inbarCta.href} className="btn btn--accent btn--md">
-              {about.inbarCta.label}
-            </Link>
-          )}
-        </section>
+
       </main>
       <SiteFooter settings={settings} />
     </div>

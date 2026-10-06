@@ -23,8 +23,7 @@ export const HOME_PAGE_QUERY = groq`*[_type == "homePage"][0]{
 export const ABOUT_PAGE_QUERY = groq`*[_type == "aboutPage"][0]{
   heroEyebrow, heroHeading, heroImage ${IMAGE},
   storyHeading, storyParagraphs,
-  teamEyebrow, teamHeading, teamIntro,
-  inbarEyebrow, inbarHeading, inbarBody, inbarCta{ label, href }
+  teamEyebrow, teamHeading, teamIntro
 }`;
 
 export const BLOG_PAGE_QUERY = groq`*[_type == "blogPage"][0]{
@@ -36,7 +35,11 @@ export const EVENTS_PAGE_QUERY = groq`*[_type == "eventsPage"][0]{
 }`;
 
 export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
-  eyebrow, heading, intro, formHeading, formNote
+  eyebrow, heading, intro, formHeading, formNote,
+  membershipInformation[]{ language, title, body },
+  fees[]{ category, currency, enrollment, annual }, paymentNote,
+  bankAccountName, bankAccountNumber, bankName, bankBranch,
+  membershipContactName, membershipContactRole, membershipContactPhone, membershipContactEmail
 }`;
 
 export const TEAM_QUERY = groq`*[_type == "teamMember" && active != false] | order(order asc){
@@ -53,18 +56,18 @@ const POST_CARD = `{
   mainImage ${IMAGE}
 }`;
 
-export const POSTS_QUERY = groq`*[_type == "post"] | order(publishedAt desc) ${POST_CARD}`;
+export const POSTS_QUERY = groq`*[_type == "post" && archived != true] | order(publishedAt desc) ${POST_CARD}`;
 
-export const LATEST_POSTS_QUERY = groq`*[_type == "post"] | order(publishedAt desc)[0...3] ${POST_CARD}`;
+export const LATEST_POSTS_QUERY = groq`*[_type == "post" && archived != true] | order(publishedAt desc)[0...3] ${POST_CARD}`;
 
-export const FEATURED_POST_QUERY = groq`*[_type == "post" && featured == true] | order(publishedAt desc)[0] {
+export const FEATURED_POST_QUERY = groq`*[_type == "post" && archived != true && featured == true] | order(publishedAt desc)[0] {
   _id, title, "slug": slug.current, excerpt, publishedAt, readTime,
   "category": category->title,
   mainImage ${IMAGE},
   author->{ name }
 }`;
 
-export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
+export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && archived != true && slug.current == $slug][0]{
   _id, title, "slug": slug.current, excerpt, publishedAt, readTime, tags,
   "category": category->title,
   mainImage ${IMAGE}, mainImageCaption,
@@ -73,15 +76,15 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && slug.current == $slu
     ...,
     _type == "image" => { "url": asset->url, alt, caption, asset }
   },
-  "related": *[_type == "post" && slug.current != $slug] | order(publishedAt desc)[0...3] ${POST_CARD}
+  "related": *[_type == "post" && archived != true && slug.current != $slug] | order(publishedAt desc)[0...3] ${POST_CARD}
 }`;
 
-export const POST_SLUGS_QUERY = groq`*[_type == "post" && defined(slug.current)][].slug.current`;
+export const POST_SLUGS_QUERY = groq`*[_type == "post" && archived != true && defined(slug.current)][].slug.current`;
 
-export const UPCOMING_EVENTS_QUERY = groq`*[_type == "event" && date >= now()] | order(date asc){
+export const UPCOMING_EVENTS_QUERY = groq`*[_type == "event" && archived != true && date >= now()] | order(date asc){
   _id, title, date, timeLabel, location
 }`;
 
-export const PAST_EVENTS_QUERY = groq`*[_type == "event" && date < now()] | order(date desc){
+export const PAST_EVENTS_QUERY = groq`*[_type == "event" && archived != true && date < now()] | order(date desc){
   _id, title, date, timeLabel, location
 }`;
