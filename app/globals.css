@@ -485,6 +485,8 @@ a:hover > .img-dim { filter: brightness(0.92); }
 }
 .footer-link:hover { color: var(--text-on-brand); }
 .footer-link:focus-visible { box-shadow: var(--focus-ring); }
+.footer-location { display: inline-flex; align-items: center; gap: 6px; color: #fff; }
+.footer-location svg { display: block; width: 16px; height: 16px; }
 
 /* Plain text links (e.g. mailto on Contact) */
 .text-link {
@@ -993,6 +995,9 @@ html:active-view-transition {
 .event-recording .btn { padding: 12px 24px; }
 #programmes, #newsletter { scroll-margin-top: 88px; }
 @media (max-width: 767px) {
+  .footer-content-grid { row-gap: var(--space-8) !important; }
+  .footer-blurb { margin-block: 0; }
+  .footer-content-grid nav { gap: 0 !important; }
   .footer-link { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
   .arrow-link { display: inline-flex; align-items: center; min-height: 44px; }
   .about-shell { width: calc(100% - 32px); }

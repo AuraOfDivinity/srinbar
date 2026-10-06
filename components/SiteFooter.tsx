@@ -34,6 +34,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
         }}
       >
         <div
+          className="footer-content-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))",
@@ -52,6 +53,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               SRINBAR
             </div>
             <p
+              className="footer-blurb"
               style={{
                 font: "var(--type-body)",
                 color: "var(--text-on-brand-muted)",
@@ -117,7 +119,13 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               color: "var(--text-on-brand-muted)",
             }}
           >
-            {settings?.footerTagline?.replace(/^Kandy,\s*/i, "")}
+            <span className="footer-location">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" fill="currentColor" />
+                <circle cx="12" cy="10" r="2.5" fill="var(--surface-brand-dark)" />
+              </svg>
+              Sri Lanka
+            </span>
           </span>
         </div>
       </div>
