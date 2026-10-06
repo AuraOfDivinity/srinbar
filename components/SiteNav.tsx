@@ -1,7 +1,7 @@
 "use client";
 
 import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 

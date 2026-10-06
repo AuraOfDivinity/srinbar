@@ -139,11 +139,9 @@ export default async function HomePage() {
                 {fixHomepageCopy(home.heroPrimaryCta.label)}
               </Link>
             )}
-            {home?.heroSecondaryCta && (
-              <a href={home.heroSecondaryCta.href} className="btn btn--ghost btn--lg">
-                {fixHomepageCopy(home.heroSecondaryCta.label)}
-              </a>
-            )}
+            <Link href="/events" className="btn btn--ghost btn--lg">
+              Events
+            </Link>
           </div>
         </div>
       </section>

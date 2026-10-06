@@ -250,7 +250,7 @@ function buildDocuments() {
       "Dense green canopy of Bodinagala Forest Reserve in warm natural light, Sri Lanka",
     ),
     heroPrimaryCta: { _type: "cta", label: "Become a Member", href: "/contact#membership" },
-    heroSecondaryCta: { _type: "cta", label: "Our Programmes", href: "#programmes" },
+    heroSecondaryCta: { _type: "cta", label: "Events", href: "/events" },
     programmesEyebrow: programmeContent.eyebrow,
     programmesHeading: programmeContent.heading,
     programmes: programmeContent.items.map((programme, index) => ({
