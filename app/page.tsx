@@ -126,7 +126,7 @@ export default async function HomePage() {
               textWrap: "balance",
             }}
           >
-            {fixHomepageCopy(home?.heroHeading)}
+            Building Sri Lanka’s Bamboo Future
           </h1>
           <p
             style={{
@@ -137,7 +137,7 @@ export default async function HomePage() {
               textWrap: "pretty",
             }}
           >
-            {fixHomepageCopy(home?.heroSubheading)}
+            Connecting knowledge, people and industry to build a thriving bamboo and rattan sector in Sri Lanka.
           </p>
           <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
             {home?.heroPrimaryCta && (
@@ -156,26 +156,52 @@ export default async function HomePage() {
       </section>
 
       <section
-        id="programmes"
-        aria-label="What we do"
-        style={{ padding: "clamp(64px, 8vw, 96px) clamp(20px, 4vw, 32px)" }}
+        aria-label="About Us"
+        style={{ padding: "clamp(64px, 8vw, 96px) clamp(20px, 4vw, 32px) 0" }}
       >
         <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
-          <p className="eyebrow" style={{ marginBottom: "var(--space-3)" }}>
-            {fixHomepageCopy(home?.programmesEyebrow)}
-          </p>
           <h2
             style={{
               font: "var(--type-h1)",
               fontSize: "clamp(32px, 4vw, 48px)",
               color: "var(--text-body)",
-              marginBottom: "clamp(32px, 4vw, 48px)",
-              maxWidth: 640,
-              textWrap: "balance",
+              marginBottom: "var(--space-4)",
             }}
           >
-            {fixHomepageCopy(home?.programmesHeading)}
+            About Us
           </h2>
+          <p
+            style={{
+              font: "var(--type-body-lg)",
+              color: "var(--text-muted)",
+              maxWidth: 900,
+              textWrap: "pretty",
+            }}
+          >
+            SRINBAR is Sri Lanka’s network for advancing bamboo and rattan as sustainable, versatile resources. We bring together researchers, professionals, industry, government and communities to share knowledge, encourage innovation and create opportunities across cultivation, design, construction, enterprise and beyond. By connecting ideas, expertise and action, SRINBAR works towards a stronger and more sustainable bamboo and rattan sector in Sri Lanka.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="programmes"
+        aria-label="What we do"
+        style={{ padding: "clamp(64px, 8vw, 96px) clamp(20px, 4vw, 32px)" }}
+      >
+        <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
+          <h2
+            style={{
+              font: "var(--type-h1)",
+              fontSize: "clamp(32px, 4vw, 48px)",
+              color: "var(--text-body)",
+              marginBottom: "var(--space-3)",
+            }}
+          >
+            {fixHomepageCopy(home?.programmesEyebrow) || "What We Do"}
+          </h2>
+          <p className="eyebrow" style={{ marginBottom: "clamp(32px, 4vw, 48px)", maxWidth: 900 }}>
+            {fixHomepageCopy(home?.programmesHeading)}
+          </p>
           <div className="programmes-grid">
             {programmes.map(({ image, title, body }) => (
               <article key={title} className="programme-card">
@@ -184,7 +210,7 @@ export default async function HomePage() {
                     font: "var(--type-h3)",
                     fontSize: "var(--text-lg)",
                     color: "var(--text-body)",
-                    marginBottom: "var(--space-2)",
+                    marginBottom: "var(--space-4)",
                   }}
                 >
                   {fixHomepageCopy(title)}
@@ -337,7 +363,7 @@ export default async function HomePage() {
                 textWrap: "pretty",
               }}
             >
-              {fixHomepageCopy(home?.membershipBody)}
+              Be part of Sri Lanka’s growing bamboo and rattan community. Connect with researchers, professionals, entrepreneurs, growers, makers and others working towards the future of the sector.
             </p>
           </div>
           {home?.membershipCta && (

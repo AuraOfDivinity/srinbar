@@ -242,9 +242,9 @@ function buildDocuments() {
     _id: "homePage",
     _type: "homePage",
     heroEyebrow: "Lanka Network for Bamboo and Rattan",
-    heroHeading: "Growing a Greener Lanka",
+    heroHeading: "Building Sri Lanka’s Bamboo Future",
     heroSubheading:
-      "Restoring degraded land, stabilising riverbanks, and building bamboo livelihoods across Sri Lanka.",
+      "Connecting knowledge, people and industry to build a thriving bamboo and rattan sector in Sri Lanka.",
     heroImage: img(
       "bodinagala",
       "Dense green canopy of Bodinagala Forest Reserve in warm natural light, Sri Lanka",
@@ -263,7 +263,7 @@ function buildDocuments() {
     eventsSectionHeading: "Upcoming Events",
     membershipHeading: "Join the Network",
     membershipBody:
-      "Whether you grow, craft, or trade bamboo and rattan — SRINBAR membership connects you to training, markets, and a community of practice.",
+      "Be part of Sri Lanka’s growing bamboo and rattan community. Connect with researchers, professionals, entrepreneurs, growers, makers and others working towards the future of the sector.",
     membershipCta: { _type: "cta", label: "Apply for Membership", href: "/contact#membership" },
   };
 

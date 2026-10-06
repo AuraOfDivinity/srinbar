@@ -190,7 +190,10 @@ export default function SiteNav({
         }}
       >
         <div className="mobile-menu-toolbar">
-          <img src="/brand/srinbar-symbol.webp" width={48} height={43} alt="" />
+          <div className="mobile-menu-brand" aria-label="SRINBAR">
+            <img src="/brand/srinbar-symbol.webp" width={48} height={43} alt="" />
+            <img src="/brand/srinbar-wordmark.webp" width={150} height={50} alt="" />
+          </div>
           <button type="button" autoFocus className="mobile-menu-close" onClick={closeMenu} aria-label="Close navigation menu">
             <span className="mobile-close-icon" aria-hidden="true"><i /><i /></span>
           </button>
