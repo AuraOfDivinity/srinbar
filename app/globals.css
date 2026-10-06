@@ -447,3 +447,70 @@ html:active-view-transition {
     animation: none !important;
   }
 }
+
+/* Keep the full programme descriptions readable at every screen size. */
+.programmes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .programmes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+.programme-card h3 {
+  min-height: 2.5em;
+}
+
+.programme-description {
+  font: var(--type-body);
+  color: var(--text-muted);
+}
+
+.programme-description-window {
+  height: 8em; /* Five lines, including space reserved for shorter descriptions. */
+  overflow: hidden;
+}
+
+.programme-description-window.is-expanded {
+  height: auto;
+  min-height: 8em;
+}
+
+.programme-description-content {
+  display: flow-root;
+  text-wrap: pretty;
+}
+
+.programme-description-content p + p {
+  margin-top: var(--space-3);
+}
+
+.programme-description-actions {
+  min-height: 44px;
+  margin-top: var(--space-2);
+}
+
+.programme-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--text-link);
+  font: inherit;
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.programme-read-more:hover { text-decoration: underline; }
+.programme-read-more:focus-visible {
+  outline: 2px solid var(--forest-green);
+  outline-offset: 4px;
+}

@@ -13,6 +13,8 @@ import { createClient } from "@sanity/client";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
+const programmeContent = JSON.parse(readFileSync(new URL("../lib/programmes.json", import.meta.url), "utf8"));
+
 // --- lightweight .env.local loader (no dotenv dependency) ---
 const envPath = resolve(process.cwd(), ".env.local");
 if (existsSync(envPath)) {
@@ -257,31 +259,14 @@ function buildDocuments() {
     ),
     heroPrimaryCta: { _type: "cta", label: "Become a Member", href: "/contact#membership" },
     heroSecondaryCta: { _type: "cta", label: "Our Programmes", href: "#programmes" },
-    programmesEyebrow: "What We Do",
-    programmesHeading: "Three ways bamboo builds a greener Lanka",
-    programmes: [
-      {
-        _type: "programme",
-        _key: k(),
-        title: "Land Restoration",
-        body: "Bamboo planting on degraded soil and riverbanks to stop erosion and rebuild topsoil.",
-        image: img("labugama", "Riverbank vegetation at Labugama–Kalatuwawa Forest Reserve under soft daylight"),
-      },
-      {
-        _type: "programme",
-        _key: k(),
-        title: "Entrepreneurship",
-        body: "Networking growers, weavers, and traders across the bamboo & rattan value chain.",
-        image: img("bambooPlum"),
-      },
-      {
-        _type: "programme",
-        _key: k(),
-        title: "Research & Advocacy",
-        body: "Elevating bamboo to a recognised plantation crop, in partnership with INBAR.",
-        image: img("bodinagala"),
-      },
-    ],
+    programmesEyebrow: programmeContent.eyebrow,
+    programmesHeading: programmeContent.heading,
+    programmes: programmeContent.items.map((programme, index) => ({
+      _type: "programme",
+      _key: k(),
+      ...programme,
+      image: img(["labugama", "bambooPlum", "bodinagala", "labugama"][index]),
+    })),
     blogSectionHeading: "From the Blog",
     eventsSectionHeading: "Upcoming Events",
     membershipHeading: "Join the Network",

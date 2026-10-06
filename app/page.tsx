@@ -3,6 +3,7 @@ import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import StatsBand from "@/components/StatsBand";
 import BlogCard from "@/components/BlogCard";
+import ProgrammeDescription from "@/components/ProgrammeDescription";
 import EventCard from "@/components/EventCard";
 import NewsletterForm from "@/components/NewsletterForm";
 import { client, urlFor, fetchOptions } from "@/sanity/client";
@@ -29,6 +30,8 @@ export default async function HomePage() {
     client.fetch<PostCard[]>(LATEST_POSTS_QUERY, {}, fetchOptions),
     client.fetch<EventDoc[]>(UPCOMING_EVENTS_QUERY, {}, fetchOptions),
   ]);
+
+  const programmes = home?.programmes ?? [];
 
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100vh" }}>
@@ -143,27 +146,21 @@ export default async function HomePage() {
           >
             {home?.programmesHeading}
           </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
-              gap: "var(--space-6)",
-            }}
-          >
-            {(home?.programmes ?? []).map(({ image, title, body }) => (
-              <article key={title}>
+          <div className="programmes-grid">
+            {programmes.map(({ image, title, body }) => (
+              <article key={title} className="programme-card">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={urlFor(image.asset).width(800).height(600).url()}
+                {image?.asset && <img
+                  src={urlFor(image.asset).width(600).height(300).url()}
                   alt={image.alt}
                   style={{
-                    aspectRatio: "4 / 3",
+                    height: 180,
                     width: "100%",
                     objectFit: "cover",
                     borderRadius: "var(--radius-md)",
                     marginBottom: "var(--space-4)",
                   }}
-                />
+                />}
                 <h3
                   style={{
                     font: "var(--type-h3)",
@@ -174,15 +171,7 @@ export default async function HomePage() {
                 >
                   {title}
                 </h3>
-                <p
-                  style={{
-                    font: "var(--type-body)",
-                    color: "var(--text-muted)",
-                    textWrap: "pretty",
-                  }}
-                >
-                  {body}
-                </p>
+                <ProgrammeDescription body={body} title={title} />
               </article>
             ))}
           </div>
