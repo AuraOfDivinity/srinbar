@@ -1,5 +1,5 @@
 import { createClient } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
+import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { projectId, dataset, apiVersion } from "./env";
 
@@ -12,7 +12,7 @@ export const client = createClient({
   perspective: "published",
 });
 
-const builder = imageUrlBuilder({ projectId, dataset });
+const builder = createImageUrlBuilder({ projectId, dataset });
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source).auto("format").quality(80);
