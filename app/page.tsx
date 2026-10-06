@@ -197,7 +197,7 @@ export default async function HomePage() {
               marginBottom: "var(--space-3)",
             }}
           >
-            {fixHomepageCopy(home?.programmesEyebrow) || "What We Do"}
+            What We Do
           </h2>
           <p className="eyebrow" style={{ marginBottom: "clamp(32px, 4vw, 48px)", maxWidth: 900 }}>
             {fixHomepageCopy(home?.programmesHeading)}

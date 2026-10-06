@@ -185,6 +185,24 @@ export const peopleSection = defineType({
   preview: { select: { title: "title" } },
 });
 
+export const researchItem = defineType({
+  name: "researchItem",
+  title: "Article and Research Item",
+  type: "document",
+  fields: [
+    defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "authors", type: "string" }),
+    defineField({ name: "publisher", type: "string" }),
+    defineField({ name: "url", type: "url", validation: (r) => r.required() }),
+    defineField({ name: "accessLabel", type: "string", description: "Optional label such as Free or Open access." }),
+    defineField({ name: "publishedAt", type: "date" }),
+    defineField({ name: "order", type: "number" }),
+    defineField({ name: "active", title: "Show on website", type: "boolean", initialValue: true }),
+  ],
+  orderings: [{ title: "Display order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
+  preview: { select: { title: "title", subtitle: "publisher" } },
+});
+
 export const teamMember = defineType({
   name: "teamMember",
   title: "Team Member",

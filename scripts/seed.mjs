@@ -16,12 +16,18 @@ import { resolve } from "node:path";
 const programmeContent = JSON.parse(readFileSync(new URL("../lib/programmes.json", import.meta.url), "utf8"));
 
 // --- lightweight .env.local loader (no dotenv dependency) ---
-const envPath = resolve(process.cwd(), ".env.local");
-if (existsSync(envPath)) {
-  for (const line of readFileSync(envPath, "utf8").split("\n")) {
-    const m = line.match(/^\s*([\w.]+)\s*=\s*(.*)\s*$/);
-    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+const fileEnvironment = {};
+for (const file of [".env", ".env.local"]) {
+  const envPath = resolve(process.cwd(), file);
+  if (existsSync(envPath)) {
+    for (const line of readFileSync(envPath, "utf8").split("\n")) {
+      const m = line.match(/^\s*([\w.]+)\s*=\s*(.*)\s*$/);
+      if (m) fileEnvironment[m[1]] = m[2].replace(/^["']|["']$/g, "");
+    }
   }
+}
+for (const [name, value] of Object.entries(fileEnvironment)) {
+  if (!process.env[name]) process.env[name] = value;
 }
 
 const projectId =
@@ -275,10 +281,6 @@ function buildDocuments() {
     heroImage: img("ellaValley", "Cloud forest in warm morning fog above Ella Valley, Sri Lanka"),
     storyHeading: "Our Story",
     storyParagraphs: JSON.parse(readFileSync(new URL("../lib/story.json", import.meta.url), "utf8")),
-    teamEyebrow: "Our people",
-    teamHeading: "Advisory Committee",
-    teamIntro: "Meet the members of SRINBAR’s advisory committee.",
-
   };
 
   const blogPage = {
@@ -311,9 +313,26 @@ function buildDocuments() {
     ...JSON.parse(readFileSync(new URL("../lib/contact-content.json", import.meta.url), "utf8")),
   };
 
+  const foundingMembersSection = {
+    _id: "people-section-founding-members",
+    _type: "peopleSection",
+    title: "Founding Members",
+    order: 1,
+    active: true,
+  };
+
   const teamMembers = JSON.parse(
     readFileSync(new URL("../lib/advisory.json", import.meta.url), "utf8"),
-  ).map((member) => ({ ...member, _type: "teamMember", active: true }));
+  ).map((member) => ({
+    ...member,
+    _type: "teamMember",
+    active: true,
+    section: { _type: "reference", _ref: foundingMembersSection._id },
+  }));
+
+  const researchItems = JSON.parse(
+    readFileSync(new URL("../lib/research-items.json", import.meta.url), "utf8"),
+  ).map((item) => ({ ...item, _type: "researchItem" }));
 
   /* --- Blog posts --- */
 
@@ -459,7 +478,9 @@ function buildDocuments() {
     blogPage,
     eventsPage,
     contactPage,
+    foundingMembersSection,
     ...teamMembers,
+    ...researchItems,
     ...posts,
   ];
 }

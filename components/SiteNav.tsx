@@ -10,7 +10,7 @@ const NAV_LINKS: [string, string | null][] = [
   ["Avenues", "/#programmes"],
   ["People", "/people"],
   ["Events", "/events"],
-  ["Articles and Research", null],
+  ["Articles and Research", "/articles-and-research"],
   ["Find Us", null],
 ];
 

@@ -41,10 +41,6 @@ export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
   membershipContactName, membershipContactRole, membershipContactPhone, membershipContactEmail
 }`;
 
-export const TEAM_QUERY = groq`*[_type == "teamMember" && active != false] | order(order asc){
-  _id, name, role, bio, expertise, image ${IMAGE}
-}`;
-
 export const PEOPLE_SECTIONS_QUERY = groq`*[_type == "peopleSection" && active != false] | order(order asc){
   _id, title, order,
   "members": *[_type == "teamMember" && active != false && section._ref == ^._id] | order(order asc){
@@ -54,6 +50,10 @@ export const PEOPLE_SECTIONS_QUERY = groq`*[_type == "peopleSection" && active !
 
 export const FOUNDING_MEMBERS_QUERY = groq`*[_type == "teamMember" && active != false && !defined(section)] | order(order asc){
   _id, name, role, bio, expertise, image ${IMAGE}
+}`;
+
+export const RESEARCH_ITEMS_QUERY = groq`*[_type == "researchItem" && active != false] | order(order asc, publishedAt desc){
+  _id, title, authors, publisher, url, accessLabel, publishedAt
 }`;
 
 export const CATEGORIES_QUERY = groq`*[_type == "category"] | order(order asc){

@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "research-earthquake-proof-bamboo-house",
+    "title": "Briefing: Earthquake-proof house shakes bamboo world",
+    "authors": "Lionel Jayanetti and Paul Follett",
+    "publisher": "Proceedings of the Institution of Civil Engineers – Civil Engineering",
+    "url": "https://www.emerald.com/jcien/article/157/3/102/392576/Briefing-Earthquake-proof-house-shakes-bamboo",
+    "accessLabel": "Free",
+    "publishedAt": "2004-08-01",
+    "order": 1,
+    "active": true
+  },
+  {
+    "_id": "research-make-way-for-bamboo",
+    "title": "Make way for bamboo, the plant for the future",
+    "authors": "Shantha Ramanayake",
+    "publisher": "The Sunday Times Sri Lanka",
+    "url": "https://www.sundaytimes.lk/170205/plus/make-way-for-bamboo-the-plant-for-the-future-226897.html",
+    "publishedAt": "2017-02-05",
+    "order": 2,
+    "active": true
+  },
+  {
+    "_id": "research-back-to-bamboo",
+    "title": "Back to Bamboo, a forgotten resource",
+    "authors": "Shantha Ramanayake",
+    "publisher": "The Sunday Times Sri Lanka",
+    "url": "https://www.sundaytimes.lk/230521/plus/back-to-bamboo-a-forgotten-resource-520225.html",
+    "publishedAt": "2023-05-21",
+    "order": 3,
+    "active": true
+  },
+  {
+    "_id": "research-fighting-climate-change-with-bamboo",
+    "title": "Fighting climate change with bamboo",
+    "authors": "Kithmee Mediwake in conversation with Dr Nadeeka Jayaweera",
+    "publisher": "Climate Fact Checks",
+    "url": "https://climatefactchecks.org/fighting-climate-change-with-bamboo/",
+    "order": 4,
+    "active": true
+  },
+  {
+    "_id": "research-effectiveness-sri-lankan-bamboo-structural-material",
+    "title": "Effectiveness of Sri Lankan Bamboo as a Structural Material",
+    "authors": "Sithira Allalagoda, Sathya Bandaranayake, Viranga Vitharana, M.T.R. Jayasinghe, Lakshitha Fernando, Sumudu Herath",
+    "publisher": "ResearchGate",
+    "url": "https://www.researchgate.net/publication/373039720_Effectiveness_of_Sri_Lankan_Bamboo_as_a_Structural_Material",
+    "order": 5,
+    "active": true
+  },
+  {
+    "_id": "research-structural-potential-four-sri-lankan-bamboo-species",
+    "title": "Structural potential of four Sri Lankan bamboo species: Geometric and mechanical property analysis",
+    "authors": "Yehan Karunaratne, Sithira Allalagoda, P.L.N. Fernando, Chathura Rajapakse, Nischal P.N. Pradhan, Thishan Jayasinghe, Sumudu Herath",
+    "publisher": "Structures · Elsevier",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S2352012426013810",
+    "order": 6,
+    "active": true
+  }
+]

@@ -98,7 +98,7 @@ export type TeamMember = {
   expertise?: string[];
   _id: string;
   name: string;
-  role: string;
+  role?: string;
   image?: SiteImage;
 };
 
@@ -107,6 +107,16 @@ export type PeopleSection = {
   title: string;
   order?: number;
   members: TeamMember[];
+};
+
+export type ResearchItem = {
+  _id: string;
+  title: string;
+  authors?: string;
+  publisher?: string;
+  url: string;
+  accessLabel?: string;
+  publishedAt?: string;
 };
 
 export type Category = { _id: string; title: string };

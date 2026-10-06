@@ -31,7 +31,6 @@ export default async function PeoplePage() {
       <SiteNav active="People" />
       <main className="about-shell people-shell">
         <header className="people-page-heading">
-          <p className="eyebrow">SRINBAR</p>
           <h1>People</h1>
         </header>
         {peopleSections.map(({ _id, title, members }) => (

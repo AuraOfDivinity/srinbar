@@ -17,6 +17,7 @@ import {
   author,
   teamMember,
   peopleSection,
+  researchItem,
   post,
   event,
 } from "./documents";
@@ -41,6 +42,7 @@ export const schemaTypes = [
   author,
   peopleSection,
   teamMember,
+  researchItem,
   post,
   event,
 ];
