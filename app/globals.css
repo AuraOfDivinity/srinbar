@@ -411,7 +411,7 @@ a:hover > .img-dim { filter: brightness(0.92); }
   max-height: none;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: max(20px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) 24px;
+  padding: max(20px, env(safe-area-inset-top)) clamp(16px, 4vw, 32px) max(24px, env(safe-area-inset-bottom)) 24px;
   background: var(--surface-page);
   border: 0;
   border-left: 3px solid var(--rattan-gold);
@@ -423,9 +423,12 @@ a:hover > .img-dim { filter: brightness(0.92); }
 .mobile-menu-drawer[data-closing="true"] { animation: mobile-menu-out 240ms ease both; }
 .mobile-menu-drawer[data-closing="true"]::backdrop { animation: mobile-scrim-out 240ms ease both; }
 .mobile-menu-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
-.mobile-menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 16px; border: 1px solid var(--border-hairline); border-radius: var(--radius-pill); background: transparent; color: var(--forest-green); font: var(--type-caption); font-weight: 600; cursor: pointer; }
-.mobile-menu-close span { font-size: 24px; line-height: 1; }
-.mobile-menu-close:hover { background: rgba(110, 155, 94, 0.12); }
+.mobile-menu-close { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--forest-green); cursor: pointer; }
+.mobile-close-icon { position: relative; display: block; width: 24px; height: 24px; }
+.mobile-close-icon i { position: absolute; top: 11px; left: 0; display: block; width: 24px; height: 2px; border-radius: 1px; background: currentColor; }
+.mobile-close-icon i:first-child { transform: rotate(45deg); }
+.mobile-close-icon i:last-child { transform: rotate(-45deg); }
+.mobile-menu-close:hover { color: var(--rattan-gold); }
 .mobile-menu-close:focus-visible { outline: 2px solid var(--forest-green); outline-offset: 3px; }
 .mobile-menu-heading { display: flex; align-items: center; gap: 14px; padding: 8px 0 16px; }
 .mobile-menu-heading .eyebrow { flex-shrink: 0; font-size: 11px; color: var(--forest-green); }

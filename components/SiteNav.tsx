@@ -192,7 +192,7 @@ export default function SiteNav({
         <div className="mobile-menu-toolbar">
           <img src="/brand/srinbar-symbol.webp" width={48} height={43} alt="" />
           <button type="button" autoFocus className="mobile-menu-close" onClick={closeMenu} aria-label="Close navigation menu">
-            Close <span aria-hidden="true">×</span>
+            <span className="mobile-close-icon" aria-hidden="true"><i /><i /></span>
           </button>
         </div>
         <div className="mobile-menu-heading">
