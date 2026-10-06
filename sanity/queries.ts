@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
 
-const IMAGE = `{ "url": asset->url, alt, hotspot, crop, asset }`;
+const IMAGE = `{ "url": asset->url + "?auto=format", alt, hotspot, crop, asset }`;
 
 export const SITE_SETTINGS_QUERY = groq`*[_type == "siteSettings"][0]{
   siteTitle, seoDescription, organisationName,

@@ -15,7 +15,7 @@ export const client = createClient({
 const builder = imageUrlBuilder({ projectId, dataset });
 
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source).auto("format");
+  return builder.image(source).auto("format").quality(80);
 }
 
 /** Shared fetch options — ISR every 60 seconds. */

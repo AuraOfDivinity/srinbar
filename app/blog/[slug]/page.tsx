@@ -146,7 +146,7 @@ export default async function ArticlePage({ params }: Props) {
           image: post.mainImage?.url ? [post.mainImage.url] : undefined,
           author: post.author?.name ? { "@type": "Person", name: post.author.name } : undefined,
           publisher: { "@type": "Organization", "@id": absoluteUrl("/#organization"),
-            name: ORGANISATION_NAME, logo: { "@type": "ImageObject", url: absoluteUrl("/brand/srinbar-full.png") } },
+            name: ORGANISATION_NAME, logo: { "@type": "ImageObject", url: absoluteUrl("/brand/srinbar-full.webp") } },
           inLanguage: "en-LK",
         },
       ]} />

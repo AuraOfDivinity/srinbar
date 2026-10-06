@@ -38,6 +38,7 @@ export default async function AboutPageRoute() {
               src={urlFor(about.heroImage.asset).width(1800).url()}
               alt={about.heroImage.alt}
               className="about-hero-image"
+              fetchPriority="high"
             />
           )}
           <div className="about-hero-shade" aria-hidden="true" />

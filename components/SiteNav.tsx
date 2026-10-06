@@ -124,9 +124,9 @@ export default function SiteNav({
     >
       <div className="site-nav-inner">
         <Link href="/" aria-label="SRINBAR — home" className="nav-brand">
-          <img className="nav-brand-symbol" src="/brand/srinbar-symbol.png" width={58} height={51} alt="" fetchPriority="high" />
+          <img className="nav-brand-symbol" src="/brand/srinbar-symbol.webp" width={58} height={51} alt="" fetchPriority="high" />
           <span className="nav-brand-wordmark" data-intro={logoIntro} onAnimationEnd={() => setLogoIntro("shown")} aria-hidden="true">
-            <img src="/brand/srinbar-wordmark.png" width={180} height={60} alt="" fetchPriority="high" />
+            <img src="/brand/srinbar-wordmark.webp" width={180} height={60} alt="" fetchPriority="high" />
           </span>
         </Link>
         <nav
@@ -190,7 +190,7 @@ export default function SiteNav({
         }}
       >
         <div className="mobile-menu-toolbar">
-          <img src="/brand/srinbar-symbol.png" width={48} height={43} alt="" />
+          <img src="/brand/srinbar-symbol.webp" width={48} height={43} alt="" />
           <button type="button" autoFocus className="mobile-menu-close" onClick={closeMenu} aria-label="Close navigation menu">
             Close <span aria-hidden="true">×</span>
           </button>

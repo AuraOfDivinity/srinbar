@@ -41,6 +41,11 @@ export default async function HomePage() {
   const { upcoming, past } = sortEvents(events);
   const displayedEvents = [...upcoming, ...past];
   const programmes = home?.programmes ?? [];
+  const heroWidths = [640, 960, 1280, 1600, 1920];
+  const heroImageSrcSet = home?.heroImage
+    ? heroWidths.map((width) => `${urlFor(home.heroImage.asset).width(width).quality(76).url()} ${width}w`).join(", ")
+    : undefined;
+  const heroImageSrc = home?.heroImage ? urlFor(home.heroImage.asset).width(1920).quality(76).url() : undefined;
 
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100vh" }}>
@@ -48,7 +53,7 @@ export default async function HomePage() {
         "@context": "https://schema.org",
         "@graph": [
           { "@type": "Organization", "@id": absoluteUrl("/#organization"), name: settings?.organisationName || ORGANISATION_NAME,
-            alternateName: SITE_NAME, url: absoluteUrl(), logo: absoluteUrl("/brand/srinbar-full.png"),
+            alternateName: SITE_NAME, url: absoluteUrl(), logo: absoluteUrl("/brand/srinbar-full.webp"),
             description: settings?.footerBlurb || SITE_DESCRIPTION },
           { "@type": "WebSite", "@id": absoluteUrl("/#website"), name: SITE_NAME,
             alternateName: settings?.organisationName || ORGANISATION_NAME, url: absoluteUrl(),
@@ -58,6 +63,9 @@ export default async function HomePage() {
       <SiteNav active="Home" overlay position="fixed" />
 
       <main>
+      {heroImageSrc && heroImageSrcSet && (
+        <link rel="preload" as="image" href={heroImageSrc} imageSrcSet={heroImageSrcSet} imageSizes="100vw" fetchPriority="high" />
+      )}
       <section
         className="home-hero"
         aria-label="Introduction"
@@ -72,10 +80,11 @@ export default async function HomePage() {
         {home?.heroImage && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={urlFor(home.heroImage.asset).width(2000).url()}
+            src={heroImageSrc}
             alt={home.heroImage.alt || "Bamboo restoration in Sri Lanka"}
+            loading="eager"
             fetchPriority="high"
-            srcSet={[640, 960, 1440, 2000].map(width => `${urlFor(home.heroImage.asset).width(width).url()} ${width}w`).join(", ")}
+            srcSet={heroImageSrcSet}
             sizes="100vw"
             style={{
               position: "absolute",
@@ -196,7 +205,7 @@ export default async function HomePage() {
                 >
                   {fixHomepageCopy(title)}
                 </h3>
-                <ProgrammeDescription body={fixHomepageCopy(body)} title={fixHomepageCopy(title) ?? title} />
+                <ProgrammeDescription body={fixHomepageCopy(body) ?? ""} title={fixHomepageCopy(title) ?? title} />
               </article>
             ))}
           </div>

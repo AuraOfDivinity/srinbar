@@ -31,6 +31,9 @@ export default function BlogCard({ post }: { post: PostCard }) {
         <img
           src={urlFor(post.mainImage.asset).width(800).height(600).url()}
           alt={post.mainImage.alt}
+          loading="lazy"
+          width={800}
+          height={600}
           className="img-dim"
           style={{
             width: "100%",
