@@ -1,0 +1,57 @@
+[
+  {
+    "slug": "ruhunu-expo-2026",
+    "title": "SRINBAR at Ruhunu Expo",
+    "category": "Exhibition",
+    "date": "2026-10-08",
+    "endDate": "2026-10-12",
+    "timeLabel": "9:00 AM – 8:00 PM",
+    "location": "Samanala Stadium, Galle",
+    "posterFile": "ruhunu-expo.jpg",
+    "description": "A new platform for Sri Lanka’s bamboo and rattan industry!\n\nLanka Network for Bamboo and Rattan – SRINBAR will be participating in the Ruhunu Expo Industrial Exhibition, showcasing the creativity, skills, and unique craftsmanship of local bamboo and rattan artisans.\n\nCome and explore a wide range of beautiful and innovative products made from bamboo and rattan, while supporting our talented local artisans and promoting Sri Lanka’s traditional craft industry.\n\nLet’s support local industries and give greater value to the creativity of our local craftsmen and women!",
+    "contactName": "Bimal",
+    "contactPhone": "071 610 6099"
+  },
+  {
+    "slug": "bamboo-architecture-2026",
+    "title": "Bamboo Architecture",
+    "subtitle": "Research and Development",
+    "category": "Lecture series",
+    "date": "2026-08-26",
+    "timeLabel": "7:00 PM – 8:00 PM",
+    "speaker": "Dr. Nadeeka Jayaweera",
+    "posterFile": "bamboo-architecture.jpg"
+  },
+  {
+    "slug": "bamboo-propagation-2026",
+    "title": "Bamboo Propagation",
+    "subtitle": "Interactive Discussion",
+    "category": "Lecture series",
+    "date": "2026-07-31",
+    "timeLabel": "7:00 PM – 8:00 PM",
+    "speaker": "Pradeep Samanthilaka",
+    "posterFile": "bamboo-propagation.jpg"
+  },
+  {
+    "slug": "sri-lankan-bamboo-journey-2026",
+    "title": "Sri Lankan Bamboo Journey",
+    "subtitle": "History, Heritage and Development",
+    "category": "Lecture series",
+    "date": "2026-06-24",
+    "timeLabel": "7:00 PM – 8:00 PM",
+    "location": "Online lecture",
+    "speaker": "Shantha Ramanayake",
+    "speakerRole": "Co-Founder, Lanka Network for Bamboo and Rattan – SRINBAR",
+    "posterFile": "sri-lankan-bamboo-journey.jpg"
+  },
+  {
+    "slug": "bamboo-construction-2026",
+    "title": "Bamboo Construction",
+    "subtitle": "An Introduction to Bamboo Construction",
+    "category": "Lecture series",
+    "date": "2026-05-28",
+    "timeLabel": "7:00 PM – 8:00 PM",
+    "speaker": "Thilina Wijekoon",
+    "posterFile": "bamboo-construction.jpg"
+  }
+]

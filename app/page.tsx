@@ -11,14 +11,12 @@ import {
   HOME_PAGE_QUERY,
   SITE_SETTINGS_QUERY,
   LATEST_POSTS_QUERY,
-  UPCOMING_EVENTS_QUERY,
 } from "@/sanity/queries";
-import { eventMonthDay } from "@/lib/format";
+import { getEvents, sortEvents } from "@/lib/events";
 import type {
   HomePage,
   SiteSettings,
   PostCard,
-  EventDoc,
 } from "@/sanity/types";
 
 export const revalidate = 60;
@@ -28,9 +26,11 @@ export default async function HomePage() {
     client.fetch<HomePage>(HOME_PAGE_QUERY, {}, fetchOptions),
     client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions),
     BLOG_ENABLED ? client.fetch<PostCard[]>(LATEST_POSTS_QUERY, {}, fetchOptions) : Promise.resolve([]),
-    client.fetch<EventDoc[]>(UPCOMING_EVENTS_QUERY, {}, fetchOptions),
+    getEvents(),
   ]);
 
+  const { upcoming, past } = sortEvents(events);
+  const displayedEvents = [...upcoming, ...past];
   const programmes = home?.programmes ?? [];
 
   return (
@@ -227,7 +227,7 @@ export default async function HomePage() {
       )}
 
       <section
-        aria-label="Upcoming events"
+        aria-label="Events and conversations"
         style={{ padding: "0 clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px)" }}
       >
         <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
@@ -248,7 +248,7 @@ export default async function HomePage() {
                 color: "var(--text-body)",
               }}
             >
-              {home?.eventsSectionHeading}
+              Events & conversations
             </h2>
             <Link
               href="/events"
@@ -258,27 +258,8 @@ export default async function HomePage() {
               View all →
             </Link>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--space-4)",
-              maxWidth: 860,
-            }}
-          >
-            {(events ?? []).slice(0, 3).map((event) => {
-              const { month, day } = eventMonthDay(event.date);
-              return (
-                <EventCard
-                  key={event._id}
-                  month={month}
-                  day={day}
-                  title={event.title}
-                  location={event.location}
-                  time={event.timeLabel}
-                />
-              );
-            })}
+          <div className="home-events-grid">
+            {displayedEvents.map(event => <EventCard key={event._id} event={event} />)}
           </div>
         </div>
       </section>

@@ -81,10 +81,9 @@ export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && archived != true && 
 
 export const POST_SLUGS_QUERY = groq`*[_type == "post" && archived != true && defined(slug.current)][].slug.current`;
 
-export const UPCOMING_EVENTS_QUERY = groq`*[_type == "event" && archived != true && date >= now()] | order(date asc){
-  _id, title, date, timeLabel, location
-}`;
-
-export const PAST_EVENTS_QUERY = groq`*[_type == "event" && archived != true && date < now()] | order(date desc){
-  _id, title, date, timeLabel, location
+// Date-only events are classified in Sri Lanka time by the shared event helper.
+export const EVENTS_QUERY = groq`*[_type == "event" && archived != true && defined(slug.current)] | order(date desc){
+  _id, title, "slug": slug.current, subtitle, category, date, endDate,
+  timeLabel, location, description, speaker, speakerRole, recordingUrl,
+  contactName, contactPhone, poster ${IMAGE}
 }`;

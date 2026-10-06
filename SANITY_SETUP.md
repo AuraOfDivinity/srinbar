@@ -29,7 +29,7 @@ SANITY_WRITE_TOKEN=<the editor token>
 npm run seed
 ```
 
-This uploads the 6 site images to Sanity's asset store and writes ~30 documents (site settings, all 5 page singletons, 6 categories, 7 posts including the full riverbanks article as Portable Text, 9 events, 4 team members, 1 author). It's idempotent — re-running overwrites the seeded documents, no duplicates.
+This uploads the 6 site images to Sanity's asset store and writes ~30 documents (site settings, all 5 page singletons, 6 categories, 7 posts including the full riverbanks article as Portable Text, 4 team members, 1 author). It's idempotent — re-running overwrites the seeded documents, no duplicates.
 
 ## 4. Run
 
@@ -59,6 +59,14 @@ npm run dev
 Your dashboard can talk to the same dataset via `@sanity/client` with a write token, or you can keep using the embedded Studio at `/studio`. Sanity handles auth (invite admins under **Members** at sanity.io/manage). The schemas above are the contract — any document your dashboard writes in these shapes renders on the site.
 
 Notes:
-- Upcoming vs past events is just `date >= now()` — no flag to maintain.
+- Upcoming, ongoing, and past events use Sri Lanka’s calendar date and the optional end date; a multi-day event stays current through its final day.
 - The featured blog post is the newest post with `featured: true`.
 - `/article` now redirects to `/blog`; article URLs are `/blog/<slug>`.
+
+## Real event posters and details
+
+Run `npm run seed:events` to import the five supplied 2026 events and their posters from `lib/events-content.json` and `public/events/`. This targeted import archives the eight known sample events and preserves existing real event records, including subsequent Studio edits. The general seed no longer creates sample events.
+
+Edit Events in Studio to change titles, unique slugs, dates, optional end dates, posters, descriptions, times, venues, speakers, inquiry contacts, and recording URLs. Both the homepage and `/events` use the same published collection; event cards link to `/events/[slug]`. Empty optional fields produce no headings or placeholders. Posters preserve their entire artwork and open at full size from the detail page.
+
+The Ruhunu Expo year is inferred as 2026 from the supplied upcoming-event context; its October 8–12 dates and 9 AM–8 PM hours come from the poster. Only the June lecture explicitly lists an online venue, so the other lecture venues are left blank. No recording links were supplied.

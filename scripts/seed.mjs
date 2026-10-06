@@ -448,27 +448,7 @@ function buildDocuments() {
     ...(p.body ? { body: p.body } : {}),
   }));
 
-  /* --- Events --- */
-
-  const events = [
-    // upcoming
-    ["2026-09-14", "Bamboo Nursery & Planting Workshop", "Kegalle District", "9:00 AM – 3:00 PM"],
-    ["2026-10-02", "Annual Members' Assembly", "Kandy", "10:00 AM – 1:00 PM"],
-    ["2026-10-21", "Riverbank Restoration Field Day", "Kalu Ganga Basin", "8:00 AM – 12:00 PM"],
-    ["2026-11-09", "Entrepreneurship Clinic: Pricing & Markets", "Colombo", "2:00 PM – 5:00 PM"],
-    ["2026-12-05", "Craft Cooperative Showcase", "Kandy", "All day"],
-    // past
-    ["2026-06-21", "Bamboo Charcoal Production Demonstration", "Matale", "9:00 AM – 1:00 PM"],
-    ["2026-05-17", "Community Riverbank Planting Day", "Ratnapura", "8:00 AM – 12:00 PM"],
-    ["2026-03-08", "Rattan Weaving Skills Workshop", "Kegalle District", "10:00 AM – 4:00 PM"],
-  ].map(([date, title, location, timeLabel]) => ({
-    _id: `event-${title.toLowerCase().replace(/[^a-z]+/g, "-").slice(0, 60)}`,
-    _type: "event",
-    title,
-    date,
-    location,
-    timeLabel,
-  }));
+  // Real event posters and content are imported separately with npm run seed:events.
 
   return [
     ...categories,
@@ -481,7 +461,6 @@ function buildDocuments() {
     contactPage,
     ...teamMembers,
     ...posts,
-    ...events,
   ];
 }
 

@@ -3,6 +3,15 @@ import { Fraunces, Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 
+const brandMetadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://srinbar.org"),
+  icons: {
+    icon: { url: "/brand/srinbar-full.png", type: "image/png" },
+    apple: { url: "/brand/srinbar-full.png", type: "image/png" },
+  },
+  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
+};
+
 const fraunces = Fraunces({
   subsets: ["latin"],
   style: ["normal", "italic"],
@@ -22,6 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const settings = await client.fetch(SITE_SETTINGS_QUERY, {}, fetchOptions);
     if (settings?.siteTitle) {
       return {
+        ...brandMetadata,
         title: settings.siteTitle,
         description: settings.seoDescription,
       };
@@ -30,6 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
     // fall through to defaults (e.g. env vars not configured yet)
   }
   return {
+    ...brandMetadata,
     title: "SRINBAR — Lanka Network for Bamboo and Rattan",
     description:
       "Restoring degraded land, stabilising riverbanks, and building bamboo livelihoods across Sri Lanka.",

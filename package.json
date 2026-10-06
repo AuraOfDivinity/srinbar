@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "seed": "node scripts/seed.mjs"
+    "seed": "node scripts/seed.mjs",
+    "seed:events": "node scripts/seed-events.mjs"
   },
   "dependencies": {
     "@sanity/client": "^7.23.0",

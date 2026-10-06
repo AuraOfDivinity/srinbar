@@ -236,9 +236,20 @@ export const event = defineType({
   fields: [
     defineField({ name: "archived", type: "boolean", initialValue: false, description: "Hide this entry from the website while preserving its content." }),
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "slug", type: "slug", options: { source: "title" }, validation: (r) => r.required() }),
+    defineField({ name: "subtitle", type: "string" }),
+    defineField({ name: "category", type: "string", description: "For example: Lecture series or Exhibition" }),
+    defineField({ name: "poster", type: "image", fields: [defineField({ name: "alt", type: "string", title: "Alternative text" })] }),
+    defineField({ name: "description", type: "text", rows: 8 }),
+    defineField({ name: "speaker", type: "string" }),
+    defineField({ name: "speakerRole", type: "string" }),
+    defineField({ name: "recordingUrl", type: "url", validation: (r) => r.uri({ scheme: ["http", "https"] }) }),
+    defineField({ name: "contactName", type: "string" }),
+    defineField({ name: "contactPhone", type: "string" }),
+    defineField({ name: "endDate", type: "date", description: "Optional last day for multi-day events", validation: (r) => r.min(r.valueOfField("date")) }),
     defineField({ name: "date", type: "date", validation: (r) => r.required() }),
     defineField({ name: "timeLabel", type: "string", description: 'e.g. "9:00 AM – 3:00 PM" or "All day"' }),
-    defineField({ name: "location", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "location", type: "string" }),
   ],
   orderings: [
     {

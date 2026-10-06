@@ -133,8 +133,19 @@ export type Post = PostCard & {
 
 export type EventDoc = {
   _id: string;
+  slug: string;
   title: string;
+  subtitle?: string;
+  category?: string;
   date: string;
+  endDate?: string;
   timeLabel?: string;
-  location: string;
+  location?: string;
+  poster?: SiteImage;
+  description?: string;
+  speaker?: string;
+  speakerRole?: string;
+  recordingUrl?: string;
+  contactName?: string;
+  contactPhone?: string;
 };

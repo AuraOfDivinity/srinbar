@@ -1,8 +1,8 @@
 "use client";
 
 import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
-import { Link } from "next-view-transitions";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const PAGES: [string, string][] = [
   ["Home", "/"],
@@ -28,6 +28,16 @@ export default function SiteNav({
   const [scrolled, setScrolled] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoIntro, setLogoIntro] = useState<"pending" | "playing" | "shown">("pending");
+  const introInitialized = useRef(false);
+
+  useLayoutEffect(() => {
+    // The home nav can mount after another page has already mounted its nav.
+    // Keep the intro tied to the hero overlay so it still plays on home entry.
+    if (introInitialized.current) return;
+    introInitialized.current = true;
+    setLogoIntro(overlay ? "playing" : "shown");
+  }, [overlay]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -57,15 +67,17 @@ export default function SiteNav({
   return (
     <header
       role="banner"
-      className="site-nav-anchor"
+      className={`site-nav-anchor${transparent ? " site-nav-anchor--overlay" : ""}`}
       style={{
         ...positionStyle,
-        background: transparent ? "transparent" : "var(--surface-page)",
-        borderBottom: `1px solid ${transparent ? "transparent" : "var(--border-hairline)"}`,
+        background: transparent ? "rgba(18, 39, 29, 0.82)" : "var(--surface-page)",
+        borderBottom: `1px solid ${transparent ? "rgba(255, 255, 255, 0.16)" : "var(--border-hairline)"}`,
         color: transparent ? "var(--text-on-brand)" : "var(--text-body)",
         fontFamily: "var(--font-sans-body)",
         transition:
-          "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
+          "background 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease",
+        boxShadow: transparent ? "0 8px 24px rgba(7, 20, 13, 0.12)" : "none",
+        backdropFilter: transparent ? "blur(10px)" : "none",
         ["--nav-hover" as string]: transparent
           ? "var(--rattan-gold-light)"
           : "var(--bamboo-green)",
@@ -84,7 +96,10 @@ export default function SiteNav({
         }}
       >
         <Link href="/" aria-label="SRINBAR — home" className="nav-brand">
-          SRINBAR
+          <img className="nav-brand-symbol" src="/brand/srinbar-symbol.png" width={58} height={51} alt="" fetchPriority="high" />
+          <span className="nav-brand-wordmark" data-intro={logoIntro} onAnimationEnd={() => setLogoIntro("shown")} aria-hidden="true">
+            <img src="/brand/srinbar-wordmark.png" width={180} height={60} alt="" fetchPriority="high" />
+          </span>
         </Link>
         {!isMobile && (
           <nav
@@ -133,6 +148,7 @@ export default function SiteNav({
             <Link
               key={label}
               href={href}
+              onClick={() => setMenuOpen(false)}
               aria-current={label === active ? "page" : undefined}
               className="mobile-link"
             >
@@ -141,6 +157,7 @@ export default function SiteNav({
           ))}
           <Link
             href="/contact#membership"
+            onClick={() => setMenuOpen(false)}
             className="btn btn--accent btn--md"
             style={{ marginTop: "var(--space-5)", minHeight: 48 }}
           >
