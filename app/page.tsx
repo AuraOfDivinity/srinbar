@@ -2,7 +2,6 @@ import { BLOG_ENABLED } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import StatsBand from "@/components/StatsBand";
 import BlogCard from "@/components/BlogCard";
 import ProgrammeDescription from "@/components/ProgrammeDescription";
 import EventCard from "@/components/EventCard";
@@ -123,8 +122,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <StatsBand stats={settings?.stats} />
 
       <section
         id="programmes"

@@ -1,6 +1,6 @@
 # SRINBAR × Sanity — setup
 
-The site now reads all content from Sanity: page copy, blog posts, events, team, contact details, footer, stats, and every image (uploaded to Sanity's asset CDN).
+The site now reads all content from Sanity: page copy, blog posts, events, team, contact details, footer, and every image (uploaded to Sanity's asset CDN).
 
 ## 1. Create the Sanity project (one time)
 
@@ -44,9 +44,9 @@ npm run dev
 
 | Type | Kind | Drives |
 |---|---|---|
-| `siteSettings` | singleton | Footer, contact info, stats band, newsletter copy, SEO defaults |
+| `siteSettings` | singleton | Footer, contact info, newsletter copy, SEO defaults |
 | `homePage` | singleton | Hero, programmes, section headings, membership CTA |
-| `aboutPage` | singleton | About hero, story, mission/vision, team & INBAR sections |
+| `aboutPage` | singleton | About hero, story, team & INBAR sections |
 | `blogPage`, `eventsPage`, `contactPage` | singletons | Page headers & microcopy |
 | `post` | collection | Blog cards + full articles (`/blog/[slug]`, Portable Text body) |
 | `category` | collection | Blog filter pills |

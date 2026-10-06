@@ -28,7 +28,6 @@ export const siteSettings = defineType({
     defineField({ name: "copyright", type: "string", group: "footer" }),
     defineField({ name: "footerTagline", type: "string", group: "footer", description: "e.g. Kandy, Sri Lanka · Member of INBAR" }),
 
-    defineField({ name: "stats", type: "array", of: [{ type: "stat" }], group: "shared", description: "Impact stats band (home & about)" }),
     defineField({ name: "newsletterHeading", type: "string", group: "shared" }),
     defineField({ name: "newsletterBody", type: "text", rows: 2, group: "shared" }),
   ],
@@ -84,8 +83,6 @@ export const aboutPage = defineType({
 
     defineField({ name: "storyHeading", type: "string", group: "story" }),
     defineField({ name: "storyParagraphs", type: "array", of: [{ type: "text", rows: 4 }], group: "story" }),
-    defineField({ name: "mission", type: "text", rows: 3, group: "story" }),
-    defineField({ name: "vision", type: "text", rows: 3, group: "story" }),
 
     defineField({ name: "teamEyebrow", type: "string", group: "team" }),
     defineField({ name: "teamHeading", type: "string", group: "team" }),
@@ -171,9 +168,12 @@ export const teamMember = defineType({
   type: "document",
   fields: [
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "role", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "role", type: "string" }),
     defineField({ name: "image", type: "siteImage" }),
     defineField({ name: "order", type: "number" }),
+    defineField({ name: "bio", title: "Biography", type: "text", rows: 8 }),
+    defineField({ name: "expertise", type: "array", of: [{ type: "string" }] }),
+    defineField({ name: "active", title: "Show on website", type: "boolean", initialValue: true }),
   ],
   preview: { select: { title: "name", subtitle: "role", media: "image" } },
 });

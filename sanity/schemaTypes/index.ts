@@ -1,7 +1,6 @@
 import {
   siteImage,
   cta,
-  stat,
   linkItem,
   footerColumn,
   programme,
@@ -25,7 +24,6 @@ export const schemaTypes = [
   // objects
   siteImage,
   cta,
-  stat,
   linkItem,
   footerColumn,
   programme,

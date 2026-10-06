@@ -9,7 +9,6 @@ export type SiteImage = {
 };
 
 export type Cta = { label: string; href: string };
-export type Stat = { value: string; label: string };
 export type LinkItem = { label: string; href: string };
 export type FooterColumn = { heading: string; links: LinkItem[] };
 
@@ -26,7 +25,6 @@ export type SiteSettings = {
   footerColumns?: FooterColumn[];
   copyright?: string;
   footerTagline?: string;
-  stats?: Stat[];
   newsletterHeading?: string;
   newsletterBody?: string;
 };
@@ -56,8 +54,6 @@ export type AboutPage = {
   heroImage?: SiteImage;
   storyHeading?: string;
   storyParagraphs?: string[];
-  mission?: string;
-  vision?: string;
   teamEyebrow?: string;
   teamHeading?: string;
   teamIntro?: string;
@@ -92,6 +88,8 @@ export type ContactPageDoc = {
 };
 
 export type TeamMember = {
+  bio?: string;
+  expertise?: string[];
   _id: string;
   name: string;
   role: string;

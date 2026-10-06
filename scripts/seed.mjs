@@ -235,12 +235,6 @@ function buildDocuments() {
         ],
       },
     ],
-    stats: [
-      { _type: "stat", _key: k(), value: "1,200+", label: "Hectares under bamboo restoration" },
-      { _type: "stat", _key: k(), value: "45", label: "Rural entrepreneurs networked" },
-      { _type: "stat", _key: k(), value: "18", label: "Districts with active programmes" },
-      { _type: "stat", _key: k(), value: "2005", label: "Founded, Kandy" },
-    ],
     newsletterHeading: "Stay Rooted",
     newsletterBody:
       "Field updates, events, and entrepreneurship stories — twice a month.",
@@ -282,19 +276,10 @@ function buildDocuments() {
     heroHeading: "A network of scientists, growers, and artisans",
     heroImage: img("ellaValley", "Cloud forest in warm morning fog above Ella Valley, Sri Lanka"),
     storyHeading: "Our Story",
-    storyParagraphs: [
-      "SRINBAR — the Lanka Network for Bamboo and Rattan — was founded in 2005 by scientists at the National Institute of Fundamental Studies, Kandy, to answer a simple question: could bamboo restore Sri Lanka’s degraded land while also building rural livelihoods?",
-      "The first plantings went into eroding riverbanks and abandoned chena land in the Kegalle and Ratnapura districts. The bamboo held. Topsoil returned. And the culms it produced found buyers — weavers, furniture makers, charcoal producers.",
-      "Two decades on, we are a network connecting researchers, riverbank-restoration teams, and bamboo & rattan entrepreneurs across 18 districts — linked to the wider INBAR community.",
-    ],
-    mission:
-      "To restore degraded land and stabilise riverbanks with bamboo, and to build fair, lasting livelihoods along the bamboo and rattan value chain.",
-    vision:
-      "A Sri Lanka where bamboo is recognised as a plantation crop — and where every district that grows it also earns from it.",
-    teamEyebrow: "Advisory Committee",
-    teamHeading: "The people behind the network",
-    teamIntro:
-      "SRINBAR is guided by an advisory committee of scientists, field coordinators, and entrepreneurs — most of whom have been planting, studying, or weaving bamboo far longer than the network has existed.",
+    storyParagraphs: JSON.parse(readFileSync(new URL("../lib/story.json", import.meta.url), "utf8")),
+    teamEyebrow: "Our people",
+    teamHeading: "Advisory Committee",
+    teamIntro: "Meet the members of SRINBAR’s advisory committee.",
     inbarEyebrow: "Affiliation",
     inbarHeading: "Part of the INBAR community",
     inbarBody:
@@ -338,19 +323,9 @@ function buildDocuments() {
       "All fields except phone are required. We reply to every application, usually within two weeks.",
   };
 
-  const teamMembers = [
-    ["Dr. A. Perera", "Founding Scientist, NIFS Kandy", "bambooPlum", "Portrait placeholder — bamboo culms in warm natural light"],
-    ["N. Wickramasinghe", "Programme Director", "arashiyamaTall", "Portrait placeholder — tall bamboo grove in soft daylight"],
-    ["S. Fernando", "Entrepreneurship Lead", "arashiyamaPath", "Portrait placeholder — footpath through a bamboo forest"],
-    ["K. Jayasuriya", "Field Coordinator, Kegalle", "labugama", "Portrait placeholder — riverbank forest at Labugama–Kalatuwawa"],
-  ].map(([name, role, imageKey, alt], i) => ({
-    _id: `teamMember-${name.toLowerCase().replace(/[^a-z]+/g, "-")}`,
-    _type: "teamMember",
-    name,
-    role,
-    order: i + 1,
-    image: img(imageKey, alt),
-  }));
+  const teamMembers = JSON.parse(
+    readFileSync(new URL("../lib/advisory.json", import.meta.url), "utf8"),
+  ).map((member) => ({ ...member, _type: "teamMember", active: true }));
 
   /* --- Blog posts --- */
 

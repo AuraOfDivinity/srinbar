@@ -1,0 +1,149 @@
+[
+  {
+    "_id": "advisory-lionel-jayanetti",
+    "name": "Eng. Lionel Jayanetti",
+    "role": "Engineer | Bamboo Construction & Sustainable Building",
+    "bio": "A founding member of SRINBAR and a pioneer in promoting bamboo as a sustainable resource in Sri Lanka. During his work with TRADA International, UK, he collaborated with the International Bamboo and Rattan Organisation (INBAR) and brought international knowledge and networks into the Sri Lankan context. He has contributed to the promotion of bamboo construction through community initiatives, seminars, workshops and publications, with particular focus on bamboo-based housing and building systems.",
+    "expertise": [
+      "Bamboo Construction",
+      "Sustainable Building",
+      "Bamboo Utilisation",
+      "Knowledge Exchange",
+      "Industry Development"
+    ],
+    "order": 1,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-5a1e2626f3b44ea3aaf0a09463d3fc5e9aa448dc-1180x1333-jpg"
+      },
+      "alt": "Portrait of Eng. Lionel Jayanetti"
+    }
+  },
+  {
+    "_id": "advisory-parakrama-jayasinghe",
+    "name": "Eng. Parakrama Jayasinghe",
+    "role": "Engineer | Bamboo Resource Development & Sustainable Utilisation",
+    "bio": "A founding member of SRINBAR and Managing Director of Geotech (Pvt) Ltd, with early involvement in developing Sri Lanka’s bamboo resource base. He worked alongside researchers and fellow SRINBAR founders to promote bamboo propagation and micropropagation, including the system developed at the Institute of Fundamental Studies (IFS). He has also contributed to bamboo construction, treatment, biomass utilisation and green energy initiatives, including early efforts to demonstrate bamboo’s potential to government and industry.",
+    "expertise": [
+      "Bamboo Resource Development",
+      "Bamboo Propagation",
+      "Bamboo Construction",
+      "Bamboo Treatment",
+      "Biomass & Green Energy",
+      "Sustainable Utilisation"
+    ],
+    "order": 2,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-a3f369b52875f6758a4acd4a084c3a3cd3aaf718-1199x1312-jpg"
+      },
+      "alt": "Portrait of Eng. Parakrama Jayasinghe"
+    }
+  },
+  {
+    "_id": "advisory-shantha-ramanayake",
+    "name": "Ms. Shantha Ramanayake",
+    "role": "Plant Biotechnologist | Bamboo Micropropagation",
+    "bio": "A co-founder of SRINBAR and former Senior Scientist and Project Leader of the Plant Biotechnology Project at the Institute of Fundamental Studies, Kandy. She developed micropropagation protocols for bamboo and other woody perennials, including Dendrocalamus giganteus, and contributed to the establishment of the Riverine Bamboo Project under the Mahaweli Authority of Sri Lanka. She also established and provided training at bamboo tissue culture facilities and has contributed to research, publications and the promotion of bamboo as a sustainable resource.",
+    "expertise": [
+      "Plant Tissue Culture",
+      "Bamboo Micropropagation",
+      "Plant Biotechnology",
+      "Bamboo Research",
+      "Tissue Culture Laboratories",
+      "Rattan & Woody Perennials"
+    ],
+    "order": 3,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-6b4d7616b761b9bfcc87fc167beeb2dd57d6e297-1299x1211-jpg"
+      },
+      "alt": "Portrait of Ms. Shantha Ramanayake"
+    }
+  },
+  {
+    "_id": "advisory-parakrama-waidyanatha",
+    "name": "Dr. Parakrama Waidyanatha",
+    "role": "Agricultural Scientist | Plantation Management",
+    "bio": "A founding member of SRINBAR with a PhD from the University of London. He served as Chairman of the Coconut Research Institute and Chairman and Managing Director of Kurunegala Plantations, following a career in agricultural research at the Tea and Rubber Research Institutes. He contributed to the establishment of SRINBAR during its formative years.",
+    "expertise": [
+      "Agricultural Research",
+      "Plantation Management",
+      "Coconut & Rubber",
+      "Agricultural Development",
+      "Research & Development"
+    ],
+    "order": 4,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e0f21a9761d213de7f8e98e3431cf76dbf171b79-1114x1412-jpg"
+      },
+      "alt": "Portrait of Dr. Parakrama Waidyanatha"
+    }
+  },
+  {
+    "_id": "advisory-gamini-kulatunga",
+    "name": "Dr. Gamini Kulatunga",
+    "role": "Mechanical Engineer | Agricultural Engineering & Technology",
+    "bio": "A mechanical engineer with a PhD in Post-Harvest Technology from Cranfield University, UK, and 20 years of experience in the research, development, manufacture and marketing of agricultural implements. A retired Senior Lecturer in Agricultural & Plantation Engineering, he has also served as a consultant to UNDP and contributed to the establishment of Engineering faculties at the University of Sri Jayewardenepura and South Eastern University of Sri Lanka.",
+    "expertise": [
+      "Agricultural Engineering",
+      "Post-Harvest Technology",
+      "Agricultural Implements",
+      "Research & Development",
+      "Engineering Education",
+      "Technology Development"
+    ],
+    "order": 5,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-949518d0be62466821d5d4770a94e2f66de39723-1076x1461-jpg"
+      },
+      "alt": "Portrait of Dr. Gamini Kulatunga"
+    }
+  },
+  {
+    "_id": "advisory-premini-hettiarachchi",
+    "name": "Dr. Premini Hettiarachchi",
+    "role": "Civil Engineer | Structural Engineering & Timber Structures",
+    "bio": "A former Senior Lecturer in the Department of Civil Engineering at the University of Moratuwa, with a PhD from the University of London and over 40 years of experience in teaching, research and consultancy. Her research focuses on the structural use of timber and steel, structural behaviour and the application of Eurocodes. She has contributed to the development of structural engineering education and standards in Sri Lanka.",
+    "expertise": [
+      "Structural Engineering",
+      "Timber Structures",
+      "Steel Structures",
+      "Structural Design",
+      "Eurocodes",
+      "Construction Materials",
+      "Engineering Education"
+    ],
+    "order": 6,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-2691d2858b72999652419c1ac4c22e0a35a765a6-1170x1345-jpg"
+      },
+      "alt": "Portrait of Dr. Premini Hettiarachchi"
+    }
+  },
+  {
+    "_id": "advisory-sarath-fernando",
+    "name": "Mr. Sarath Fernando",
+    "order": 7
+  },
+  {
+    "_id": "advisory-isuru-samarasinghe",
+    "name": "Mr. Isuru Samarasinghe",
+    "order": 8
+  }
+]

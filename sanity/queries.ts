@@ -7,7 +7,6 @@ export const SITE_SETTINGS_QUERY = groq`*[_type == "siteSettings"][0]{
   addressLines, email, phone, officeHours, mapNote,
   footerBlurb, copyright, footerTagline,
   footerColumns[]{ heading, links[]{ label, href } },
-  stats[]{ value, label },
   newsletterHeading, newsletterBody
 }`;
 
@@ -23,7 +22,7 @@ export const HOME_PAGE_QUERY = groq`*[_type == "homePage"][0]{
 
 export const ABOUT_PAGE_QUERY = groq`*[_type == "aboutPage"][0]{
   heroEyebrow, heroHeading, heroImage ${IMAGE},
-  storyHeading, storyParagraphs, mission, vision,
+  storyHeading, storyParagraphs,
   teamEyebrow, teamHeading, teamIntro,
   inbarEyebrow, inbarHeading, inbarBody, inbarCta{ label, href }
 }`;
@@ -40,8 +39,8 @@ export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
   eyebrow, heading, intro, formHeading, formNote
 }`;
 
-export const TEAM_QUERY = groq`*[_type == "teamMember"] | order(order asc){
-  _id, name, role, image ${IMAGE}
+export const TEAM_QUERY = groq`*[_type == "teamMember" && active != false] | order(order asc){
+  _id, name, role, bio, expertise, image ${IMAGE}
 }`;
 
 export const CATEGORIES_QUERY = groq`*[_type == "category"] | order(order asc){
