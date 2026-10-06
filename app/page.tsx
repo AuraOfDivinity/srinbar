@@ -179,6 +179,16 @@ export default async function HomePage() {
           <div className="programmes-grid">
             {programmes.map(({ image, title, body }) => (
               <article key={title} className="programme-card">
+                <h3
+                  style={{
+                    font: "var(--type-h3)",
+                    fontSize: "var(--text-lg)",
+                    color: "var(--text-body)",
+                    marginBottom: "var(--space-2)",
+                  }}
+                >
+                  {fixHomepageCopy(title)}
+                </h3>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 {image?.asset && <img
                   src={urlFor(image.asset).width(600).height(300).url()}
@@ -195,16 +205,6 @@ export default async function HomePage() {
                     marginBottom: "var(--space-4)",
                   }}
                 />}
-                <h3
-                  style={{
-                    font: "var(--type-h3)",
-                    fontSize: "var(--text-lg)",
-                    color: "var(--text-body)",
-                    marginBottom: "var(--space-2)",
-                  }}
-                >
-                  {fixHomepageCopy(title)}
-                </h3>
                 <ProgrammeDescription body={fixHomepageCopy(body) ?? ""} title={fixHomepageCopy(title) ?? title} />
               </article>
             ))}
@@ -284,7 +284,7 @@ export default async function HomePage() {
                 color: "var(--text-body)",
               }}
             >
-              Events & conversations
+              Events
             </h2>
             <Link
               href="/events"

@@ -27,15 +27,14 @@ export default async function EventsPage() {
       <main className="events-shell">
         <header className="events-heading">
           <p className="eyebrow">Gather • Learn • Grow</p>
-          <h1>Events & conversations</h1>
-          <p>Meet the people and ideas shaping Sri Lanka’s bamboo and rattan community. Explore our exhibitions and revisit the SRINBAR lecture series.</p>
+          <h1>Events</h1>
         </header>
         <section className="events-section" aria-labelledby="upcoming-heading">
-          <div className="events-section-heading"><h2 id="upcoming-heading">Coming together</h2><span className="event-category">Upcoming & ongoing</span></div>
+          <div className="events-section-heading"><h2 id="upcoming-heading">Upcoming &amp; Ongoing</h2></div>
           {upcoming.length ? <div className="events-featured">{upcoming.map(event => <EventCard key={event._id} event={event} featured />)}</div> : <p className="events-empty">New events will be announced here. In the meantime, explore our past gatherings below.</p>}
         </section>
         {past.length > 0 && <section className="events-section" aria-labelledby="past-heading">
-          <div className="events-section-heading"><h2 id="past-heading">Past events</h2><span className="event-category">From our community</span></div>
+          <div className="events-section-heading"><h2 id="past-heading">Past Events</h2></div>
           <div className="events-grid">{past.map(event => <EventCard key={event._id} event={event} />)}</div>
         </section>}
       </main>
