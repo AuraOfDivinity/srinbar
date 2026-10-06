@@ -68,7 +68,7 @@ export const FEATURED_POST_QUERY = groq`*[_type == "post" && archived != true &&
 }`;
 
 export const POST_BY_SLUG_QUERY = groq`*[_type == "post" && archived != true && slug.current == $slug][0]{
-  _id, title, "slug": slug.current, excerpt, publishedAt, readTime, tags,
+  _id, _updatedAt, title, "slug": slug.current, excerpt, publishedAt, readTime, tags,
   "category": category->title,
   mainImage ${IMAGE}, mainImageCaption,
   author->{ name, bio, image ${IMAGE} },

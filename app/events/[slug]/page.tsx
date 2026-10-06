@@ -1,3 +1,5 @@
+import { pageMetadata, breadcrumbs, absoluteUrl, metaDescription } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
@@ -14,8 +16,13 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const event = (await getEvents()).find(event => event.slug === slug);
-  if (!event) return { title: "Event not found — SRINBAR" };
-  return { title: `${event.title} — SRINBAR`, description: event.description?.split("\n\n")[0] || event.subtitle || `${event.title} · ${eventDateLabel(event)}`, openGraph: { images: event.poster?.url ? [event.poster.url] : [] } };
+  if (!event) notFound();
+  return pageMetadata({
+    title: event.title,
+    description: event.description || `${event.title}${event.subtitle ? `: ${event.subtitle}` : ""}. ${eventDateLabel(event)}${event.location ? ` at ${event.location}` : ""}. Explore this SRINBAR bamboo and rattan event.`,
+    path: `/events/${encodeURIComponent(event.slug)}`,
+    image: event.poster?.url ? { url: event.poster.url, alt: event.poster.alt || `${event.title} event poster` } : undefined,
+  });
 }
 
 export default async function EventPage({ params }: Props) {
@@ -27,6 +34,19 @@ export default async function EventPage({ params }: Props) {
   const recordingUrl = event.recordingUrl && /^https?:\/\//i.test(event.recordingUrl) ? event.recordingUrl : undefined;
   return (
     <div className="events-page">
+      <JsonLd data={[
+        breadcrumbs([{ name: "Events", path: "/events" }, { name: event.title, path: `/events/${encodeURIComponent(event.slug)}` }]),
+        { "@context": "https://schema.org", "@type": "Event",
+          "@id": absoluteUrl(`/events/${encodeURIComponent(event.slug)}#event`),
+          name: event.title, url: absoluteUrl(`/events/${encodeURIComponent(event.slug)}`),
+          description: metaDescription(event.description || event.subtitle || event.title),
+          startDate: event.date, endDate: event.endDate || undefined,
+          image: event.poster?.url ? [absoluteUrl(event.poster.url)] : undefined,
+          // Do not infer addresses, ticket prices or online attendance URLs.
+          location: event.location && !/online|virtual|zoom/i.test(event.location)
+            ? { "@type": "Place", name: event.location } : undefined,
+        },
+      ]} />
       <SiteNav active="Events" />
       <main className="events-shell">
         <Link href="/events" className="arrow-link event-back">← All events</Link>

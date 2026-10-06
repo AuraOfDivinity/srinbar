@@ -126,6 +126,7 @@
 /* Reset (from ds/styles.css) */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+body { overflow-x: clip; }
 body {
   margin: 0;
   background: var(--surface-page);
@@ -364,39 +365,107 @@ a:hover > .img-dim { filter: brightness(0.92); }
 
 /* Mobile menu toggle */
 .nav-toggle {
-  font-family: var(--font-sans-body);
-  font-weight: var(--weight-semibold);
-  font-size: var(--text-xs);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   color: inherit;
-  border: 1px solid currentColor;
-  border-radius: var(--radius-pill);
-  padding: 10px 20px;
-  min-height: 44px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  width: 44px;
+  height: 44px;
   cursor: pointer;
   outline: none;
   transition: background 0.2s ease;
 }
+.nav-toggle-icon { display: grid; gap: 5px; width: 24px; }
+.nav-toggle-icon i { display: block; width: 24px; height: 2px; border-radius: 1px; background: currentColor; transition: transform 0.2s ease; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon i:first-child { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon i:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon i:last-child { transform: translateY(-7px) rotate(-45deg); }
 .nav-toggle:hover { background: rgba(110, 155, 94, 0.12); }
 .nav-toggle:focus-visible { box-shadow: var(--focus-ring); }
+
+/* Native modal navigation keeps keyboard focus inside the open drawer. */
+.site-nav-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.desktop-nav { display: flex; align-items: center; gap: 32px; }
+.site-nav-inner > .nav-toggle { display: none; flex-shrink: 0; }
+.mobile-menu-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  margin: 0;
+  width: min(380px, 88vw);
+  max-width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: max(20px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) 24px;
+  background: var(--surface-page);
+  border: 0;
+  border-left: 3px solid var(--rattan-gold);
+  box-shadow: -18px 0 48px rgba(7, 20, 13, 0.2);
+  color: var(--forest-green);
+}
+.mobile-menu-drawer[open] { display: flex; flex-direction: column; animation: mobile-menu-in 280ms cubic-bezier(.22, 1, .36, 1) both; }
+.mobile-menu-drawer::backdrop { background: rgba(12, 27, 19, 0.58); animation: mobile-scrim-in 240ms ease both; }
+.mobile-menu-drawer[data-closing="true"] { animation: mobile-menu-out 240ms ease both; }
+.mobile-menu-drawer[data-closing="true"]::backdrop { animation: mobile-scrim-out 240ms ease both; }
+.mobile-menu-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.mobile-menu-close { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 16px; border: 1px solid var(--border-hairline); border-radius: var(--radius-pill); background: transparent; color: var(--forest-green); font: var(--type-caption); font-weight: 600; cursor: pointer; }
+.mobile-menu-close span { font-size: 24px; line-height: 1; }
+.mobile-menu-close:hover { background: rgba(110, 155, 94, 0.12); }
+.mobile-menu-close:focus-visible { outline: 2px solid var(--forest-green); outline-offset: 3px; }
+.mobile-menu-heading { display: flex; align-items: center; gap: 14px; padding: 8px 0 16px; }
+.mobile-menu-heading .eyebrow { flex-shrink: 0; font-size: 11px; color: var(--forest-green); }
+.mobile-menu-rule { height: 1px; flex: 1; background: var(--border-hairline); }
+.mobile-menu-links { margin-bottom: 32px; }
+.mobile-menu-drawer > * { flex-shrink: 0; }
+.mobile-menu-cta { width: 100%; min-height: 48px; margin-top: auto; }
+@keyframes mobile-menu-in { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes mobile-menu-out { from { transform: translateX(0); } to { transform: translateX(100%); } }
+@keyframes mobile-scrim-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mobile-scrim-out { from { opacity: 1; } to { opacity: 0; } }
+@media (max-width: 767px) {
+  .desktop-nav { display: none; }
+  .site-nav-inner > .nav-toggle { display: inline-flex; }
+  .nav-brand { gap: 6px; }
+  .nav-brand-symbol { width: 44px; height: 39px; }
+  .nav-brand-wordmark { width: clamp(112px, 30vw, 150px); height: 28px; }
+  .nav-brand-wordmark img { width: 100%; height: auto; top: -8px; }
+}
 
 /* Mobile menu links */
 .mobile-link {
   display: flex;
   align-items: center;
-  min-height: 52px;
+  min-height: 60px;
   color: var(--text-body);
   text-decoration: none;
-  font-size: var(--text-md);
-  font-weight: var(--weight-regular);
+  font: var(--type-h3);
+  font-size: 25px;
   border-bottom: 1px solid var(--hairline-green);
   outline: none;
 }
 .mobile-link:hover { color: var(--bamboo-green); }
 .mobile-link:focus-visible { box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
 .mobile-link[aria-current="page"] { font-weight: var(--weight-semibold); }
+.mobile-link[aria-current="page"]::after { content: ""; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: var(--rattan-gold); }
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-drawer[open], .mobile-menu-drawer::backdrop { animation: none; }
+  .nav-toggle-icon i { transition: none; }
+}
 
 /* Footer links */
 .footer-link {
@@ -812,6 +881,11 @@ html:active-view-transition {
   .membership-toast-region { right: 16px; bottom: 16px; }
   .membership-payment th, .membership-payment td { padding: 10px 4px; }
 }
+@media (max-width: 420px) {
+  .mobile-menu-drawer { padding-left: 22px; padding-right: 22px; }
+  .membership-options label { flex: 1 1 100%; }
+  .membership-upload { padding: 16px; }
+}
 
 /* Events: intact posters, warm paper cards, and a shared contained frame. */
 .events-page { background: var(--surface-page); min-height: 100vh; }
@@ -885,3 +959,35 @@ html:active-view-transition {
   .event-detail-poster { max-width: 440px; width: 100%; margin: 0 auto; }
 }
 @media (prefers-reduced-motion: reduce) { .event-card { transition: none; } }
+
+/* Content can reflow within narrow columns without hiding text or controls. */
+:where(.home-hero, .about-shell, .events-shell, .contact-shell, article, footer) { overflow-wrap: anywhere; }
+:where(.programmes-grid, .advisory-grid, .advisory-card-header, .about-story, .events-grid, .home-events-grid) > * { min-width: 0; }
+.btn { max-width: 100%; min-height: 44px; white-space: normal; text-align: center; overflow-wrap: anywhere; }
+.chip { max-width: 100%; }
+.input, .field { min-width: 0; max-width: 100%; }
+.filter-pill { min-height: 44px; max-width: 100%; }
+.membership-language { flex-wrap: wrap; }
+.membership-language select { font-size: 16px; }
+.membership-options input { flex-shrink: 0; }
+.event-recording .btn { padding: 12px 24px; }
+#programmes, #newsletter { scroll-margin-top: 88px; }
+@media (max-width: 767px) {
+  .footer-link { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
+  .arrow-link { display: inline-flex; align-items: center; min-height: 44px; }
+  .about-shell { width: calc(100% - 32px); }
+}
+@media (max-width: 479px) {
+  .newsletter-form { flex-direction: column; width: 100%; }
+  .newsletter-form .input { flex: auto !important; }
+  .newsletter-form .btn { width: 100%; }
+  .btn--lg { padding: 14px 24px; font-size: 16px; }
+  .contact-form-panel { padding: 20px 16px; }
+  .membership-submit { align-items: stretch; flex-direction: column; gap: 8px; }
+  .event-card-poster img, .home-events-grid .event-card-poster img,
+  .event-card--featured .event-card-poster img { height: auto; max-height: 360px; }
+}
+@media (max-width: 359px) {
+  .about-committee .advisory-card-header { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

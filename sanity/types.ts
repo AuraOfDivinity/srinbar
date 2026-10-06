@@ -124,6 +124,7 @@ export type FeaturedPost = PostCard & { author?: { name: string } };
 export type PortableBlock = Record<string, unknown> & { _type: string; _key: string };
 
 export type Post = PostCard & {
+  _updatedAt?: string;
   mainImageCaption?: string;
   tags?: string[];
   author?: { name: string; bio?: string; image?: SiteImage };

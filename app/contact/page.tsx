@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata, breadcrumbs } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import MembershipForm from "@/components/MembershipForm";
@@ -9,11 +10,11 @@ import type { ContactPageDoc, SiteSettings } from "@/sanity/types";
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "Contact & Membership — SRINBAR",
-  description:
-    "Apply for or renew your SRINBAR membership. Connect with the Sri Lanka Network for Bamboo and Rattan.",
-};
+export const metadata = pageMetadata({
+  title: "Contact & Membership",
+  description: "Join or renew your SRINBAR membership. Connect with Sri Lanka’s bamboo and rattan community and find membership fees, application details and contacts.",
+  path: "/contact",
+});
 
 export default async function ContactPage() {
   const [page, settings] = await Promise.all([
@@ -23,6 +24,7 @@ export default async function ContactPage() {
 
   return (
     <div className="contact-page">
+      <JsonLd data={breadcrumbs([{ name: "Contact & Membership", path: "/contact" }])} />
       <SiteNav active="Contact" />
       <main className="contact-shell">
         <header className="contact-heading">

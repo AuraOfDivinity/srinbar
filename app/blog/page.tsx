@@ -1,6 +1,7 @@
 import { BLOG_ENABLED } from "@/lib/features";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
+import { pageMetadata, breadcrumbs } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import BlogIndex from "./BlogIndex";
@@ -22,11 +23,10 @@ import type {
 
 export const revalidate = 60;
 
-export const metadata: Metadata = BLOG_ENABLED ? {
-  title: "Blog — SRINBAR",
-  description:
-    "Field notes & updates from restoration sites, workshops, and the entrepreneurs of the bamboo & rattan value chain.",
-} : {};
+export const metadata = BLOG_ENABLED ? pageMetadata({
+  title: "Bamboo & Rattan Field Notes", path: "/blog",
+  description: "Read SRINBAR field notes on bamboo and rattan in Sri Lanka, from restoration sites and workshops to research and sustainable livelihoods.",
+}) : { robots: { index: false, follow: false } };
 
 export default async function BlogPageRoute() {
   if (!BLOG_ENABLED) notFound();
@@ -40,6 +40,7 @@ export default async function BlogPageRoute() {
 
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100vh" }}>
+      <JsonLd data={breadcrumbs([{ name: "Blog", path: "/blog" }])} />
       <SiteNav active="Blog" />
       <BlogIndex
         page={page}

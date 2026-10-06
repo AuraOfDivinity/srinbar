@@ -6,7 +6,7 @@ Transparent PNGs generated with the built-in imagegen tool from the three suppli
 - `public/brand/srinbar-symbol.png`: header symbol.
 - `public/brand/srinbar-wordmark.png`: animated header text.
 
-The original source images remain unchanged. The wordmark fades in and moves from the right after a 450 ms delay over 700 ms. It plays once on the first navbar mount per page load; navigating between routes does not replay it. A full browser reload allows it to play again. Reduced-motion preferences disable the animation. The Open Graph route places the full logo on a warm background at 1200 × 630 for social previews. Set `NEXT_PUBLIC_SITE_URL` to the production origin if it differs from `https://srinbar.org`.
+The original source images remain unchanged. The wordmark fades in and moves from the right after a 450 ms delay over 700 ms. It plays once on the first navbar mount per page load; navigating between routes does not replay it. A full browser reload allows it to play again. Reduced-motion preferences disable the animation. The Open Graph route places the full logo on a warm background at 1200 × 630 for social previews. Set `NEXT_PUBLIC_SITE_URL` to the production origin if it differs from `https://srinbar.com`.
 
 ## Prompt used for each image
 

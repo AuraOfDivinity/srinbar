@@ -1,3 +1,5 @@
+import { pageMetadata, breadcrumbs, absoluteUrl, ORGANISATION_NAME } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import { BLOG_ENABLED } from "@/lib/features";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -26,15 +28,23 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  if (!BLOG_ENABLED) return {};
+  if (!BLOG_ENABLED) notFound();
   const { slug } = await params;
   const post = await client.fetch<Post | null>(
     POST_BY_SLUG_QUERY,
     { slug },
     fetchOptions,
   );
-  if (!post) return {};
-  return { title: `${post.title} — SRINBAR`, description: post.excerpt };
+  if (!post) notFound();
+  return pageMetadata({
+    title: post.title, description: post.excerpt || post.title, path: `/blog/${encodeURIComponent(post.slug)}`,
+    image: post.mainImage?.asset ? {
+      url: urlFor(post.mainImage.asset).width(1200).height(630).fit("crop").url(),
+      alt: post.mainImage.alt || post.title, width: 1200, height: 630,
+    } : undefined,
+    article: { publishedTime: post.publishedAt, modifiedTime: post._updatedAt,
+      authors: post.author?.name ? [post.author.name] : undefined, section: post.category, tags: post.tags },
+  });
 }
 
 const bodyText: React.CSSProperties = {
@@ -127,6 +137,19 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100vh" }}>
+      <JsonLd data={[
+        breadcrumbs([{ name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${encodeURIComponent(post.slug)}` }]),
+        { "@context": "https://schema.org", "@type": "BlogPosting",
+          headline: post.title, description: post.excerpt,
+          mainEntityOfPage: absoluteUrl(`/blog/${encodeURIComponent(post.slug)}`),
+          datePublished: post.publishedAt, dateModified: post._updatedAt,
+          image: post.mainImage?.url ? [post.mainImage.url] : undefined,
+          author: post.author?.name ? { "@type": "Person", name: post.author.name } : undefined,
+          publisher: { "@type": "Organization", "@id": absoluteUrl("/#organization"),
+            name: ORGANISATION_NAME, logo: { "@type": "ImageObject", url: absoluteUrl("/brand/srinbar-full.png") } },
+          inLanguage: "en-LK",
+        },
+      ]} />
       <SiteNav active="Blog" />
 
       <article>
@@ -306,7 +329,7 @@ export default async function ArticlePage({ params }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(min(270px, 100%), 1fr))",
                   gap: "var(--space-6)",
                 }}
               >

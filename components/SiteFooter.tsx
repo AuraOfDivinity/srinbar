@@ -4,7 +4,9 @@ import type { SiteSettings } from "@/sanity/types";
 
 export default function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
   // Reject the retired affiliation link even when cached CMS data contains it.
-  const columns = (settings?.footerColumns ?? []).map((column) => ({
+  const columns = (settings?.footerColumns ?? [])
+    .filter((column) => !/^programmes$/i.test(column.heading.trim()))
+    .map((column) => ({
     ...column,
     links: (column.links ?? []).filter(({ label, href }) => {
       if (/\binbar\b/i.test(label)) return false;
@@ -15,7 +17,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
         return true;
       }
     }),
-  }));
+    }));
   return (
     <footer
       style={{
@@ -34,8 +36,8 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "var(--space-6)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(220px, 100%), 1fr))",
+            gap: "var(--space-4)",
           }}
         >
           <div style={{ gridColumn: "span 1" }}>
@@ -115,7 +117,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               color: "var(--text-on-brand-muted)",
             }}
           >
-            {settings?.footerTagline}
+            {settings?.footerTagline?.replace(/^Kandy,\s*/i, "")}
           </span>
         </div>
       </div>

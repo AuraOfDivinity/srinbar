@@ -35,6 +35,7 @@ export default function NewsletterForm({ variant, inputId }: NewsletterFormProps
 
   return (
     <form
+      className="newsletter-form"
       onSubmit={(e) => {
         e.preventDefault();
         setSubscribed(true);
@@ -45,9 +46,10 @@ export default function NewsletterForm({ variant, inputId }: NewsletterFormProps
               display: "flex",
               gap: "var(--space-2)",
               flexWrap: "wrap",
-              flex: 1,
+              flex: "1 1 280px",
               maxWidth: 480,
-              minWidth: 280,
+              minWidth: 0,
+              width: "100%",
             }
           : { display: "flex", gap: "var(--space-2)", flexWrap: "wrap" }
       }
@@ -61,7 +63,7 @@ export default function NewsletterForm({ variant, inputId }: NewsletterFormProps
         required
         placeholder="you@email.com"
         className="input"
-        style={{ flex: 1, minWidth: variant === "home" ? 200 : 180 }}
+        style={{ flex: "1 1 200px", minWidth: 0, width: "100%" }}
       />
       <button
         type="submit"

@@ -1,3 +1,5 @@
+import { pageMetadata, absoluteUrl, HOME_TITLE, SITE_DESCRIPTION, SITE_NAME, ORGANISATION_NAME } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import { BLOG_ENABLED } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import SiteNav from "@/components/SiteNav";
@@ -19,7 +21,14 @@ import type {
   PostCard,
 } from "@/sanity/types";
 
+const fixHomepageCopy = (text?: string) => text?.replace(/\bLankaa\b/gi, "Lanka");
+
 export const revalidate = 60;
+
+export async function generateMetadata() {
+  const settings = await client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions);
+  return pageMetadata({ title: HOME_TITLE, description: settings?.seoDescription || SITE_DESCRIPTION, path: "/" });
+}
 
 export default async function HomePage() {
   const [home, settings, posts, events] = await Promise.all([
@@ -35,13 +44,26 @@ export default async function HomePage() {
 
   return (
     <div style={{ background: "var(--surface-page)", minHeight: "100vh" }}>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          { "@type": "Organization", "@id": absoluteUrl("/#organization"), name: settings?.organisationName || ORGANISATION_NAME,
+            alternateName: SITE_NAME, url: absoluteUrl(), logo: absoluteUrl("/brand/srinbar-full.png"),
+            description: settings?.footerBlurb || SITE_DESCRIPTION },
+          { "@type": "WebSite", "@id": absoluteUrl("/#website"), name: SITE_NAME,
+            alternateName: settings?.organisationName || ORGANISATION_NAME, url: absoluteUrl(),
+            inLanguage: "en-LK", publisher: { "@id": absoluteUrl("/#organization") } },
+        ],
+      }} />
       <SiteNav active="Home" overlay position="fixed" />
 
+      <main>
       <section
+        className="home-hero"
         aria-label="Introduction"
         style={{
           position: "relative",
-          height: "clamp(560px, 88vh, 720px)",
+          minHeight: "clamp(560px, 88svh, 720px)",
           display: "flex",
           alignItems: "flex-end",
           overflow: "hidden",
@@ -51,7 +73,10 @@ export default async function HomePage() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={urlFor(home.heroImage.asset).width(2000).url()}
-            alt={home.heroImage.alt}
+            alt={home.heroImage.alt || "Bamboo restoration in Sri Lanka"}
+            fetchPriority="high"
+            srcSet={[640, 960, 1440, 2000].map(width => `${urlFor(home.heroImage.asset).width(width).url()} ${width}w`).join(", ")}
+            sizes="100vw"
             style={{
               position: "absolute",
               inset: 0,
@@ -75,24 +100,24 @@ export default async function HomePage() {
             position: "relative",
             maxWidth: "var(--container-max)",
             margin: "0 auto",
-            padding: "0 clamp(20px, 4vw, 32px) clamp(48px, 8vh, 96px)",
+            padding: "120px clamp(20px, 4vw, 32px) clamp(40px, 8svh, 96px)",
             width: "100%",
           }}
         >
           <p className="eyebrow" style={{ marginBottom: "var(--space-4)" }}>
-            {home?.heroEyebrow}
+            {fixHomepageCopy(home?.heroEyebrow)}
           </p>
           <h1
             style={{
               font: "var(--type-hero)",
-              fontSize: "clamp(40px, 5vw, 64px)",
+              fontSize: "clamp(32px, 5vw, 64px)",
               color: "var(--text-on-brand)",
               maxWidth: 820,
               marginBottom: "var(--space-4)",
               textWrap: "balance",
             }}
           >
-            {home?.heroHeading}
+            {fixHomepageCopy(home?.heroHeading)}
           </h1>
           <p
             style={{
@@ -103,7 +128,7 @@ export default async function HomePage() {
               textWrap: "pretty",
             }}
           >
-            {home?.heroSubheading}
+            {fixHomepageCopy(home?.heroSubheading)}
           </p>
           <div style={{ display: "flex", gap: "var(--space-3)", flexWrap: "wrap" }}>
             {home?.heroPrimaryCta && (
@@ -111,12 +136,12 @@ export default async function HomePage() {
                 href={home.heroPrimaryCta.href}
                 className="btn btn--accent btn--lg"
               >
-                {home.heroPrimaryCta.label}
+                {fixHomepageCopy(home.heroPrimaryCta.label)}
               </Link>
             )}
             {home?.heroSecondaryCta && (
               <a href={home.heroSecondaryCta.href} className="btn btn--ghost btn--lg">
-                {home.heroSecondaryCta.label}
+                {fixHomepageCopy(home.heroSecondaryCta.label)}
               </a>
             )}
           </div>
@@ -130,7 +155,7 @@ export default async function HomePage() {
       >
         <div style={{ maxWidth: "var(--container-max)", margin: "0 auto" }}>
           <p className="eyebrow" style={{ marginBottom: "var(--space-3)" }}>
-            {home?.programmesEyebrow}
+            {fixHomepageCopy(home?.programmesEyebrow)}
           </p>
           <h2
             style={{
@@ -142,7 +167,7 @@ export default async function HomePage() {
               textWrap: "balance",
             }}
           >
-            {home?.programmesHeading}
+            {fixHomepageCopy(home?.programmesHeading)}
           </h2>
           <div className="programmes-grid">
             {programmes.map(({ image, title, body }) => (
@@ -150,7 +175,11 @@ export default async function HomePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 {image?.asset && <img
                   src={urlFor(image.asset).width(600).height(300).url()}
-                  alt={image.alt}
+                  alt={image.alt || title}
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={300}
                   style={{
                     height: 180,
                     width: "100%",
@@ -167,9 +196,9 @@ export default async function HomePage() {
                     marginBottom: "var(--space-2)",
                   }}
                 >
-                  {title}
+                  {fixHomepageCopy(title)}
                 </h3>
-                <ProgrammeDescription body={body} title={title} />
+                <ProgrammeDescription body={fixHomepageCopy(body)} title={fixHomepageCopy(title) ?? title} />
               </article>
             ))}
           </div>
@@ -200,7 +229,7 @@ export default async function HomePage() {
                 color: "var(--text-body)",
               }}
             >
-              {home?.blogSectionHeading}
+              {fixHomepageCopy(home?.blogSectionHeading)}
             </h2>
             <Link
               href="/blog"
@@ -213,7 +242,7 @@ export default async function HomePage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(270px, 100%), 1fr))",
               gap: "var(--space-6)",
             }}
           >
@@ -275,7 +304,7 @@ export default async function HomePage() {
             background: "var(--surface-card)",
             border: "1px solid var(--border-hairline)",
             borderRadius: "var(--radius-lg)",
-            padding: "clamp(32px, 5vw, 64px)",
+            padding: "clamp(20px, 5vw, 64px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -292,7 +321,7 @@ export default async function HomePage() {
                 marginBottom: "var(--space-3)",
               }}
             >
-              {home?.membershipHeading}
+              {fixHomepageCopy(home?.membershipHeading)}
             </h2>
             <p
               style={{
@@ -301,7 +330,7 @@ export default async function HomePage() {
                 textWrap: "pretty",
               }}
             >
-              {home?.membershipBody}
+              {fixHomepageCopy(home?.membershipBody)}
             </p>
           </div>
           {home?.membershipCta && (
@@ -309,7 +338,7 @@ export default async function HomePage() {
               href={home.membershipCta.href}
               className="btn btn--primary btn--lg"
             >
-              {home.membershipCta.label}
+              {fixHomepageCopy(home.membershipCta.label)}
             </Link>
           )}
         </div>
@@ -354,6 +383,7 @@ export default async function HomePage() {
         </div>
       </section>
 
+      </main>
       <SiteFooter settings={settings} />
     </div>
   );

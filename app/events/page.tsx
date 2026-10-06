@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata, breadcrumbs } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import EventCard from "@/components/EventCard";
@@ -8,10 +9,11 @@ import { getEvents, sortEvents } from "@/lib/events";
 import type { SiteSettings } from "@/sanity/types";
 
 export const revalidate = 60;
-export const metadata: Metadata = {
-  title: "Events — SRINBAR",
-  description: "Discover SRINBAR exhibitions, conversations and lectures exploring bamboo and rattan in Sri Lanka.",
-};
+export const metadata = pageMetadata({
+  title: "Bamboo & Rattan Events in Sri Lanka",
+  description: "Explore SRINBAR’s bamboo and rattan exhibitions, lectures and discussions in Sri Lanka. Find upcoming gatherings, past events and available recordings.",
+  path: "/events",
+});
 
 export default async function EventsPage() {
   const [settings, events] = await Promise.all([
@@ -20,6 +22,7 @@ export default async function EventsPage() {
   const { upcoming, past } = sortEvents(events);
   return (
     <div className="events-page">
+      <JsonLd data={breadcrumbs([{ name: "Events", path: "/events" }])} />
       <SiteNav active="Events" />
       <main className="events-shell">
         <header className="events-heading">

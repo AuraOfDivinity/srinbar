@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+import { pageMetadata, breadcrumbs } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
 import AdvisoryCard from "@/components/AdvisoryCard";
@@ -12,11 +13,11 @@ import type { AboutPage, SiteSettings, TeamMember } from "@/sanity/types";
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "About Us — SRINBAR",
-  description:
-    "SRINBAR — the Lanka Network for Bamboo and Rattan — a network of scientists, growers, and artisans founded in Kandy in 2005.",
-};
+export const metadata = pageMetadata({
+  title: "About SRINBAR & Our Bamboo and Rattan Mission",
+  description: "Meet Sri Lanka’s network of bamboo and rattan scientists, growers and artisans. Learn about SRINBAR’s mission, history and executive committee.",
+  path: "/about",
+});
 
 export default async function AboutPageRoute() {
   const [about, settings, team] = await Promise.all([
@@ -27,6 +28,7 @@ export default async function AboutPageRoute() {
 
   return (
     <div className="about-page">
+      <JsonLd data={breadcrumbs([{ name: "About Us", path: "/about" }])} />
       <SiteNav active="About Us" />
       <main className="about-shell">
         <header className="about-hero">

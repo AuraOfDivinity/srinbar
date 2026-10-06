@@ -105,7 +105,7 @@ export default function BlogIndex({
               borderRadius: "var(--radius-lg)",
               overflow: "hidden",
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
               alignItems: "stretch",
             }}
           >
@@ -191,7 +191,7 @@ export default function BlogIndex({
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(270px, 100%), 1fr))",
                 gap: "var(--space-6) var(--space-6)",
               }}
             >

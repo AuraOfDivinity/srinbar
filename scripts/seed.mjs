@@ -199,7 +199,7 @@ function buildDocuments() {
     footerBlurb:
       "Lanka Network for Bamboo and Rattan — growing a greener, more resilient Sri Lanka since 2005.",
     copyright: "© 2026 SRINBAR — Lanka Network for Bamboo and Rattan",
-    footerTagline: "Kandy, Sri Lanka",
+    footerTagline: "Sri Lanka",
     footerColumns: [
       {
         _type: "footerColumn",

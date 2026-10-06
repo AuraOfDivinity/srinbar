@@ -3,6 +3,7 @@
 import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 const PAGES: [string, string][] = [
   ["Home", "/"],
@@ -26,8 +27,30 @@ export default function SiteNav({
   position = "sticky",
 }: SiteNavProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const open = menuOpen;
+
+  const closeForNavigation = () => {
+    // Restore the page before Next.js calculates the destination's scroll position.
+    dialogRef.current?.close();
+    flushSync(() => setMenuOpen(false));
+  };
+
+  const closeMenu = () => {
+    const dialog = dialogRef.current;
+    if (!dialog?.open || closeTimer.current !== null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      dialog.close();
+      return;
+    }
+    dialog.dataset.closing = "true";
+    closeTimer.current = setTimeout(() => {
+      closeTimer.current = null;
+      dialog.close();
+    }, 240);
+  };
   const [logoIntro, setLogoIntro] = useState<"pending" | "playing" | "shown">("pending");
   const introInitialized = useRef(false);
 
@@ -43,20 +66,36 @@ export default function SiteNav({
     const onScroll = () => setScrolled(window.scrollY > 24);
     const mq = window.matchMedia("(max-width: 767px)");
     const onMq = () => {
-      setIsMobile(mq.matches);
-      setMenuOpen(false);
+      if (!mq.matches) dialogRef.current?.close();
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     if (mq.addEventListener) mq.addEventListener("change", onMq);
     setScrolled(window.scrollY > 24);
-    setIsMobile(mq.matches);
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (mq.removeEventListener) mq.removeEventListener("change", onMq);
     };
   }, []);
 
-  const open = isMobile && menuOpen;
+  useEffect(() => {
+    if (!open) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    delete dialog.dataset.closing;
+    dialog.showModal();
+    const scrollY = window.scrollY;
+    const body = document.body;
+    const previous = { position: body.style.position, top: body.style.top, width: body.style.width, overflow: body.style.overflow };
+    Object.assign(body.style, { position: "fixed", top: `-${scrollY}px`, width: "100%", overflow: "hidden" });
+    return () => {
+      if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+      Object.assign(body.style, previous);
+      window.scrollTo({ top: scrollY, behavior: "instant" });
+      if (dialog.open) dialog.close();
+    };
+  }, [open]);
+
   const transparent = overlay && !scrolled && !open;
 
   const positionStyle: React.CSSProperties =
@@ -83,88 +122,104 @@ export default function SiteNav({
           : "var(--bamboo-green)",
       }}
     >
-      <div
-        style={{
-          maxWidth: "var(--container-max)",
-          margin: "0 auto",
-          padding: "0 clamp(20px, 4vw, 32px)",
-          height: 72,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "var(--space-4)",
-        }}
-      >
+      <div className="site-nav-inner">
         <Link href="/" aria-label="SRINBAR — home" className="nav-brand">
           <img className="nav-brand-symbol" src="/brand/srinbar-symbol.png" width={58} height={51} alt="" fetchPriority="high" />
           <span className="nav-brand-wordmark" data-intro={logoIntro} onAnimationEnd={() => setLogoIntro("shown")} aria-hidden="true">
             <img src="/brand/srinbar-wordmark.png" width={180} height={60} alt="" fetchPriority="high" />
           </span>
         </Link>
-        {!isMobile && (
-          <nav
-            aria-label="Primary"
-            style={{ display: "flex", alignItems: "center", gap: 32 }}
-          >
-            {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
-              <Link
-                key={label}
-                href={href}
-                aria-current={label === active ? "page" : undefined}
-                className="nav-link"
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        )}
-        {isMobile && (
-          <button
-            type="button"
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls="srinbar-mobile-menu"
-            className="nav-toggle"
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-        )}
-      </div>
-      {open && (
         <nav
-          id="srinbar-mobile-menu"
           aria-label="Primary"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            background: "var(--surface-page)",
-            borderTop: "1px solid var(--border-hairline)",
-            borderBottom: "1px solid var(--border-hairline)",
-            padding: "var(--space-2) clamp(20px, 4vw, 32px) var(--space-5)",
-            color: "var(--text-body)",
-          }}
+          className="desktop-nav"
         >
           {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
             <Link
               key={label}
               href={href}
-              onClick={() => setMenuOpen(false)}
+              aria-current={label === active ? "page" : undefined}
+              className="nav-link"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+        <button
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open navigation menu"
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-controls="srinbar-mobile-menu"
+          className="nav-toggle"
+        >
+          <span className="nav-toggle-icon" aria-hidden="true"><i /><i /><i /></span>
+        </button>
+      </div>
+      <dialog
+        ref={dialogRef}
+        id="srinbar-mobile-menu"
+        aria-labelledby="mobile-menu-title"
+        className="mobile-menu-drawer"
+        onClose={() => {
+          if (closeTimer.current !== null) clearTimeout(closeTimer.current);
+          closeTimer.current = null;
+          setMenuOpen(false);
+        }}
+        onCancel={(event) => {
+          event.preventDefault();
+          closeMenu();
+        }}
+        onKeyDown={(event) => {
+          if (event.key !== "Tab") return;
+          const controls = event.currentTarget.querySelectorAll<HTMLElement>("a[href], button");
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return;
+          const bounds = event.currentTarget.getBoundingClientRect();
+          if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeMenu();
+        }}
+      >
+        <div className="mobile-menu-toolbar">
+          <img src="/brand/srinbar-symbol.png" width={48} height={43} alt="" />
+          <button type="button" autoFocus className="mobile-menu-close" onClick={closeMenu} aria-label="Close navigation menu">
+            Close <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div className="mobile-menu-heading">
+          <span id="mobile-menu-title" className="eyebrow">Explore SRINBAR</span>
+          <span className="mobile-menu-rule" aria-hidden="true" />
+        </div>
+        <nav aria-label="Primary" className="mobile-menu-links">
+          {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
+            <Link
+              key={label}
+              href={href}
+              onClick={closeForNavigation}
               aria-current={label === active ? "page" : undefined}
               className="mobile-link"
             >
               {label}
             </Link>
           ))}
-          <Link
-            href="/contact#membership"
-            onClick={() => setMenuOpen(false)}
-            className="btn btn--accent btn--md"
-            style={{ marginTop: "var(--space-5)", minHeight: 48 }}
-          >
-            Become a Member
-          </Link>
         </nav>
-      )}
+        <Link
+          href="/contact#membership"
+          onClick={closeForNavigation}
+          className="btn btn--accent btn--md mobile-menu-cta"
+        >
+          Become a Member
+        </Link>
+      </dialog>
     </header>
   );
 }

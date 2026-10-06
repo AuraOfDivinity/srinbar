@@ -2,14 +2,25 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
 import "./globals.css";
+import { HOME_TITLE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, INDEXABLE } from "@/lib/seo";
 
-const brandMetadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://srinbar.org"),
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: { default: HOME_TITLE, template: "%s | SRINBAR" },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   icons: {
-    icon: { url: "/brand/srinbar-full.png", type: "image/png" },
-    apple: { url: "/brand/srinbar-full.png", type: "image/png" },
+    icon: { url: "/icon", type: "image/png", sizes: "96x96" },
+    apple: { url: "/apple-icon", type: "image/png", sizes: "180x180" },
   },
-  twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
+  robots: {
+    index: INDEXABLE, follow: INDEXABLE,
+    googleBot: { index: INDEXABLE, follow: INDEXABLE, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+  },
 };
 
 const fraunces = Fraunces({
@@ -23,29 +34,6 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
-
-export async function generateMetadata(): Promise<Metadata> {
-  try {
-    const { client, fetchOptions } = await import("@/sanity/client");
-    const { SITE_SETTINGS_QUERY } = await import("@/sanity/queries");
-    const settings = await client.fetch(SITE_SETTINGS_QUERY, {}, fetchOptions);
-    if (settings?.siteTitle) {
-      return {
-        ...brandMetadata,
-        title: settings.siteTitle,
-        description: settings.seoDescription,
-      };
-    }
-  } catch {
-    // fall through to defaults (e.g. env vars not configured yet)
-  }
-  return {
-    ...brandMetadata,
-    title: "SRINBAR — Lanka Network for Bamboo and Rattan",
-    description:
-      "Restoring degraded land, stabilising riverbanks, and building bamboo livelihoods across Sri Lanka.",
-  };
-}
 
 export default function RootLayout({
   children,
