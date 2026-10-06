@@ -54,9 +54,6 @@ export type AboutPage = {
   heroImage?: SiteImage;
   storyHeading?: string;
   storyParagraphs?: string[];
-  teamEyebrow?: string;
-  teamHeading?: string;
-  teamIntro?: string;
 };
 
 export type BlogPageDoc = {
@@ -103,6 +100,13 @@ export type TeamMember = {
   name: string;
   role: string;
   image?: SiteImage;
+};
+
+export type PeopleSection = {
+  _id: string;
+  title: string;
+  order?: number;
+  members: TeamMember[];
 };
 
 export type Category = { _id: string; title: string };

@@ -321,6 +321,8 @@ a:hover > .img-dim { filter: brightness(0.92); }
   transition: color 0.2s ease;
 }
 .nav-link:hover { color: var(--nav-hover, var(--bamboo-green)); }
+.nav-link--disabled { opacity: 0.68; cursor: default; }
+.nav-link--disabled:hover { color: inherit; }
 .nav-link:focus-visible { box-shadow: var(--focus-ring); }
 .nav-link[aria-current="page"] {
   font-weight: var(--weight-semibold);
@@ -400,6 +402,10 @@ a:hover > .img-dim { filter: brightness(0.92); }
 }
 .desktop-nav { display: flex; align-items: center; gap: 32px; }
 .site-nav-inner > .nav-toggle { display: none; flex-shrink: 0; }
+@media (max-width: 1200px) {
+  .desktop-nav, .desktop-membership-cta { display: none; }
+  .site-nav-inner > .nav-toggle { display: inline-flex; }
+}
 .mobile-menu-drawer {
   position: fixed;
   inset: 0 0 0 auto;
@@ -453,7 +459,7 @@ a:hover > .img-dim { filter: brightness(0.92); }
 }
 
 /* Mobile menu links */
-.mobile-link {
+.mobile-link { 
   display: flex;
   align-items: center;
   min-height: 60px;
@@ -465,6 +471,8 @@ a:hover > .img-dim { filter: brightness(0.92); }
   outline: none;
 }
 .mobile-link:hover { color: var(--bamboo-green); }
+.mobile-link--disabled { color: var(--text-muted); cursor: default; }
+.mobile-link--disabled:hover { color: var(--text-muted); }
 .mobile-link:focus-visible { box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
 .mobile-link[aria-current="page"] { font-weight: var(--weight-semibold); }
 .mobile-link[aria-current="page"]::after { content: ""; width: 7px; height: 7px; margin-left: auto; border-radius: 50%; background: var(--rattan-gold); }
@@ -742,6 +750,11 @@ html:active-view-transition {
   width: min(1120px, calc(100% - 64px));
   margin: 24px auto 64px;
 }
+.people-shell { padding-top: clamp(32px, 5vw, 64px); }
+.people-page-heading { margin: 0 16px clamp(32px, 5vw, 56px); }
+.people-page-heading .eyebrow { margin-bottom: var(--space-3); }
+.people-page-heading h1 { font: var(--type-h1); font-size: clamp(32px, 4vw, 48px); color: var(--forest-green); }
+.people-member-section + .people-member-section { margin-top: var(--space-6); }
 .about-hero {
   position: relative;
   min-height: 300px;

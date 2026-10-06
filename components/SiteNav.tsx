@@ -1,16 +1,17 @@
 "use client";
 
-import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 
-const PAGES: [string, string][] = [
+const NAV_LINKS: [string, string | null][] = [
   ["Home", "/"],
-  ["About Us", "/about"],
-  ["Blog", "/blog"],
+  ["Our Story", "/about#story-heading"],
+  ["Avenues", "/#programmes"],
+  ["People", "/people"],
   ["Events", "/events"],
-  ["Contact", "/contact"],
+  ["Articles and Research", null],
+  ["Find Us", null],
 ];
 
 type SiteNavProps = {
@@ -133,17 +134,18 @@ export default function SiteNav({
           aria-label="Primary"
           className="desktop-nav"
         >
-          {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
+          {NAV_LINKS.map(([label, href]) => href ? (
             <Link
               key={label}
               href={href}
-              aria-current={label === active ? "page" : undefined}
+              aria-current={label === active || (active === "About Us" && label === "Our Story") ? "page" : undefined}
               className="nav-link"
             >
               {label}
             </Link>
-          ))}
+          ) : <span key={label} className="nav-link nav-link--disabled" aria-disabled="true">{label}</span>)}
         </nav>
+        <Link href="/contact#membership" className="btn btn--accent btn--sm desktop-membership-cta">Become a Member</Link>
         <button
           type="button"
           onClick={() => setMenuOpen(true)}
@@ -203,16 +205,20 @@ export default function SiteNav({
           <span className="mobile-menu-rule" aria-hidden="true" />
         </div>
         <nav aria-label="Primary" className="mobile-menu-links">
-          {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
+          {NAV_LINKS.map(([label, href]) => href ? (
             <Link
               key={label}
               href={href}
               onClick={closeForNavigation}
-              aria-current={label === active ? "page" : undefined}
+              aria-current={label === active || (active === "About Us" && label === "Our Story") ? "page" : undefined}
               className="mobile-link"
             >
               {label}
             </Link>
+          ) : (
+            <span key={label} className="mobile-link mobile-link--disabled" aria-disabled="true">
+              {label}
+            </span>
           ))}
         </nav>
         <Link

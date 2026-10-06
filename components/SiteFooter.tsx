@@ -16,7 +16,9 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
       } catch {
         return true;
       }
-    }),
+    }).map((item) => /^advisory committee$/i.test(item.label.trim())
+      ? { ...item, label: "People", href: "/people" }
+      : item),
     }));
   return (
     <footer

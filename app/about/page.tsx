@@ -2,28 +2,25 @@ import { pageMetadata, breadcrumbs } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import AdvisoryCard from "@/components/AdvisoryCard";
 import { client, urlFor, fetchOptions } from "@/sanity/client";
 import {
   ABOUT_PAGE_QUERY,
   SITE_SETTINGS_QUERY,
-  TEAM_QUERY,
 } from "@/sanity/queries";
-import type { AboutPage, SiteSettings, TeamMember } from "@/sanity/types";
+import type { AboutPage, SiteSettings } from "@/sanity/types";
 
 export const revalidate = 60;
 
 export const metadata = pageMetadata({
   title: "About SRINBAR & Our Bamboo and Rattan Mission",
-  description: "Meet Sri Lanka’s network of bamboo and rattan scientists, growers and artisans. Learn about SRINBAR’s mission, history and executive committee.",
+  description: "Learn about SRINBAR’s story and work advancing bamboo and rattan in Sri Lanka.",
   path: "/about",
 });
 
 export default async function AboutPageRoute() {
-  const [about, settings, team] = await Promise.all([
+  const [about, settings] = await Promise.all([
     client.fetch<AboutPage>(ABOUT_PAGE_QUERY, {}, fetchOptions),
     client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions),
-    client.fetch<TeamMember[]>(TEAM_QUERY, {}, fetchOptions),
   ]);
 
   return (
@@ -59,30 +56,6 @@ export default async function AboutPageRoute() {
             ))}
           </div>
         </section>
-
-        <section id="team" className="about-committee" aria-labelledby="committee-heading">
-          <div className="about-committee-heading">
-            <div>
-              <p className="eyebrow">{about?.teamEyebrow}</p>
-              <h2 id="committee-heading">{about?.teamHeading}</h2>
-            </div>
-            {about?.teamIntro && <p className="about-section-intro">{about.teamIntro}</p>}
-          </div>
-          <div className="advisory-grid">
-            {(team ?? []).map(({ _id, image, name, role, bio, expertise }) => (
-              <AdvisoryCard
-                key={_id}
-                name={name}
-                role={role}
-                bio={bio}
-                expertise={expertise}
-                imageUrl={image?.asset ? urlFor(image.asset).width(480).height(600).url() : undefined}
-                imageAlt={image?.alt}
-              />
-            ))}
-          </div>
-        </section>
-
 
       </main>
       <SiteFooter settings={settings} />

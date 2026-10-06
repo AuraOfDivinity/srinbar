@@ -22,8 +22,7 @@ export const HOME_PAGE_QUERY = groq`*[_type == "homePage"][0]{
 
 export const ABOUT_PAGE_QUERY = groq`*[_type == "aboutPage"][0]{
   heroEyebrow, heroHeading, heroImage ${IMAGE},
-  storyHeading, storyParagraphs,
-  teamEyebrow, teamHeading, teamIntro
+  storyHeading, storyParagraphs
 }`;
 
 export const BLOG_PAGE_QUERY = groq`*[_type == "blogPage"][0]{
@@ -43,6 +42,17 @@ export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
 }`;
 
 export const TEAM_QUERY = groq`*[_type == "teamMember" && active != false] | order(order asc){
+  _id, name, role, bio, expertise, image ${IMAGE}
+}`;
+
+export const PEOPLE_SECTIONS_QUERY = groq`*[_type == "peopleSection" && active != false] | order(order asc){
+  _id, title, order,
+  "members": *[_type == "teamMember" && active != false && section._ref == ^._id] | order(order asc){
+    _id, name, role, bio, expertise, image ${IMAGE}
+  }
+}`;
+
+export const FOUNDING_MEMBERS_QUERY = groq`*[_type == "teamMember" && active != false && !defined(section)] | order(order asc){
   _id, name, role, bio, expertise, image ${IMAGE}
 }`;
 

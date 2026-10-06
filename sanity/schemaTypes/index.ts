@@ -16,6 +16,7 @@ import {
   category,
   author,
   teamMember,
+  peopleSection,
   post,
   event,
 } from "./documents";
@@ -38,6 +39,7 @@ export const schemaTypes = [
   // collections
   category,
   author,
+  peopleSection,
   teamMember,
   post,
   event,

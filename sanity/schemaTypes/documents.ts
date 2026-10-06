@@ -73,7 +73,6 @@ export const aboutPage = defineType({
   groups: [
     { name: "hero", title: "Hero" },
     { name: "story", title: "Our story" },
-    { name: "team", title: "Team section" },
   ],
   fields: [
     defineField({ name: "heroEyebrow", type: "string", group: "hero" }),
@@ -82,10 +81,6 @@ export const aboutPage = defineType({
 
     defineField({ name: "storyHeading", type: "string", group: "story" }),
     defineField({ name: "storyParagraphs", type: "array", of: [{ type: "text", rows: 4 }], group: "story" }),
-
-    defineField({ name: "teamEyebrow", type: "string", group: "team" }),
-    defineField({ name: "teamHeading", type: "string", group: "team" }),
-    defineField({ name: "teamIntro", type: "text", rows: 3, group: "team" }),
 
   ],
   preview: { prepare: () => ({ title: "About Page" }) },
@@ -177,6 +172,19 @@ export const author = defineType({
   preview: { select: { title: "name", media: "image" } },
 });
 
+export const peopleSection = defineType({
+  name: "peopleSection",
+  title: "People Section",
+  type: "document",
+  fields: [
+    defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+    defineField({ name: "order", type: "number" }),
+    defineField({ name: "active", title: "Show on website", type: "boolean", initialValue: true }),
+  ],
+  orderings: [{ title: "Display order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
+  preview: { select: { title: "title" } },
+});
+
 export const teamMember = defineType({
   name: "teamMember",
   title: "Team Member",
@@ -184,6 +192,7 @@ export const teamMember = defineType({
   fields: [
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
     defineField({ name: "role", type: "string" }),
+    defineField({ name: "section", type: "reference", to: [{ type: "peopleSection" }], description: "Choose the section this member appears under. Members without a section appear under Founding Members." }),
     defineField({ name: "image", type: "siteImage" }),
     defineField({ name: "order", type: "number" }),
     defineField({ name: "bio", title: "Biography", type: "text", rows: 8 }),

@@ -207,7 +207,7 @@ function buildDocuments() {
         heading: "About",
         links: [
           { _type: "linkItem", _key: k(), label: "Our Story", href: "/about" },
-          { _type: "linkItem", _key: k(), label: "Advisory Committee", href: "/about#team" },
+          { _type: "linkItem", _key: k(), label: "People", href: "/people" },
           { _type: "linkItem", _key: k(), label: "Contact", href: "/contact" },
         ],
       },
