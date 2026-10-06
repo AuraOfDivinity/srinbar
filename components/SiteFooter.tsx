@@ -1,3 +1,4 @@
+import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import type { SiteSettings } from "@/sanity/types";
 
@@ -68,7 +69,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               >
                 {heading}
               </div>
-              {(links ?? []).map(({ label, href }) => (
+              {(links ?? []).filter(({ label, href }) => BLOG_ENABLED || !isBlogLink(href, label)).map(({ label, href }) => (
                 <Link key={label} href={href} className="footer-link">
                   {label}
                 </Link>

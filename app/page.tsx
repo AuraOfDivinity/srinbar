@@ -1,3 +1,4 @@
+import { BLOG_ENABLED } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -27,7 +28,7 @@ export default async function HomePage() {
   const [home, settings, posts, events] = await Promise.all([
     client.fetch<HomePage>(HOME_PAGE_QUERY, {}, fetchOptions),
     client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions),
-    client.fetch<PostCard[]>(LATEST_POSTS_QUERY, {}, fetchOptions),
+    BLOG_ENABLED ? client.fetch<PostCard[]>(LATEST_POSTS_QUERY, {}, fetchOptions) : Promise.resolve([]),
     client.fetch<EventDoc[]>(UPCOMING_EVENTS_QUERY, {}, fetchOptions),
   ]);
 
@@ -178,6 +179,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Blog paused; retained for the future launch. */}
+      {BLOG_ENABLED && (
       <section
         aria-label="From the blog"
         style={{ padding: "0 clamp(20px, 4vw, 32px) clamp(64px, 8vw, 96px)" }}
@@ -223,6 +226,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      )}
 
       <section
         aria-label="Upcoming events"

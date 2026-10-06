@@ -472,13 +472,13 @@ html:active-view-transition {
 }
 
 .programme-description-window {
-  height: 8em; /* Five lines, including space reserved for shorter descriptions. */
+  height: 5lh; /* Reserve exactly five line boxes for every collapsed preview. */
   overflow: hidden;
 }
 
 .programme-description-window.is-expanded {
   height: auto;
-  min-height: 8em;
+  min-height: 5lh;
 }
 
 .programme-description-content {
@@ -488,6 +488,12 @@ html:active-view-transition {
 
 .programme-description-content p + p {
   margin-top: var(--space-3);
+}
+
+/* Paragraph gaps must also occupy whole lines inside the fixed preview;
+   fractional gaps shift the last line across the clipping boundary. */
+.programme-description-window:not(.is-expanded) .programme-description-content p + p {
+  margin-top: 1lh;
 }
 
 .programme-description-actions {

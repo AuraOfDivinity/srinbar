@@ -1,3 +1,5 @@
+import { BLOG_ENABLED } from "@/lib/features";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -20,13 +22,14 @@ import type {
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = BLOG_ENABLED ? {
   title: "Blog — SRINBAR",
   description:
     "Field notes & updates from restoration sites, workshops, and the entrepreneurs of the bamboo & rattan value chain.",
-};
+} : {};
 
 export default async function BlogPageRoute() {
+  if (!BLOG_ENABLED) notFound();
   const [page, settings, posts, featured, categories] = await Promise.all([
     client.fetch<BlogPageDoc>(BLOG_PAGE_QUERY, {}, fetchOptions),
     client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions),

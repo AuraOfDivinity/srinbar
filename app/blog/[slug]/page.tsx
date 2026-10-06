@@ -1,3 +1,4 @@
+import { BLOG_ENABLED } from "@/lib/features";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
@@ -19,11 +20,13 @@ export const revalidate = 60;
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
+  if (!BLOG_ENABLED) return [];
   const slugs = await client.fetch<string[]>(POST_SLUGS_QUERY);
   return (slugs ?? []).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  if (!BLOG_ENABLED) return {};
   const { slug } = await params;
   const post = await client.fetch<Post | null>(
     POST_BY_SLUG_QUERY,
@@ -114,6 +117,7 @@ const portableComponents: PortableTextComponents = {
 };
 
 export default async function ArticlePage({ params }: Props) {
+  if (!BLOG_ENABLED) notFound();
   const { slug } = await params;
   const [post, settings] = await Promise.all([
     client.fetch<Post | null>(POST_BY_SLUG_QUERY, { slug }, fetchOptions),

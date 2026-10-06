@@ -1,5 +1,6 @@
 "use client";
 
+import { BLOG_ENABLED, isBlogLink } from "@/lib/features";
 import { Link } from "next-view-transitions";
 import { useEffect, useState } from "react";
 
@@ -90,7 +91,7 @@ export default function SiteNav({
             aria-label="Primary"
             style={{ display: "flex", alignItems: "center", gap: 32 }}
           >
-            {PAGES.map(([label, href]) => (
+            {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
               <Link
                 key={label}
                 href={href}
@@ -128,7 +129,7 @@ export default function SiteNav({
             color: "var(--text-body)",
           }}
         >
-          {PAGES.map(([label, href]) => (
+          {PAGES.filter(([label, href]) => BLOG_ENABLED || !isBlogLink(href, label)).map(([label, href]) => (
             <Link
               key={label}
               href={href}

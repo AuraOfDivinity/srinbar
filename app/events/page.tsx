@@ -1,3 +1,4 @@
+import { BLOG_ENABLED } from "@/lib/features";
 import type { Metadata } from "next";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
@@ -130,6 +131,7 @@ export default async function EventsPage() {
           >
             Past events
           </h2>
+          {BLOG_ENABLED && (
           <p
             style={{
               font: "var(--type-caption)",
@@ -139,6 +141,7 @@ export default async function EventsPage() {
           >
             {page?.pastEventsNote}
           </p>
+          )}
           <div
             style={{
               display: "flex",
