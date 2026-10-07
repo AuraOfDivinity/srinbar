@@ -270,7 +270,7 @@ export const event = defineType({
     defineField({ name: "description", type: "text", rows: 8 }),
     defineField({ name: "speaker", type: "string" }),
     defineField({ name: "speakerRole", type: "string" }),
-    defineField({ name: "recordingUrl", type: "url", validation: (r) => r.uri({ scheme: ["http", "https"] }) }),
+    defineField({ name: "recordingUrl", title: "Session recording URL", type: "url", description: "Optional. Paste the YouTube session link to show a clickable recording thumbnail on the event details page. Other recording URLs display a Watch recording link.", validation: (r) => r.uri({ scheme: ["http", "https"] }) }),
     defineField({ name: "contactName", type: "string" }),
     defineField({ name: "contactPhone", type: "string" }),
     defineField({ name: "endDate", type: "date", description: "Optional last day for multi-day events", validation: (r) => r.min(r.valueOfField("date")) }),

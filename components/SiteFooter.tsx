@@ -125,7 +125,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
               Instagram
             </a>
             <a
-              href="https://web.facebook.com/SRINBAR.LK/?_rdc=1&_rdr#"
+              href="https://www.facebook.com/share/1bXvfLMMwr/?mibextid=wwXIfr&ref=1"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link footer-social-link"
@@ -135,6 +135,19 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
                 <path d="M13.5 21v-8.2h2.8l.4-3.2h-3.2V7.5c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5v2.1H7v3.2h2.8V21h3.7Z" />
               </svg>
               Facebook
+            </a>
+            <a
+              href="https://www.youtube.com/@SRINBAR"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link footer-social-link"
+              aria-label="YouTube (opens in a new tab)"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" strokeWidth="1.8" />
+                <path d="m10 9 5 3-5 3V9Z" fill="currentColor" />
+              </svg>
+              YouTube
             </a>
           </nav>
         </div>

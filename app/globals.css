@@ -1026,6 +1026,14 @@ html:active-view-transition {
 .membership-language select { font-size: 16px; }
 .membership-options input { flex-shrink: 0; }
 .event-recording .btn { padding: 12px 24px; }
+.event-recording-card { display: block; max-width: 480px; margin-top: 16px; overflow: hidden; border: 1px solid var(--border-hairline); border-radius: 12px; color: var(--text-body); text-decoration: none; }
+.event-recording-thumbnail { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-brand-dark); }
+.event-recording-thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.event-recording-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 64px; height: 46px; border-radius: 12px; background: #c00; color: white; }
+.event-recording-play svg { width: 28px; height: 28px; }
+.event-recording-caption { display: block; padding: 14px 16px; font: var(--type-body); font-weight: 600; }
+.event-recording-card:hover .event-recording-caption { text-decoration: underline; }
+.event-recording-card:focus-visible { outline: 3px solid var(--text-accent); outline-offset: 4px; }
 #programmes, #newsletter { scroll-margin-top: 88px; }
 @media (max-width: 767px) {
   .footer-content-grid { row-gap: var(--space-8) !important; }

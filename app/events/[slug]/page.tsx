@@ -8,6 +8,7 @@ import SiteFooter from "@/components/SiteFooter";
 import { client, fetchOptions } from "@/sanity/client";
 import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
 import type { SiteSettings } from "@/sanity/types";
+import { youtubeVideoId } from "@/lib/youtube";
 import { getEvents, eventDateLabel, eventStatus } from "@/lib/events";
 
 export const revalidate = 60;
@@ -32,6 +33,7 @@ export default async function EventPage({ params }: Props) {
   const settings = await client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions);
   const status = eventStatus(event);
   const recordingUrl = event.recordingUrl && /^https?:\/\//i.test(event.recordingUrl) ? event.recordingUrl : undefined;
+  const videoId = youtubeVideoId(recordingUrl);
   return (
     <div className="events-page">
       <JsonLd data={[
@@ -70,7 +72,17 @@ export default async function EventPage({ params }: Props) {
             </dl>
             {event.description && <section className="event-description" aria-labelledby="about-event"><h2 id="about-event">About this event</h2>{event.description.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>)}</section>}
             {event.contactPhone && <div className="event-inquiries"><h2>For inquiries</h2><a className="text-link" href={`tel:${event.contactPhone.replace(/[^+\d]/g, "")}`}>{event.contactName ? `${event.contactName} · ` : ""}{event.contactPhone}</a></div>}
-            {recordingUrl && <section className="event-recording"><h2>Event recording</h2><a className="btn btn--primary" href={recordingUrl} target="_blank" rel="noreferrer">Watch recording ↗</a></section>}
+            {recordingUrl && <section className="event-recording" aria-labelledby="event-recording-heading">
+              <h2 id="event-recording-heading">Event recording</h2>
+              {videoId ? <a className="event-recording-card" href={recordingUrl} target="_blank" rel="noopener noreferrer" aria-label={`Watch ${event.title} recording on YouTube (opens in a new tab)`}>
+                <div className="event-recording-thumbnail">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt={`Session recording: ${event.title}`} width={480} height={360} loading="lazy" />
+                  <span className="event-recording-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="m9 5 11 7-11 7V5Z" /></svg></span>
+                </div>
+                <span className="event-recording-caption">Watch recording on YouTube ↗</span>
+              </a> : <a className="btn btn--primary" href={recordingUrl} target="_blank" rel="noopener noreferrer">Watch recording ↗</a>}
+            </section>}
           </div>
         </article>
       </main>
