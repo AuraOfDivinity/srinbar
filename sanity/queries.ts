@@ -35,9 +35,6 @@ export const EVENTS_PAGE_QUERY = groq`*[_type == "eventsPage"][0]{
 
 export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
   eyebrow, heading, intro, formHeading, formNote,
-  membershipInformation[]{ language, title, body },
-  fees[]{ category, currency, enrollment, annual }, paymentNote,
-  bankAccountName, bankAccountNumber, bankName, bankBranch,
   membershipContactName, membershipContactRole, membershipContactPhone, membershipContactEmail
 }`;
 

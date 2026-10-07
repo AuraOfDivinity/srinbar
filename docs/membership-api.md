@@ -1,76 +1,42 @@
-# Membership form integration
+# Interest form integration
 
-The contact page posts one multipart request to `POST /api/membership`. The route validates all required fields and a single, nonempty payment slip up to 10 MiB. Actual request bytes are bounded to 10 MiB + 128 KiB before multipart parsing. Personal data and payment files are never logged or stored by this website.
+The contact page now contains an interest form. The existing `POST /api/membership` URL is retained for compatibility; it accepts only the six interest fields. No payment, identity document, or membership category is required. Actual request size is limited to 64 KiB before multipart parsing.
 
-## Preview / dummy API
+## Fields
 
-With `GOOGLE_APPS_SCRIPT_URL` unset, `/api/membership` acts as the dummy Apps Script API. It validates the full request and returns `{ success: true, mode: "mock", submissionId, message }`. Nothing is saved to Google Drive, Google Forms, or a database. The page and success toast explicitly identify preview mode.
+All fields are required: `firstName`, `lastName`, `occupation`, `email`, `phone`, and `description` (queries / interest in bamboo). Shared limits and validation are in `lib/interest.ts`. The form preserves entered details on failure and reuses its idempotency key when retrying unchanged data.
 
-To exercise the failure toast, set the server-only variable `MEMBERSHIP_MOCK_FAIL=true` and restart the development server. Valid preview requests will return HTTP 503. Remove it after testing. Validation failures always return HTTP 400 plus field errors. Oversize requests return HTTP 413. No special applicant email or personal-data value is used to trigger failures.
+## Preview
 
-## Connect Apps Script later
+Without `GOOGLE_APPS_SCRIPT_URL`, submissions are validated but **not saved or sent**. Both the form and receipt disclose preview mode. Set `MEMBERSHIP_MOCK_FAIL=true` to simulate a service failure. Validation errors return 400; oversized requests return 413.
 
-Set in `.env.local` (or deployment environment):
+## Live integration
 
-```dotenv
-GOOGLE_APPS_SCRIPT_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
-# Optional shared secret, validated by your script before accepting data:
-GOOGLE_APPS_SCRIPT_SECRET=your-shared-secret
-```
-
-Keep these server-only: never add the `NEXT_PUBLIC_` prefix. Restart/redeploy after configuration changes. The route forwards JSON server-to-server, follows Google’s response redirect, and times out after 25 seconds. The browser times out after 35 seconds and retains entered values on failure.
-
-Apps Script receives:
+Configure the server-only `GOOGLE_APPS_SCRIPT_URL` with the deployed HTTPS `script.google.com/macros/s/.../exec` endpoint and optionally `GOOGLE_APPS_SCRIPT_SECRET`. Redeploy after changing configuration. Existing membership handlers must be updated for this new contract before enabling the form:
 
 ```json
 {
-  "version": 1,
-  "action": "submitMembership",
+  "version": 2,
+  "action": "submitInterest",
   "submissionId": "a-client-generated-uuid",
   "secret": "only-present-when-configured",
   "fields": {
-    "fullName": "",
-    "dateOfBirth": "YYYY-MM-DD",
-    "nationality": "",
-    "identityNumber": "",
+    "firstName": "",
+    "lastName": "",
+    "occupation": "",
     "email": "",
     "phone": "",
-    "postalAddress": "",
-    "city": "",
-    "profession": "",
-    "interests": "",
-    "links": "",
-    "description": "",
-    "comments": "",
-    "membershipStatus": "New",
-    "category": "Individual"
-  },
-  "paymentSlip": {
-    "filename": "payment.pdf",
-    "mimeType": "application/pdf",
-    "base64": "base64-encoded-file-bytes"
+    "description": ""
   }
 }
 ```
 
-`membershipStatus` accepts `New` or `Existing` (single choice); `category` accepts `Individual`, `Corporate`, `SME`, or `International`. Website/social links, description, and comments are optional; the other fields and payment slip are required. A file-type restriction was not visible in the supplied screenshots, so all file types are accepted, within the one-file/10 MiB limit. Do not render uploaded files as executable website content.
-
-Your `doPost(e)` handler should:
-
-1. Validate the shared secret if configured and validate the incoming fields/file.
-2. Use `submissionId` as an idempotency key, with locking to prevent duplicate writes. Retrying unchanged browser data reuses that key.
-3. Decode the base64 file and create a private file in your configured Drive folder.
-4. Save the application response and its Drive file ID. Map these named fields to your destination form's real item IDs, or record them in your chosen response sheet. Those IDs and the Drive folder are not configured here. A Google Forms file-upload item may require a different response-storage approach; do not treat a Drive upload alone as a completed form submission.
-5. Return a JSON response only after BOTH operations succeed:
+The handler must validate the configured secret and fields, save the response, and use the submission ID with locking to prevent duplicate entries. No Drive file upload is needed. Return only after the response is saved:
 
 ```json
-{ "success": true, "submissionId": "same-client-generated-uuid", "fileId": "actual-drive-file-id" }
+{ "success": true, "submissionId": "same-client-generated-uuid" }
 ```
 
-On failure return `{ "success": false }`. The website treats malformed JSON, non-2xx responses, missing Drive file IDs, mismatched submission IDs, timeouts, and explicit failures as errors. It does not show an unverified success. Handle partial uploads in the script by reusing or removing orphaned files during retries.
+On failure return `{ "success": false }`. The website rejects non-success responses, invalid JSON, mismatched submission IDs, and timeouts. The server waits up to 25 seconds and the browser up to 35 seconds. Personal details and secrets are never logged.
 
-Deploy the script with appropriate execution/access settings and keep uploads private. The hosting platform must support multipart requests above 10 MiB and requests lasting at least 35 seconds; if it imposes a lower body limit, implement a direct/resumable upload flow before enabling live mode. Google integration is intentionally unconnected until you supply the deployed script.
-
-## Editable content
-
-Contact-page headings, explanatory text in English/Sinhala/Tamil, fees, bank details, and the membership contact are in Sanity’s Contact Page. The matching seed snapshot is `lib/contact-content.json`; field names and required rules are in `lib/membership.ts`. The Google-specific sign-in/account-recording notice is omitted because this form does not sign applicants into Google.
+Contact headings and the form introduction remain editable in Sanity’s Contact Page. Legacy membership information and bank details are preserved in Sanity but no longer displayed on the contact page. The `#membership` anchor remains valid for existing links.

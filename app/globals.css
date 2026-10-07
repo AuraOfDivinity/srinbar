@@ -889,7 +889,7 @@ html:active-view-transition {
 .membership-upload input { width: 100%; min-width: 0; font: var(--type-caption); }
 .membership-upload input::file-selector-button { min-height: 44px; padding: 10px 16px; margin-right: 12px; border: 1px solid var(--border-hairline); border-radius: 8px; background: var(--surface-page); color: var(--forest-green); cursor: pointer; font: inherit; }
 .membership-file-name { overflow-wrap: anywhere; font: var(--type-caption); font-weight: 400; }
-.membership-submit { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
+.membership-submit { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-top: 28px; }
 .membership-clear { background: none; border: 0; font: var(--type-caption); color: var(--text-muted); cursor: pointer; min-height: 44px; padding: 8px; }
 .membership-clear:hover { color: var(--forest-green); text-decoration: underline; }
 .contact-membership-help { margin-top: 28px; padding: 24px 0; font: var(--type-caption); color: var(--text-muted); }
@@ -1035,6 +1035,9 @@ html:active-view-transition {
 .event-recording-card:hover .event-recording-caption { text-decoration: underline; }
 .event-recording-card:focus-visible { outline: 3px solid var(--text-accent); outline-offset: 4px; }
 #programmes, #newsletter { scroll-margin-top: 88px; }
+@media (min-width: 768px) {
+  #programmes { scroll-margin-top: 64px; }
+}
 @media (max-width: 767px) {
   .footer-content-grid { row-gap: var(--space-8) !important; }
   .footer-blurb { margin-block: 0; }

@@ -6,7 +6,7 @@ import { flushSync } from "react-dom";
 
 const NAV_LINKS: [string, string | null][] = [
   ["Home", "/"],
-  ["Our Story", "/about#story-heading"],
+  ["Our Story", "/about"],
   ["Avenues", "/#programmes"],
   ["People", "/people"],
   ["Events", "/events"],

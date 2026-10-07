@@ -70,7 +70,7 @@ export default async function HomePage() {
         aria-label="Introduction"
         style={{
           position: "relative",
-          minHeight: "clamp(560px, 88svh, 720px)",
+          minHeight: "100svh",
           display: "flex",
           alignItems: "flex-end",
           overflow: "hidden",

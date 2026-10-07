@@ -2,8 +2,7 @@ import { pageMetadata, breadcrumbs } from "@/lib/seo";
 import JsonLd from "@/components/JsonLd";
 import SiteNav from "@/components/SiteNav";
 import SiteFooter from "@/components/SiteFooter";
-import MembershipForm from "@/components/MembershipForm";
-import MembershipInformation from "@/components/MembershipInformation";
+import InterestForm from "@/components/InterestForm";
 import { client, fetchOptions } from "@/sanity/client";
 import { CONTACT_PAGE_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/queries";
 import type { ContactPageDoc, SiteSettings } from "@/sanity/types";
@@ -11,8 +10,8 @@ import type { ContactPageDoc, SiteSettings } from "@/sanity/types";
 export const revalidate = 60;
 
 export const metadata = pageMetadata({
-  title: "Contact & Membership",
-  description: "Join or renew your SRINBAR membership. Connect with Sri Lanka’s bamboo and rattan community and find membership fees, application details and contacts.",
+  title: "Contact & Interest",
+  description: "Connect with SRINBAR. Share your questions and interest in bamboo with Sri Lanka’s bamboo and rattan community.",
   path: "/contact",
 });
 
@@ -24,7 +23,7 @@ export default async function ContactPage() {
 
   return (
     <div className="contact-page">
-      <JsonLd data={breadcrumbs([{ name: "Contact & Membership", path: "/contact" }])} />
+      <JsonLd data={breadcrumbs([{ name: "Contact & Interest", path: "/contact" }])} />
       <SiteNav active="Contact" />
       <main className="contact-shell">
         <header className="contact-heading">
@@ -32,22 +31,13 @@ export default async function ContactPage() {
           <h1>{page?.heading}</h1>
           <p>{page?.intro}</p>
         </header>
-        <MembershipInformation information={page?.membershipInformation} />
         <section id="membership" className="contact-form-panel" aria-labelledby="membership-heading">
           <header>
             <h2 id="membership-heading">{page?.formHeading}</h2>
             <p>{page?.formNote}</p>
           </header>
-          <MembershipForm page={page} preview={!process.env.GOOGLE_APPS_SCRIPT_URL} />
+          <InterestForm preview={!process.env.GOOGLE_APPS_SCRIPT_URL} />
         </section>
-        <aside className="contact-membership-help" aria-label="Membership enquiries">
-          <h2>Need help with your application?</h2>
-          <p>{page?.membershipContactName}{page?.membershipContactRole && ` · ${page.membershipContactRole}`}</p>
-          <div>
-            {page?.membershipContactPhone && <a href={`tel:${page.membershipContactPhone.replace(/\s/g, "")}`}>{page.membershipContactPhone}</a>}
-            {page?.membershipContactEmail && <a href={`mailto:${page.membershipContactEmail}`}>{page.membershipContactEmail}</a>}
-          </div>
-        </aside>
       </main>
       <SiteFooter settings={settings} />
     </div>
