@@ -144,6 +144,14 @@
   {
     "_id": "advisory-isuru-samarasinghe",
     "name": "Mr. Isuru Samarasinghe",
-    "order": 8
+    "order": 8,
+    "image": {
+      "_type": "siteImage",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-05d0450234c9398c37bfd1e8e676bb6317d1440f-923x1152-jpg"
+      },
+      "alt": "Portrait of Mr. Isuru Samarasinghe"
+    }
   }
 ]
