@@ -78,7 +78,6 @@ export default function InterestForm({ preview }: { preview: boolean }) {
 
   return (
     <>
-      {preview && <p className="membership-preview">Preview mode — submissions are not saved yet. Use sample details to try the form.</p>}
       {receipt ? (
         <div className="membership-receipt" role="status">
           <p className="eyebrow">{preview ? "Preview complete" : "Thank you"}</p>

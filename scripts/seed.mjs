@@ -277,7 +277,7 @@ function buildDocuments() {
     _id: "aboutPage",
     _type: "aboutPage",
     heroEyebrow: "About Us",
-    heroHeading: "A network of scientists, growers, and artisans",
+    heroHeading: "A network of scientists, growers, artisans and enthusiasts",
     heroImage: img("ellaValley", "Cloud forest in warm morning fog above Ella Valley, Sri Lanka"),
     storyHeading: "Our Story",
     storyParagraphs: JSON.parse(readFileSync(new URL("../lib/story.json", import.meta.url), "utf8")),
