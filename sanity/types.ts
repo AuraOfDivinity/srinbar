@@ -89,6 +89,8 @@ export type ContactPageDoc = {
   eyebrow?: string;
   heading?: string;
   intro?: string;
+  membershipHeading?: string;
+  membershipFormUrl?: string;
   formHeading?: string;
   formNote?: string;
 };

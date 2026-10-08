@@ -1,9 +1,11 @@
 {
   "eyebrow": "Contact & Interest",
-  "heading": "Connect with SRINBAR",
+  "heading": "Queries",
   "intro": "Share your questions and interest in bamboo with the Lanka Network for Bamboo and Rattan.",
+  "membershipHeading": "Become a member",
+  "membershipFormUrl": "https://forms.gle/sZh9EoQJVEUQrsPT7",
   "formHeading": "Express your interest",
-  "formNote": "Tell us a little about yourself and your interest in bamboo. All fields are required.",
+  "formNote": "Tell us a little about yourself and your interest in bamboo. Required fields are marked with an asterisk.",
   "membershipInformation": [
     {
       "_key": "english",

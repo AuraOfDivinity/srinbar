@@ -31,7 +31,7 @@ function doPost(e) {
     if (!fields || typeof fields !== "object") throw new Error("Missing form fields.");
 
     const values = Object.keys(FIELD_LIMITS).map(function (key) {
-      if (typeof fields[key] !== "string" || !fields[key].trim()) {
+      if (typeof fields[key] !== "string" || (key !== "phone" && !fields[key].trim())) {
         throw new Error("Missing required field: " + key);
       }
       const value = fields[key].trim();
@@ -40,7 +40,7 @@ function doPost(e) {
     });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values[3])) throw new Error("Invalid email address.");
     const digits = values[4].replace(/\D/g, "").length;
-    if (!/^[+\d\s().-]+$/.test(values[4]) || digits < 7 || digits > 15) throw new Error("Invalid phone number.");
+    if (values[4] && (!/^[+\d\s().-]+$/.test(values[4]) || digits < 7 || digits > 15)) throw new Error("Invalid phone number.");
 
     lock = LockService.getScriptLock();
     if (!lock.tryLock(10000)) throw new Error("Busy. Please try again.");
@@ -52,7 +52,7 @@ function doPost(e) {
     if (!duplicate) {
       sheet.appendRow([new Date(), submissionId].concat(values.map(function (value) {
         // Store input as text, preserving phone zeroes and avoiding formulas.
-        return "'" + value;
+        return value ? "'" + value : "";
       })));
       SpreadsheetApp.flush();
     }

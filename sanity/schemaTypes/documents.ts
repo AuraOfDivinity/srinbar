@@ -122,6 +122,13 @@ export const contactPage = defineType({
     defineField({ name: "eyebrow", type: "string" }),
     defineField({ name: "heading", type: "string" }),
     defineField({ name: "intro", type: "text", rows: 3 }),
+    defineField({ name: "membershipHeading", title: "Membership link heading", type: "string" }),
+    defineField({
+      name: "membershipFormUrl",
+      title: "Membership form URL",
+      type: "url",
+      validation: (r) => r.uri({ scheme: ["https"] }),
+    }),
     defineField({ name: "formHeading", type: "string" }),
     defineField({ name: "formNote", type: "text", rows: 2 }),
     defineField({ name: "membershipInformation", type: "array", of: [{ type: "object", name: "membershipInformation", fields: [

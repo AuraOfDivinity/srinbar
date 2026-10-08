@@ -34,7 +34,7 @@ export const EVENTS_PAGE_QUERY = groq`*[_type == "eventsPage"][0]{
 }`;
 
 export const CONTACT_PAGE_QUERY = groq`*[_type == "contactPage"][0]{
-  eyebrow, heading, intro, formHeading, formNote,
+  eyebrow, heading, intro, membershipHeading, membershipFormUrl, formHeading, formNote,
   membershipContactName, membershipContactRole, membershipContactPhone, membershipContactEmail
 }`;
 

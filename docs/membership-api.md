@@ -4,7 +4,7 @@ The contact page now contains an interest form. The existing `POST /api/membersh
 
 ## Fields
 
-All fields are required: `firstName`, `lastName`, `occupation`, `email`, `phone`, and `description` (queries / interest in bamboo). Shared limits and validation are in `lib/interest.ts`. The form preserves entered details on failure and reuses its idempotency key when retrying unchanged data.
+`firstName`, `lastName`, `occupation`, `email`, and `description` (queries / interest in bamboo) are required. `phone` is optional, but is validated when provided. Shared limits and validation are in `lib/interest.ts`. The form preserves entered details on failure and reuses its idempotency key when retrying unchanged data.
 
 ## Preview
 

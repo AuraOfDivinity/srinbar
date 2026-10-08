@@ -4,7 +4,7 @@ export const INTEREST_FIELDS = [
   { name: "lastName", label: "Last name", required: true, type: "text", autoComplete: "family-name", maxLength: 100 },
   { name: "occupation", label: "Occupation", required: true, type: "text", autoComplete: "organization-title", maxLength: 300 },
   { name: "email", label: "Email", required: true, type: "email", autoComplete: "email", maxLength: 254 },
-  { name: "phone", label: "Phone number", required: true, type: "tel", autoComplete: "tel", maxLength: 50 },
+  { name: "phone", label: "Phone number", required: false, type: "tel", autoComplete: "tel", maxLength: 50 },
   { name: "description", label: "Queries / interest in bamboo", required: true, type: "textarea", autoComplete: "off", maxLength: 5000 },
 ] as const;
 
@@ -13,7 +13,7 @@ export function validateInterest(data: FormData): Record<string, string> {
   for (const field of INTEREST_FIELDS) {
     const raw = data.get(field.name);
     const value = typeof raw === "string" ? raw.trim() : "";
-    if (!value) errors[field.name] = `Enter your ${field.label.toLowerCase()}.`;
+    if (!value && field.required) errors[field.name] = `Enter your ${field.label.toLowerCase()}.`;
     else if (value.length > field.maxLength) errors[field.name] = `Use ${field.maxLength} characters or fewer.`;
   }
   const email = String(data.get("email") || "").trim();
