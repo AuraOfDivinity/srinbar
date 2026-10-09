@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { HOME_TITLE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, INDEXABLE } from "@/lib/seo";
 
@@ -45,7 +46,10 @@ export default function RootLayout({
         data-scroll-behavior="smooth"
         className={`${fraunces.variable} ${inter.variable}`}
       >
-        <body>{children}</body>
+        <body>
+          {children}
+          <Analytics />
+        </body>
       </html>
     </ViewTransitions>
   );
