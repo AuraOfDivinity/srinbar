@@ -23,6 +23,8 @@ export default async function ContactPage() {
     client.fetch<SiteSettings>(SITE_SETTINGS_QUERY, {}, fetchOptions),
   ]);
   const membershipFormUrl = page?.membershipFormUrl || DEFAULT_MEMBERSHIP_FORM_URL;
+  const intro = (page?.intro || "Share your questions and interest in bamboo with the Lanka Network for Bamboo and Rattan.")
+    .replace(/\bSri Lanka Network\b/g, "Lanka Network");
 
   return (
     <div className="contact-page">
@@ -47,8 +49,7 @@ export default async function ContactPage() {
         </section>
         <header className="contact-heading">
           <p className="eyebrow">{page?.eyebrow}</p>
-          <h1>Queries</h1>
-          <p>{page?.intro}</p>
+          <p>{intro}</p>
         </header>
         <section id="queries" className="contact-form-panel" aria-labelledby="queries-heading">
           <header>
